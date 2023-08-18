@@ -23,14 +23,12 @@ struct LoginView: View
                 {
                     HStack
                     {
-                        Text("帳號")
                         TextField("輸入您的帳號", text: self.$account)
                             .textFieldStyle(.roundedBorder)
                             .font(.title)
                     }
                     HStack
                     {
-                        Text("密碼")
                         TextField("輸入您的密碼", text: self.$password)
                             .textFieldStyle(.roundedBorder)
                             .font(.title)

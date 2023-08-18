@@ -36,7 +36,7 @@ struct SigninView: View {
                             Text("密碼")
                             TextField("輸入您的密碼", text: self.$password)
                         }
-                        HStack
+                    HStack
                         {
                             Text("密碼")
                             TextField("再次輸入密碼", text: self.$password)
@@ -58,7 +58,7 @@ struct SigninView: View {
         .padding()
         .navigationTitle(Text("SIGN IN"))
         .navigationBarTitleDisplayMode(.large)
-        //.onAppear
+        //.onAppear/
     }
 }
 
