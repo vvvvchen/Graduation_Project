@@ -1,4 +1,8 @@
 //0818更新 晏
+//.foregroundColor(Color(red: 0.995, green: 0.477, blue: 0.33))深橘色
+//.foregroundColor(Color(red: 0.994, green: 0.689, blue: 0.418))淺橘色
+//.foregroundColor(Color(red: 0.983, green: 0.821, blue: 0.411))黃色
+//.foregroundColor(Color(red: 0.574, green: 0.609, blue: 0.386))綠色
 
 import SwiftUI
 
@@ -17,46 +21,67 @@ struct LoginView: View
     {
         NavigationStack
         {
-            VStack(spacing: 20)
+            VStack(spacing:20)
             {
+                Circle()
+                    .foregroundColor(.gray)
+                    .frame(width: 150,height: 150)
+                
                 VStack(spacing: 20)
                 {
                     HStack
                     {
-                        TextField("輸入您的帳號", text: self.$account)
-                            .textFieldStyle(.roundedBorder)
-                            .font(.title)
+                        TextField("Account", text: $account)
+                            .padding()
+                            .frame(width: 300, height: 50)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(100)
+                            .padding(10)
+                        
                     }
                     HStack
                     {
-                        TextField("輸入您的密碼", text: self.$password)
-                            .textFieldStyle(.roundedBorder)
-                            .font(.title)
+                        SecureField("Password", text: $password)
+                            .padding()
+                            .frame(width: 300, height: 50)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(100)
                     }
-                }
-
-                NavigationLink(destination: SigninView())
-                {
-                    Text("註冊")
-                }
+                    
+                    NavigationLink(destination: SigninView())
+                    {
+                        Text("尚未註冊嗎 ？請點擊我")
+                            .foregroundColor(Color(red: 0.574, green: 0.609, blue: 0.386))
+                    }
+                    
                     NavigationLink(destination: CheckView(account: self.account, password: self.password))
                     {
-                        Text("CONFIRM")
+                        Text("登入")
+                            .frame(width: 250, height: 25)
+                            .cornerRadius(100)
                             .font(.title3)
                             .foregroundColor(.white)
                             .padding(10)
                             .background(.black)
                             .cornerRadius(10)
                     }
-
-                .padding()
-                .navigationTitle(Text("LOG IN"))
-                .navigationBarTitleDisplayMode(.large)
-                .onAppear
-                {
-                    self.account=""
-                    self.password=""
+                    
+                    Spacer()
                 }
+                
+            }
+            HStack
+            {
+                //111423
+            }
+            .padding()
+            .navigationTitle(Text("LOG IN"))
+            .navigationBarTitleDisplayMode(.inline)
+            //.offset(x:0,y:-80)
+            .onAppear
+            {
+                self.account=""
+                self.password=""
             }
         }
     }
@@ -68,18 +93,3 @@ struct LoginView_Previews: PreviewProvider
         LoginView()
     }
 }
-
-/*
- TextField("Username", text: $username)
-     .padding()
-     .frame(width: 300, height: 50)
-     .background(Color.white.opacity(0.9))
-     .cornerRadius(100)
-     .padding(10)
- 
- SecureField("Password", text: $password)
-     .padding()
-     .frame(width: 300, height: 50)
-     .background(Color.white.opacity(0.9))
-     .cornerRadius(100)
- */
