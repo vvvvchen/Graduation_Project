@@ -70,3 +70,18 @@ struct LoginView_Previews: PreviewProvider
         LoginView()
     }
 }
+
+/*
+ TextField("Username", text: $username)
+     .padding()
+     .frame(width: 300, height: 50)
+     .background(Color.white.opacity(0.9))
+     .cornerRadius(100)
+     .padding(10)
+ 
+ SecureField("Password", text: $password)
+     .padding()
+     .frame(width: 300, height: 50)
+     .background(Color.white.opacity(0.9))
+     .cornerRadius(100)
+ */
