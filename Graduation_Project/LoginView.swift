@@ -19,11 +19,15 @@ struct LoginView: View
     @State private var valid: Bool=false
     //帳號及密碼
     @State private var information: (String, String)=("", "")
-    
+
     private func checkInformation() -> Bool
     {
         return self.information.0=="1234" && self.information.1=="4321"
     }
+    //警示提示視窗
+    @State private var showAlert = false
+    //提示訊息
+    @State private var alertMessage = " "
     
     var body: some View
     {
@@ -33,6 +37,7 @@ struct LoginView: View
             //帳密不合格
             if(!self.valid)
             {
+                
                 //Logo
                 Circle()
                     .foregroundColor(.gray)
@@ -115,14 +120,18 @@ struct LoginView: View
                         //一般登入
                         Button
                         {
-                            //點擊「登入」之後要執行的動作
-                            //檢查帳號密碼
-                            if(self.checkInformation())
+                            // 檢查帳號密碼
+                            if self.checkInformation()
                             {
                                 withAnimation(.easeInOut)
                                 {
                                     self.valid.toggle()
                                 }
+                            }else
+                            {
+                                // 登入失敗顯示警告文字
+                                showAlert = true
+                                alertMessage = "登入失敗！請確認帳號密碼是否正確"
                             }
                         }
                     label:
@@ -174,6 +183,15 @@ struct LoginView: View
             ForgetPassword()
                 .presentationDetents([.medium])
                 .presentationCornerRadius(30)
+        }
+        
+        //登入失敗後跳轉視窗
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("提示"),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("確定"))
+            )
         }
     }
 }
