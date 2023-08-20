@@ -14,58 +14,39 @@ struct Member: View
     
     var body: some View
     {
-        VStack(spacing: 50)
-        {
-            //MARK: 頭貼名字
-            VStack
+        NavigationStack{
+            VStack(spacing: 50)
             {
-                Circle()
-                    .fill(.gray)
-                    .frame(height: 100)
-                
-                Text("NAME")
-                    .bold()
-                    .font(.title)
+                //MARK: 頭貼名字
+                VStack
+                {
+                    Circle()
+                        .fill(.gray)
+                        .frame(height: 100)
+                    
+                    Text("NAME")
+                        .bold()
+                        .font(.title)
+                }
+                //MARK: 功能按鈕
+                NavigationLink(destination: Mydata())
+                {
+                    MemberButton(title: "我的資料")
+                }
+                NavigationLink(destination: Mydata()) //要改ＶＩＥＷ
+                {
+                    MemberButton(title: "查閱食譜")
+                }
+                NavigationLink(destination: Mydata()) //要改ＶＩＥＷ
+                {
+                    MemberButton(title: "食材紀錄")
+                }
+                NavigationLink(destination: Mydata()) //要改ＶＩＥＷ
+                {
+                    MemberButton(title: "其他設定")
+                }
+                Spacer()
             }
-            
-            //MARK: 功能按鈕
-            Button
-            {
-                
-            }
-            label:
-            {
-                MemberButton(title: "我的資料")
-            }
-            
-            Button
-            {
-                
-            }
-            label:
-            {
-                MemberButton(title: "查閱食譜")
-            }
-            
-            Button
-            {
-                
-            }
-            label:
-            {
-                MemberButton(title: "購物記錄")
-            }
-            
-            Button
-            {
-                
-            }
-            label:
-            {
-                MemberButton(title: "其他設定")
-            }
-            
-            Spacer()
         }
     }
 }

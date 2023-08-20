@@ -2,7 +2,7 @@
 //  Home.swift
 //  TopicIM110
 //
-//  Created by 曾品瑞 on 2023/8/18.
+//  Created by 0820
 //
 
 import SwiftUI
@@ -12,7 +12,7 @@ struct Home: View
     //TabView選擇的頁面
     @Binding var select: Int
     
-    private let cook: [String]=["煎", "煮", "炒", "作"]
+    private let cook: [String]=["煎", "煮", "炒", "炸" , "烘"]
     
     var body: some View
     {
@@ -37,7 +37,6 @@ struct Home: View
             }
             
             Capsule(style: .continuous).frame(height: 1)
-            
             //MARK: 烹飪方法
             HStack
             {
@@ -60,7 +59,6 @@ struct Home: View
             }
             
             Capsule(style: .continuous).frame(height: 1)
-            
             //MARK: 其他功能
             HStack
             {
@@ -70,7 +68,6 @@ struct Home: View
                     {
                         Text("健康管理").font(.title)
                     }
-                
                 VStack
                 {
                     ForEach(0..<2)
@@ -78,9 +75,9 @@ struct Home: View
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color(.systemGray3))
                             .overlay
-                            {
-                                Text(index==0 ? "我的食譜":"購物清單").font(.title)
-                            }
+                        {
+                            Text(index==0 ? "我的食譜":"購物清單").font(.title)
+                        }
                     }
                 }
             }
@@ -96,3 +93,4 @@ struct Home_Previews: PreviewProvider
         ContentView()
     }
 }
+
