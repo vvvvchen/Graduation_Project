@@ -11,6 +11,12 @@
 		04A4C95E2A8F06A3000D7C8C /* CheckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C95D2A8F06A3000D7C8C /* CheckView.swift */; };
 		04A4C9602A8F074A000D7C8C /* DoubleTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C95F2A8F074A000D7C8C /* DoubleTabView.swift */; };
 		04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9612A8F08CF000D7C8C /* SigninView.swift */; };
+		04A4C9642A91AA44000D7C8C /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9632A91AA44000D7C8C /* Favorite.swift */; };
+		04A4C9662A91AA6B000D7C8C /* ForgetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9652A91AA6B000D7C8C /* ForgetPassword.swift */; };
+		04A4C9682A91AA88000D7C8C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9672A91AA88000D7C8C /* Home.swift */; };
+		04A4C96A2A91AAAE000D7C8C /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9692A91AAAE000D7C8C /* Member.swift */; };
+		04A4C9712A91AC51000D7C8C /* _Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9702A91AC51000D7C8C /* _Login.swift */; };
+		04A4C9732A91AC71000D7C8C /* _Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9722A91AC71000D7C8C /* _Member.swift */; };
 		04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */; };
 		04A4D0592A8E118D0050A5C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0582A8E118D0050A5C4 /* ContentView.swift */; };
 		04A4D05B2A8E118F0050A5C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */; };
@@ -22,6 +28,12 @@
 		04A4C95D2A8F06A3000D7C8C /* CheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckView.swift; sourceTree = "<group>"; };
 		04A4C95F2A8F074A000D7C8C /* DoubleTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleTabView.swift; sourceTree = "<group>"; };
 		04A4C9612A8F08CF000D7C8C /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
+		04A4C9632A91AA44000D7C8C /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		04A4C9652A91AA6B000D7C8C /* ForgetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPassword.swift; sourceTree = "<group>"; };
+		04A4C9672A91AA88000D7C8C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		04A4C9692A91AAAE000D7C8C /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		04A4C9702A91AC51000D7C8C /* _Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Login.swift; sourceTree = "<group>"; };
+		04A4C9722A91AC71000D7C8C /* _Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _Member.swift; sourceTree = "<group>"; };
 		04A4D0532A8E118D0050A5C4 /* Graduation_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graduation_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graduation_ProjectApp.swift; sourceTree = "<group>"; };
 		04A4D0582A8E118D0050A5C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +52,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04A4C96D2A91AB89000D7C8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04A4C96E2A91ABC7000D7C8C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				04A4C9702A91AC51000D7C8C /* _Login.swift */,
+				04A4C9722A91AC71000D7C8C /* _Member.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		04A4C96F2A91ABFE000D7C8C /* ColorsAndPictures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ColorsAndPictures;
+			sourceTree = "<group>";
+		};
 		04A4D04A2A8E118D0050A5C4 = {
 			isa = PBXGroup;
 			children = (
@@ -59,14 +94,21 @@
 		04A4D0552A8E118D0050A5C4 /* Graduation_Project */ = {
 			isa = PBXGroup;
 			children = (
+				04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */,
+				04A4D05C2A8E118F0050A5C4 /* Preview Content */,
+				04A4C96F2A91ABFE000D7C8C /* ColorsAndPictures */,
+				04A4C96E2A91ABC7000D7C8C /* Extension */,
+				04A4C96D2A91AB89000D7C8C /* View */,
 				04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */,
 				04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */,
 				04A4C9612A8F08CF000D7C8C /* SigninView.swift */,
 				04A4C95D2A8F06A3000D7C8C /* CheckView.swift */,
 				04A4C95F2A8F074A000D7C8C /* DoubleTabView.swift */,
 				04A4D0582A8E118D0050A5C4 /* ContentView.swift */,
-				04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */,
-				04A4D05C2A8E118F0050A5C4 /* Preview Content */,
+				04A4C9632A91AA44000D7C8C /* Favorite.swift */,
+				04A4C9652A91AA6B000D7C8C /* ForgetPassword.swift */,
+				04A4C9672A91AA88000D7C8C /* Home.swift */,
+				04A4C9692A91AAAE000D7C8C /* Member.swift */,
 			);
 			path = Graduation_Project;
 			sourceTree = "<group>";
@@ -150,11 +192,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */,
+				04A4C9662A91AA6B000D7C8C /* ForgetPassword.swift in Sources */,
+				04A4C9642A91AA44000D7C8C /* Favorite.swift in Sources */,
 				04A4D0592A8E118D0050A5C4 /* ContentView.swift in Sources */,
+				04A4C9682A91AA88000D7C8C /* Home.swift in Sources */,
 				04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */,
 				04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */,
+				04A4C9732A91AC71000D7C8C /* _Member.swift in Sources */,
 				04A4C9602A8F074A000D7C8C /* DoubleTabView.swift in Sources */,
+				04A4C9712A91AC51000D7C8C /* _Login.swift in Sources */,
 				04A4C95E2A8F06A3000D7C8C /* CheckView.swift in Sources */,
+				04A4C96A2A91AAAE000D7C8C /* Member.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
