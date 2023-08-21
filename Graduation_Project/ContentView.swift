@@ -168,7 +168,6 @@ struct SideView: View {
             .ignoresSafeArea(.all)
             .offset(x:self.showSide ? geometry.size.width * -0.5 : geometry.size.width * -1)
             .animation(.easeInOut, value: self.showSide)
-
         }
     }
 }
