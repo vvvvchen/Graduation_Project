@@ -58,12 +58,15 @@ struct ContentView: View
 
             if showSide {
                 SideView(showSide: self.$showSide)
+                    //.animation(.easeInOut, value: self.showSide)
                     .background(Color(.systemGray5).opacity(0.1))
                     .onTapGesture {
                         self.showSide = false
                     }
             }
         }
+        .animation(.spring(), value: self.showSide)
+
         .tint(.black)
         //不要顯示NavigationBarTitle
         .navigationBarTitleDisplayMode(.inline)
@@ -75,7 +78,6 @@ struct ContentView: View
             {
                 NavigationStack{
                     ZStack{
-                        
                         Button
                         {
                             self.showSide=true
@@ -167,8 +169,10 @@ struct SideView: View {
             }
             .ignoresSafeArea(.all)
             .offset(x:self.showSide ? geometry.size.width * -0.5 : geometry.size.width * -1)
-            .animation(.easeInOut, value: self.showSide)
+            
         }
+        // 其實只有ＯＵＴ的功用
+        .animation(.spring(), value: self.showSide)
     }
 }
 
