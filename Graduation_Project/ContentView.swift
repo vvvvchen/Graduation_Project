@@ -65,6 +65,7 @@ struct ContentView: View
                     }
             }
         }
+        // IN的效果
         .animation(.spring(), value: self.showSide)
 
         .tint(.black)
