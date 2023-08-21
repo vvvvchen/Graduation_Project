@@ -19,7 +19,7 @@ struct ContentView: View
         {
             TabView(selection: self.$select)
             {
-                Favorite(select: self.$select)
+                FavoriteView(select: self.$select)
                     .tabItem
                 {
                     Image(systemName: "heart.fill")
@@ -28,7 +28,7 @@ struct ContentView: View
                 }
                 .tag(0)
                 
-                Home(select: self.$select)
+                HomeView(select: self.$select)
                     .tabItem
                 {
                     Image(systemName: "house.fill")
@@ -37,7 +37,7 @@ struct ContentView: View
                 }
                 .tag(1)
                 
-                Member(select: self.$select)
+                MemberView(select: self.$select)
                     .tabItem
                 {
                     Image(systemName: "person.fill")
@@ -46,7 +46,9 @@ struct ContentView: View
                 }
                 .tag(2)
             }
+            
             SideView(showSide: self.$showSide)
+                .ignoresSafeArea(.all)
         }
         .tint(.black)
         //不要顯示NavigationBarTitle
@@ -149,9 +151,10 @@ struct SideView: View {
                     .frame(maxHeight: .infinity)
                     .onTapGesture {
                         self.showSide=false
+                        
                     }
             }
-            .ignoresSafeArea()
+            .ignoresSafeArea(.all)
             .offset(x:self.showSide ? geometry.size.width * -0.5 : -400)
             .animation(.easeInOut, value: self.showSide)
         }

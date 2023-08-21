@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Home: View
+struct HomeView : View
 {
     //TabView選擇的頁面
     @Binding var select: Int
@@ -86,7 +86,7 @@ struct Home: View
     }
 }
 
-struct Home_Previews: PreviewProvider
+struct HomeView_Previews: PreviewProvider
 {
     static var previews: some View
     {

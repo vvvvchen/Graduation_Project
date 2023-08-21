@@ -173,7 +173,7 @@ struct LoginView: View
         // MARK: 忘記密碼
         .sheet(isPresented: self.$forget)
         {
-            ForgetPassword()
+            ForgetPasswordView()
                 .presentationDetents([.medium])
                 .presentationCornerRadius(30)
         }

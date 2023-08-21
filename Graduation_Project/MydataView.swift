@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct Mydata: View {
+struct MydataView: View {
     var body: some View {
         Text("MYDATA")
     }
 }
 
-struct Mydata_Previews: PreviewProvider {
+struct MydataView_Previews: PreviewProvider {
     static var previews: some View {
-        Mydata()
+        MydataView()
     }
 }

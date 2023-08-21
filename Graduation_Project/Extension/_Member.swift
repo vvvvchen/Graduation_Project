@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Member
+extension MemberView
 {
     func MemberButton(title: String) -> some View
     {

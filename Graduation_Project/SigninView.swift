@@ -6,28 +6,6 @@
 //
 
 import SwiftUI
-//須額外新增名為：“extension”的資料夾，存放自建方法；func limitInput限制文字字數，使用方法“.lineLimit(自訂字數)”
-extension View
-{
-    func limitInput(text: Binding<String>, max: Int) -> some View
-    {
-        self.modifier(TextLimit(text: text, max: max))
-    }
-}
-struct TextLimit: ViewModifier
-{
-    @Binding var text: String
-    
-    var max: Int
-    //舉例：Text("").font(.largeTitle)
-    func body(content: Content) -> some View
-    {
-        content.onReceive(self.text.publisher.collect())
-        {
-            text=String($0.prefix(max))
-        }
-    }
-}
 
 struct SigninView: View
 {
@@ -77,21 +55,25 @@ struct SigninView: View
                             .background(Color.gray.opacity(0.1))
                             .frame(width: 300, height: 50)
                             .cornerRadius(100)
+                        
                         SecureField("輸入您的密碼", text: self.$password)
                             .padding()
                             .background(Color.gray.opacity(0.1))
                             .frame(width: 300, height: 50)
                             .cornerRadius(100)
-                            .lineLimit(10)
-                            
+                        
+                            ._LimitInput(text: $account, max: 12,min: 4) // 限制最小字數為 4，最大字數為 12
+
                         SecureField("再次輸入密碼", text: self.$againpassword)
                             .padding()
                             .background(Color.gray.opacity(0.1))
                             .frame(width: 300, height: 50)
                             .cornerRadius(100)
-                    }
-                    
-                    Button("註冊") {
+                        
+                            ._LimitInput(text: $account, max: 12,min: 4) // 限制最小字數為 4，最大字數為 12
+
+                                }
+            Button("註冊") {
                         if account.isEmpty || password.isEmpty || againpassword.isEmpty {
                             showAlert = true
                             alertMessage = "請填寫所有欄位"

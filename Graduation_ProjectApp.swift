@@ -11,8 +11,8 @@ import SwiftUI
 struct Graduation_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
-            //LoginView()
-            SigninView()
+            LoginView()
+            //SigninView()
             //SideView()
         }
     }

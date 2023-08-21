@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Favorite: View
+struct FavoriteView : View
 {
     //TabView選擇的頁面
     @Binding var select: Int
@@ -50,7 +50,7 @@ struct Favorite: View
     }
 }
 
-struct Favorite_Previews: PreviewProvider
+struct FavoriteView_Previews: PreviewProvider
 {
     static var previews: some View
     {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Member: View
+struct MemberView: View
 {
     //TabView選擇的頁面
     @Binding var select: Int
@@ -29,19 +29,19 @@ struct Member: View
                         .font(.title)
                 }
                 //MARK: 功能按鈕
-                NavigationLink(destination: Mydata())
+                NavigationLink(destination: MydataView())
                 {
                     MemberButton(title: "我的資料")
                 }
-                NavigationLink(destination: Mydata()) //要改ＶＩＥＷ
+                NavigationLink(destination: MydataView()) //要改ＶＩＥＷ
                 {
                     MemberButton(title: "查閱食譜")
                 }
-                NavigationLink(destination: Mydata()) //要改ＶＩＥＷ
+                NavigationLink(destination: MydataView()) //要改ＶＩＥＷ
                 {
                     MemberButton(title: "食材紀錄")
                 }
-                NavigationLink(destination: Mydata()) //要改ＶＩＥＷ
+                NavigationLink(destination: MydataView()) //要改ＶＩＥＷ
                 {
                     MemberButton(title: "其他設定")
                 }
@@ -51,7 +51,7 @@ struct Member: View
     }
 }
 
-struct Member_Previews: PreviewProvider
+struct MemberView_Previews: PreviewProvider
 {
     static var previews: some View
     {
