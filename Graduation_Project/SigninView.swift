@@ -25,7 +25,7 @@ struct SigninView: View
     //想確認帳號是否被註冊過(以後處理）
 
     
-     //MARK:環境
+     //MARK:環境 註冊成功後返回登入介面
      @Environment(\.dismiss)private var dismiss
     //驗證密碼兩次是否相同
     
