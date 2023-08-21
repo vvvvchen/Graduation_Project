@@ -14,6 +14,7 @@ struct Graduation_ProjectApp: App {
             LoginView()
             //SigninView()
             //SideView()
+            
         }
     }
 }

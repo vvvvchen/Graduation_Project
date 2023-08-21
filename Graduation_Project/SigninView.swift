@@ -62,7 +62,7 @@ struct SigninView: View
                             .frame(width: 300, height: 50)
                             .cornerRadius(100)
                         
-                            ._LimitInput(text: $account, max: 12,min: 4) // 限制最小字數為 4，最大字數為 12
+                            ._LimitInput(text: $password, max: 12,min: 4) // 限制最小字數為 4，最大字數為 12
 
                         SecureField("再次輸入密碼", text: self.$againpassword)
                             .padding()
@@ -70,18 +70,22 @@ struct SigninView: View
                             .frame(width: 300, height: 50)
                             .cornerRadius(100)
                         
-                            ._LimitInput(text: $account, max: 12,min: 4) // 限制最小字數為 4，最大字數為 12
+                            ._LimitInput(text: $password, max: 12,min: 4) // 限制最小字數為 4，最大字數為 12
 
                                 }
             Button("註冊") {
                         if account.isEmpty || password.isEmpty || againpassword.isEmpty {
                             showAlert = true
                             alertMessage = "請填寫所有欄位"
+//                        } else if TextLimit() {
+//                            showAlert = true
+//                            alertMessage = "密碼長度錯誤，密碼須在4~12字元之內"
                         } else if psscheck() {
                             users.append(( account: account, password: password, againpassword: againpassword))
                             showAlert = true
                             alertMessage = "註冊成功!"
                             succcess = true
+                        
                         } else {
                             showAlert = true
                             alertMessage = "密碼錯誤"

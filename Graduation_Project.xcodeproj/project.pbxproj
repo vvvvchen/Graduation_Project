@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0493EE492A9349BD00180221 /* _TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE482A9349BD00180221 /* _TagButton.swift */; };
 		04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */; };
 		04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9612A8F08CF000D7C8C /* SigninView.swift */; };
 		04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9632A91AA44000D7C8C /* FavoriteView.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0493EE482A9349BD00180221 /* _TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _TagButton.swift; sourceTree = "<group>"; };
 		04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		04A4C9612A8F08CF000D7C8C /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		04A4C9632A91AA44000D7C8C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			children = (
 				04A4C9722A91AC71000D7C8C /* _Member.swift */,
 				04A4C9782A92F5EB000D7C8C /* _LimitInput.swift */,
+				0493EE482A9349BD00180221 /* _TagButton.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */,
 				04A4D0592A8E118D0050A5C4 /* ContentView.swift in Sources */,
 				04A4C9752A91BBCB000D7C8C /* MydataView.swift in Sources */,
+				0493EE492A9349BD00180221 /* _TagButton.swift in Sources */,
 				04A4C9682A91AA88000D7C8C /* HomeView.swift in Sources */,
 				04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */,
 				04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */,
