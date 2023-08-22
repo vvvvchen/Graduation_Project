@@ -16,56 +16,55 @@ struct ContentView: View
     
     var body: some View
     {
-        withAnimation(.easeInOut) {
-            ZStack
+        ZStack
+        {
+            TabView(selection: self.$select)
             {
-                TabView(selection: self.$select)
+                FavoriteView(select: self.$select)
+                    .tabItem
                 {
-                    FavoriteView(select: self.$select)
-                        .tabItem
-                    {
-                        Image(systemName: "heart.fill")
-                        
-                        Text("我的最愛")
-                    }
-                    .tag(0)
+                    Image(systemName: "heart.fill")
                     
-                    HomeView(select: self.$select)
-                        .tabItem
-                    {
-                        Image(systemName: "house.fill")
-                        
-                        Text("主頁")
-                    }
-                    .tag(1)
+                    Text("我的最愛")
+                }
+                .tag(0)
+                
+                HomeView(select: self.$select)
+                    .tabItem
+                {
+                    Image(systemName: "house.fill")
                     
-                    MemberView(select: self.$select)
-                        .tabItem
-                    {
-                        Image(systemName: "person.fill")
-                        
-                        Text("會員")
-                    }
-                    .tag(2)
+                    Text("主頁")
                 }
+                .tag(1)
                 
-                SideView(showSide: self.$showSide)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .ignoresSafeArea(.all)
-                // 在展開SideView時禁止使用TabView和HomeView
-                    .disabled(showSide)
-                
-                if showSide {
-                    SideView(showSide: self.$showSide)
-                        .background(Color(.systemGray5).opacity(0.1))
-                    //動畫主要控制處
-                        .onTapGesture {
-                            withAnimation(.easeInOut) {
-                                self.showSide = false
-                            }
-                        }
+                MemberView(select: self.$select)
+                    .tabItem
+                {
+                    Image(systemName: "person.fill")
+                    
+                    Text("會員")
                 }
+                .tag(2)
             }
+            
+            SideView(showSide: self.$showSide)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea(.all)
+            // 在展開SideView時禁止使用TabView和HomeView
+                .disabled(showSide)
+            
+            if showSide {
+                SideView(showSide: self.$showSide)
+                    .background(Color(.systemGray5).opacity(0.1))
+                //返回動畫控制處
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.25)) {
+                            self.showSide = false
+                        }
+                    }
+            }
+            
         }
         
         .tint(.black)
@@ -83,9 +82,9 @@ struct ContentView: View
                     ZStack{
                         Button
                         {
-                            withAnimation(.easeInOut) {
+                            //顯示動畫控制處
+                            withAnimation(.easeInOut(duration: 0.25)) {
                                 self.showSide=true
-                                
                             }
                         }
                     label:
@@ -107,41 +106,24 @@ struct ContentView: View
             //搜尋列
             ToolbarItem(placement: .principal)
             {
-                ZStack(alignment: .trailing)
+                HStack
                 {
-                    //改變後
-                    if self.showSide {
-                        withAnimation(nil) {                            RoundedRectangle(cornerRadius:5)
-                                .foregroundColor(Color(.systemGray5))
-                                .frame(width: 42.2, height: 44)
-                                .overlay
-                            {
-                                HStack
-                                {
-                                    Spacer()
-                                    Image(systemName: "magnifyingglass")
-                                }
-                                .padding(.horizontal)
-                            }
-                            .offset(x: 99)
-                        }
-                    }
-                    //改變前
-                    else
+                    if(self.showSide)
                     {
-                        withAnimation(nil){
-                            RoundedRectangle(cornerRadius: 8)
-                                .foregroundColor(Color(.systemGray5))
-                                .overlay
-                            {
-                                HStack
-                                {
-                                    Spacer()
-                                    Image(systemName: "magnifyingglass")
-                                }
-                                .padding(.horizontal)
-                            }
+                        Spacer()
+                    }
+                    
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(Color(.systemGray5))
+                        .frame(maxWidth: self.showSide ? 45:.infinity)
+                        .overlay
+                    {
+                        HStack
+                        {
+                            Spacer()
+                            Image(systemName: "magnifyingglass")
                         }
+                        .padding(.horizontal)
                     }
                 }
             }
@@ -209,7 +191,6 @@ struct SideView: View {
             }
             .ignoresSafeArea(.all)
             .offset(x:self.showSide ? geometry.size.width * -0.3 : geometry.size.width * -1)
-            
         }
     }
 }
