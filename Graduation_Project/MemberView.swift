@@ -17,13 +17,13 @@ struct MemberView: View
         NavigationStack{
             VStack(spacing:30)
             {
-//user image目前用圓形代替
-//                Image("user image")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .frame(width: 150.0, height: 150.0)
-//                    .clipShape(Circle())//圓形裁減
-//                    .padding(.top, -300)
+                //user image目前用圓形代替
+                //                Image("user image")
+                //                    .resizable()
+                //                    .aspectRatio(contentMode: .fit)
+                //                    .frame(width: 150.0, height: 150.0)
+                //                    .clipShape(Circle())//圓形裁減
+                //                    .padding(.top, -300)
                 Circle()
                     .foregroundColor(.gray)
                     .frame(width: 150,height: 150)
@@ -42,7 +42,7 @@ struct MemberView: View
                             {
                                 //點擊標籤去到標籤收藏館
                             }
-                            label:
+                        label:
                             {
                                 _Tag1Button(
                                     image: "",
@@ -59,7 +59,7 @@ struct MemberView: View
                             {
                                 //點擊標籤去到標籤收藏館
                             }
-                            label:
+                        label:
                             {
                                 _Tag1Button(
                                     image: "",
@@ -76,7 +76,7 @@ struct MemberView: View
                             {
                                 //點擊標籤去到標籤收藏館
                             }
-                            label:
+                        label:
                             {
                                 _Tag1Button(
                                     image: "",
@@ -87,7 +87,7 @@ struct MemberView: View
                             }
                         }
                     }
-
+                    
                     //用戶成就標籤
                     HStack{
                         //美食尋寶家
@@ -97,7 +97,7 @@ struct MemberView: View
                             {
                                 //點擊標籤去到標籤收藏館
                             }
-                            label:
+                        label:
                             {
                                 _Tag2Button(
                                     image: "",
@@ -114,7 +114,7 @@ struct MemberView: View
                             {
                                 //點擊標籤去到標籤收藏館
                             }
-                            label:
+                        label:
                             {
                                 _Tag2Button(
                                     image: "",
@@ -128,35 +128,33 @@ struct MemberView: View
                 }
                 
                 //個人資料內容
-                VStack{
-                    HStack{
-                        Image("person.fill")
-                        Text("姓名 ： ")
+                Form {
+                    Section {
+                        //用戶名稱
+                        _MemberButton(image: "person.fill", title: "用户名稱", itemContent: "文如秋雨")
+                        //性別
+                        _MemberButton(image: "person.fill", title: "性別", itemContent: "男性")
+                        //年齡
+                        _MemberButton(image: "birthday.cake.fill", title: "年齡", itemContent: "18")
+                        //身高
+                        _MemberButton(image: "ruler", title: "身高", itemContent: "180 CM")
+                        //體重
+                        _MemberButton(image: "dumbbell", title: "體重", itemContent: "60 KG")
+                        //手機號碼
+                        _MemberButton(image: "phone", title: "手機號碼", itemContent: "2002/02/02")
                         
-                        Button
-                        {
-                            //點擊後跳轉至mydata編輯
-                        }
-                    label:
-                        {
-                            _Tag1Button(
-                                image: "",
-                                title: "username",
-                                fore: .gray,
-                                back: .white
-                            )
-                        }
+                        
+                        
                     }
                 }
-
                 Spacer()
             }
         }
         .navigationTitle(Text("會員"))
         .navigationBarTitleDisplayMode(.inline)
     }
-    
 }
+
 //想放一個視窗更換用戶圖貼用
 //struct UsersHeadSticker : View
 //{

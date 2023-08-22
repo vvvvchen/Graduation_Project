@@ -12,30 +12,26 @@ import SwiftUI
 //.limitInput(text: $account, max: 20)只限制最大值 不限制最小值
 //.lineLimit(10)變成限制文本行數
 
+import SwiftUI
+//須額外新增名為：“extension”的資料夾，存放自建方法；func limitInput限制文字字數，使用方法“.lineLimit(自訂字數)”
 extension View
 {
-    func _LimitInput(text: Binding<String>, max: Int,min: Int) -> some View
+    func limitInput(text: Binding<String>, max: Int) -> some View
     {
-        self.modifier(TextLimit(text: text, max: max, min: min))
+        self.modifier(TextLimit(text: text, max: max))
     }
 }
 struct TextLimit: ViewModifier
 {
     @Binding var text: String
-
+    
     var max: Int
-    var min: Int
     //舉例：Text("").font(.largeTitle)
-
     func body(content: Content) -> some View
     {
         content.onReceive(self.text.publisher.collect())
         {
-            newText in
-            text = String(newText.prefix(Swift.max(min, max))) // 使用 Swift 的 min 和 max 函數
+            text=String($0.prefix(max))
         }
-//        {
-//            text=String($0.prefix(max))
-//        }
     }
 }
