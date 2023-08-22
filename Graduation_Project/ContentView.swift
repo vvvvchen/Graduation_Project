@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  TopicIM110
 //
-//  Created by 0820
+//  Created by 0821
 //
 
 import SwiftUI
@@ -51,14 +51,14 @@ struct ContentView: View
                 SideView(showSide: self.$showSide)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .ignoresSafeArea(.all)
-
+                
             )
             // 在展開SideView時禁止使用TabView和HomeView
             .disabled(showSide)
-
+            
             if showSide {
                 SideView(showSide: self.$showSide)
-                    //.animation(.easeInOut, value: self.showSide)
+                //.animation(.easeInOut, value: self.showSide)
                     .background(Color(.systemGray5).opacity(0.1))
                     .onTapGesture {
                         self.showSide = false
@@ -66,11 +66,12 @@ struct ContentView: View
             }
         }
         // IN的效果
-        .animation(.spring(), value: self.showSide)
-
+        //.animation(.easeInOut, value: self.showSide)
+        
         .tint(.black)
         //不要顯示NavigationBarTitle
         .navigationBarTitleDisplayMode(.inline)
+        
         //MARK: Toolbar
         .toolbar
         {
@@ -81,7 +82,9 @@ struct ContentView: View
                     ZStack{
                         Button
                         {
-                            self.showSide=true
+                            withAnimation(.easeInOut) {
+                                self.showSide=true
+                            }
                         }
                     label:
                         {
@@ -95,26 +98,49 @@ struct ContentView: View
                                 }
                             }
                         }
-                        .opacity(self.select==1 ? 1:0)
+                        .opacity(self.showSide ? 0:1)
                     }
                 }
             }
             //搜尋列
             ToolbarItem(placement: .principal)
             {
-                RoundedRectangle(cornerRadius: 10)
-                    .foregroundColor(Color(.systemGray5))
-                    .overlay
+                ZStack(alignment: .trailing)
                 {
-                    HStack
-                    {
-                        Image(systemName: "magnifyingglass")
-                        
-                        Spacer()
+                    //改變後
+                    if self.showSide {
+                        RoundedRectangle(cornerRadius:5)
+                            .foregroundColor(Color(.systemGray5))
+                            .frame(width: 42.2, height: 44)
+                            .overlay
+                            {
+                                HStack
+                                {
+                                    Spacer()
+                                    Image(systemName: "magnifyingglass")
+                                }
+                                .padding(.horizontal)
+                            }
+                            .opacity(self.select == 1 ? 1 : 0)
+                            .offset(x: 99)
                     }
-                    .padding(.horizontal)
+                    //改變前
+                    else
+                    {
+                        RoundedRectangle(cornerRadius: 8)
+                            .foregroundColor(Color(.systemGray5))
+                            .overlay
+                            {
+                                HStack
+                                {
+                                    Spacer()
+                                    Image(systemName: "magnifyingglass")
+                                }
+                                .padding(.horizontal)
+                            }
+                            .opacity(self.select == 1 ? 1 : 0)
+                    }
                 }
-                .opacity(self.select==1 ? 1:0)
             }
             
             //照相
@@ -122,32 +148,38 @@ struct ContentView: View
             {
                 if(self.select==1)
                 {
-                    Button
-                    {
-                        //照相功能
-                    }
-                label:
-                    {
-                        Image(systemName: "camera.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 30)
-                            .foregroundColor(.black)
+                    ZStack{
+                        Button
+                        {
+                            //照相功能
+                        }
+                    label:
+                        {
+                            Image(systemName: "camera.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 30)
+                                .foregroundColor(.black)
+                        }
                     }
                 }
-                else if(self.select==0)
+                else if self.select==0
                 {
-                    Button
+                    ZStack
                     {
-                        //點擊「刪除紀錄」之後要執行的動作
-                    }
-                label:
-                    {
-                        Text("刪除紀錄")
-                            .font(.body)
-                            .foregroundColor(.blue)
+                        Button
+                        {
+                            //點擊「刪除紀錄」之後要執行的動作
+                        }
+                    label:
+                        {
+                            Text("刪除紀錄")
+                                .font(.body)
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
+                
             }
         }
     }
@@ -161,19 +193,27 @@ struct SideView: View {
             ZStack
             {
                 Rectangle()
-                    .fill(.green)
+                    .foregroundColor(Color(red: 0.994, green: 0.689, blue: 0.418))
                     .frame(maxHeight: .infinity)
-                    //true點按不會收回
+                //true點按不會收回
                     .onTapGesture {
                         self.showSide=true
                     }
+                NavigationStack{
+                    NavigationLink(destination: MydataView()) {
+                        Text("會員資料")
+                            .animation(nil)
+                        
+                    }
+                    .offset(x: self.showSide ? geometry.size.width * 0.2 : 0,y: self.showSide ? geometry.size.height * -0.35 : 0)
+                }
             }
             .ignoresSafeArea(.all)
-            .offset(x:self.showSide ? geometry.size.width * -0.5 : geometry.size.width * -1)
+            .offset(x:self.showSide ? geometry.size.width * -0.3 : geometry.size.width * -1)
             
         }
         // 其實只有ＯＵＴ的功用
-        .animation(.spring(), value: self.showSide)
+        //.animation(.easeInOut, value: self.showSide)
     }
 }
 
