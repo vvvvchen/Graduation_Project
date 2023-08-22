@@ -2,7 +2,7 @@
 //  _Member.swift
 //  TopicIM110
 //
-//  Created by 曾品瑞 on 2023/8/18.
+//  Created by  2023/8/22.
 //
 
 import SwiftUI
@@ -28,6 +28,3 @@ extension MemberView
                 }
     }
 }
-
-
- 

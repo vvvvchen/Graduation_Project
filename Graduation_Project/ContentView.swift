@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  TopicIM110
 //
-//  Created by 0821
+//  Created by 0822
 //
 
 import SwiftUI
@@ -13,60 +13,60 @@ struct ContentView: View
     @State private var select: Int=1
     @State private var showSide: Bool=false
     
+    
     var body: some View
     {
-        ZStack
-        {
-            TabView(selection: self.$select)
+        withAnimation(.easeInOut) {
+            ZStack
             {
-                FavoriteView(select: self.$select)
-                    .tabItem
+                TabView(selection: self.$select)
                 {
-                    Image(systemName: "heart.fill")
+                    FavoriteView(select: self.$select)
+                        .tabItem
+                    {
+                        Image(systemName: "heart.fill")
+                        
+                        Text("我的最愛")
+                    }
+                    .tag(0)
                     
-                    Text("我的最愛")
+                    HomeView(select: self.$select)
+                        .tabItem
+                    {
+                        Image(systemName: "house.fill")
+                        
+                        Text("主頁")
+                    }
+                    .tag(1)
+                    
+                    MemberView(select: self.$select)
+                        .tabItem
+                    {
+                        Image(systemName: "person.fill")
+                        
+                        Text("會員")
+                    }
+                    .tag(2)
                 }
-                .tag(0)
                 
-                HomeView(select: self.$select)
-                    .tabItem
-                {
-                    Image(systemName: "house.fill")
-                    
-                    Text("主頁")
-                }
-                .tag(1)
-                
-                MemberView(select: self.$select)
-                    .tabItem
-                {
-                    Image(systemName: "person.fill")
-                    
-                    Text("會員")
-                }
-                .tag(2)
-            }
-            
-            .overlay(
                 SideView(showSide: self.$showSide)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .ignoresSafeArea(.all)
+                // 在展開SideView時禁止使用TabView和HomeView
+                    .disabled(showSide)
                 
-            )
-            // 在展開SideView時禁止使用TabView和HomeView
-            .disabled(showSide)
-            
-            if showSide {
-                SideView(showSide: self.$showSide)
-                //.animation(.easeInOut, value: self.showSide)
-                    .background(Color(.systemGray5).opacity(0.1))
-                    .onTapGesture {
-                        self.showSide = false
-                    }
+                if showSide {
+                    SideView(showSide: self.$showSide)
+                        .background(Color(.systemGray5).opacity(0.1))
+                    //動畫主要控制處
+                        .onTapGesture {
+                            withAnimation(.easeInOut) {
+                                self.showSide = false
+                            }
+                        }
+                }
             }
         }
-        // IN的效果
-        //.animation(.easeInOut, value: self.showSide)
         
         .tint(.black)
         //不要顯示NavigationBarTitle
@@ -75,6 +75,7 @@ struct ContentView: View
         //MARK: Toolbar
         .toolbar
         {
+            
             //選單
             ToolbarItem(placement: .navigationBarLeading)
             {
@@ -84,6 +85,7 @@ struct ContentView: View
                         {
                             withAnimation(.easeInOut) {
                                 self.showSide=true
+                                
                             }
                         }
                     label:
@@ -109,10 +111,10 @@ struct ContentView: View
                 {
                     //改變後
                     if self.showSide {
-                        RoundedRectangle(cornerRadius:5)
-                            .foregroundColor(Color(.systemGray5))
-                            .frame(width: 42.2, height: 44)
-                            .overlay
+                        withAnimation(nil) {                            RoundedRectangle(cornerRadius:5)
+                                .foregroundColor(Color(.systemGray5))
+                                .frame(width: 42.2, height: 44)
+                                .overlay
                             {
                                 HStack
                                 {
@@ -121,15 +123,16 @@ struct ContentView: View
                                 }
                                 .padding(.horizontal)
                             }
-                            .opacity(self.select == 1 ? 1 : 0)
                             .offset(x: 99)
+                        }
                     }
                     //改變前
                     else
                     {
-                        RoundedRectangle(cornerRadius: 8)
-                            .foregroundColor(Color(.systemGray5))
-                            .overlay
+                        withAnimation(nil){
+                            RoundedRectangle(cornerRadius: 8)
+                                .foregroundColor(Color(.systemGray5))
+                                .overlay
                             {
                                 HStack
                                 {
@@ -138,7 +141,7 @@ struct ContentView: View
                                 }
                                 .padding(.horizontal)
                             }
-                            .opacity(self.select == 1 ? 1 : 0)
+                        }
                     }
                 }
             }
@@ -179,7 +182,6 @@ struct ContentView: View
                         }
                     }
                 }
-                
             }
         }
     }
@@ -202,18 +204,13 @@ struct SideView: View {
                 NavigationStack{
                     NavigationLink(destination: MydataView()) {
                         Text("會員資料")
-                            .animation(nil)
-                        
                     }
-                    .offset(x: self.showSide ? geometry.size.width * 0.2 : 0,y: self.showSide ? geometry.size.height * -0.35 : 0)
                 }
             }
             .ignoresSafeArea(.all)
             .offset(x:self.showSide ? geometry.size.width * -0.3 : geometry.size.width * -1)
             
         }
-        // 其實只有ＯＵＴ的功用
-        //.animation(.easeInOut, value: self.showSide)
     }
 }
 
