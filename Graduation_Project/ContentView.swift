@@ -125,8 +125,11 @@ struct ContentView: View
                         }
                         .padding(.horizontal)
                     }
+                    .opacity(self.select == 1 ? 1 : 0)
+                    
                 }
             }
+            
             
             //照相
             ToolbarItem(placement: .navigationBarTrailing)
