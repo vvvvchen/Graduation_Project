@@ -214,12 +214,12 @@ struct ContentView: View
                         {
                             if isDarkMode
                             {
-                                Image(systemName: "sun.max.fill")
+                                Image(systemName: "moon.fill")
                                     .font(.largeTitle)
                             }
                             else
                             {
-                                Image(systemName: "moon.fill")
+                                Image(systemName: "sun.max.fill")
                                     .font(.largeTitle)
                             }
                             Toggle("", isOn: self.$colorScheme)
@@ -230,7 +230,6 @@ struct ContentView: View
                         .frame(width:290,height: 25)
                         .shadow(color: .black.opacity(0.2), radius: 10,x:10,y:10)
                         .padding(.top,-200)
-                        
                         NavigationStack
                         {
                             NavigationLink(destination: MydataView())
