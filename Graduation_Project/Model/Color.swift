@@ -19,11 +19,15 @@ struct CustomToogleStyle: ToggleStyle{
                 .offset(x:configuration.isOn ? 50 : -50)
                 .shadow(color: .black.opacity(0.2), radius: 10,x:10,y:10)
             HStack{
-                Text("淺色模式").bold().font(.system(size: 15))
-                    .foregroundColor(configuration.isOn ? .gray : .white)
-                Spacer()
+
+
                 Text("深色模式").bold().font(.system(size: 15))
                     .foregroundColor(configuration.isOn ? .white : .gray)
+
+                Spacer()
+
+                Text("淺色模式").bold().font(.system(size: 15))
+                    .foregroundColor(configuration.isOn ? .gray : .white)
             }
             .frame(width: 135)
         }
