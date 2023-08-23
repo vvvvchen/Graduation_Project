@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
-
 @main
+
 struct Graduation_ProjectApp: App {
+    @AppStorage("colorScheme") private var colorScheme: Bool=false
+
     var body: some Scene {
         WindowGroup {
             LoginView()
+                .preferredColorScheme(self.colorScheme ? .light:.dark)
             //SigninView()
             //SideView()
             
         }
     }
 }
-

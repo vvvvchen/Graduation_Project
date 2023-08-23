@@ -12,7 +12,7 @@ struct ContentView: View
     //TabView選擇的頁面
     @State private var select: Int=1
     @State private var showSide: Bool=false
-    
+    @State var isDarkMode: Bool = false
     
     var body: some View
     {
@@ -26,6 +26,7 @@ struct ContentView: View
                     Image(systemName: "heart.fill")
                     
                     Text("我的最愛")
+                    
                 }
                 .tag(0)
                 
@@ -44,6 +45,7 @@ struct ContentView: View
                     Image(systemName: "person.fill")
                     
                     Text("會員")
+                        .background(isDarkMode ? Color("D") : Color("L"))
                 }
                 .tag(2)
             }
@@ -74,7 +76,6 @@ struct ContentView: View
         //MARK: Toolbar
         .toolbar
         {
-            
             //選單
             ToolbarItem(placement: .navigationBarLeading)
             {
@@ -112,7 +113,6 @@ struct ContentView: View
                     {
                         Spacer()
                     }
-                    
                     RoundedRectangle(cornerRadius: 5)
                         .foregroundColor(Color(.systemGray5))
                         .frame(maxWidth: self.showSide ? 45:.infinity)
@@ -129,8 +129,6 @@ struct ContentView: View
                     
                 }
             }
-            
-            
             //照相
             ToolbarItem(placement: .navigationBarTrailing)
             {
@@ -167,16 +165,38 @@ struct ContentView: View
                         }
                     }
                 }
+                else if self.select==2
+                {
+                    ZStack
+                    {
+                        NavigationLink(destination: MydataView())
+                        {
+                            //點擊「編輯」之後要執行的動作
+                            Text("編輯")
+                                .font(.body)
+                                .foregroundColor(.blue)
+                            
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-struct SideView: View {
+//MARK: SideView
+
+struct SideView: View
+{
     @Binding var showSide: Bool
+    @AppStorage("colorScheme") private var colorScheme: Bool=false
+    @State var isDarkMode: Bool = false
     
-    var body: some View {
-        GeometryReader { geometry in
+    var body: some View
+    {
+        GeometryReader
+        {
+            geometry in
             ZStack
             {
                 Rectangle()
@@ -186,19 +206,72 @@ struct SideView: View {
                     .onTapGesture {
                         self.showSide=true
                     }
-                NavigationStack{
-                    NavigationLink(destination: MydataView()) {
-                        Text("會員資料")
+                //MARK: 深色模式
+                VStack
+                {
+                    HStack
+                    {
+                        HStack
+                        {
+                        }
+                        .padding(.horizontal,25)
+                        .padding(.vertical,15)
+                        Circle()
+                            .foregroundStyle(
+                                isDarkMode
+                                ? Color.white
+                                : Color.orange
+                            )
+                            .frame(width: 140, height: 140)
+                            .overlay(alignment: .topTrailing)
+                        {
+                            if !isDarkMode
+                            {
+                                
+                            }
+                            else
+                            {
+                                Image(systemName: "sun.max.fill")
+//                                Circle()
+//                                    .foregroundColor(Color("L"))
+//                                    .frame(width: 105, height: 105)
+//                                    .offset(x:10, y:5)
+                            }
+                        }
+                        Toggle("",isOn: self.$colorScheme)
+                            .toggleStyle(CustomToogleStyle())
+                            .padding()
+                    }
+                    .cornerRadius(20)
+                    .frame(width:290,height: 25)
+                    .shadow(color: .black.opacity(0.2), radius: 10,x:10,y:10)
+                    .padding(.top,-200)
+                    
+                    NavigationStack
+                    {
+                        NavigationLink(destination: MydataView())
+                        {
+                            Text("過往食譜")
+                        }
+                        NavigationLink(destination: MydataView())
+                        {
+                            Text("食材紀錄")
+                        }
+                        NavigationLink(destination: MydataView())
+                        {
+                            Text("登出")
+                        }
                     }
                 }
+                .offset(x:self.showSide ? geometry.size.width * 0.15 : geometry.size.width * -1)
             }
             .ignoresSafeArea(.all)
             .offset(x:self.showSide ? geometry.size.width * -0.3 : geometry.size.width * -1)
         }
+        .preferredColorScheme(self.colorScheme ? .light:.dark)
     }
+    
 }
-
-
 struct ContentView_Previews: PreviewProvider
 {
     static var previews: some View
