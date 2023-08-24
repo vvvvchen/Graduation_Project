@@ -57,8 +57,6 @@ struct BMIView: View {
             {
                 Text("你的BMI值為：\(bmiResult, specifier: "%.2f")")
                     .font(.headline)
-
-
             }
         }
     }
