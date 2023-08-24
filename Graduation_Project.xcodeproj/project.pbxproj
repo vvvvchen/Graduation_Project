@@ -10,6 +10,8 @@
 		0493EE492A9349BD00180221 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE482A9349BD00180221 /* TagButton.swift */; };
 		0493EE502A95F91200180221 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE4F2A95F91200180221 /* Information.swift */; };
 		0493EE572A97021700180221 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE562A97021700180221 /* SwiftUIView.swift */; };
+		0493EE682A972D5800180221 /* Healthy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE672A972D5800180221 /* Healthy.swift */; };
+		0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE692A972D8F00180221 /* HealthyView.swift */; };
 		04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */; };
 		04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9612A8F08CF000D7C8C /* SigninView.swift */; };
 		04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9632A91AA44000D7C8C /* FavoriteView.swift */; };
@@ -32,6 +34,8 @@
 		0493EE482A9349BD00180221 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		0493EE4F2A95F91200180221 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		0493EE562A97021700180221 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		0493EE672A972D5800180221 /* Healthy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthy.swift; sourceTree = "<group>"; };
+		0493EE692A972D8F00180221 /* HealthyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthyView.swift; sourceTree = "<group>"; };
 		04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		04A4C9612A8F08CF000D7C8C /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		04A4C9632A91AA44000D7C8C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				5460834C2A96EF8F00926662 /* SideView.swift */,
 				04A4C9612A8F08CF000D7C8C /* SigninView.swift */,
 				0493EE562A97021700180221 /* SwiftUIView.swift */,
+				0493EE692A972D8F00180221 /* HealthyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				04A4C9782A92F5EB000D7C8C /* View.swift */,
+				0493EE672A972D5800180221 /* Healthy.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -150,7 +156,6 @@
 			isa = PBXGroup;
 			children = (
 				5455272C2A961392005DE334 /* Picture */,
-				04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */,
 				04A4C97C2A95AD30000D7C8C /* Color */,
 				04A4C96E2A91ABC7000D7C8C /* Extension */,
 				0493EE552A95FA9300180221 /* Function */,
@@ -174,6 +179,7 @@
 		5455272C2A961392005DE334 /* Picture */ = {
 			isa = PBXGroup;
 			children = (
+				04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */,
 			);
 			path = Picture;
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 				04A4C9752A91BBCB000D7C8C /* MyDataView.swift in Sources */,
 				0493EE492A9349BD00180221 /* TagButton.swift in Sources */,
 				04A4C9802A95AE80000D7C8C /* Color.swift in Sources */,
+				0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */,
 				0493EE502A95F91200180221 /* Information.swift in Sources */,
 				04A4C9682A91AA88000D7C8C /* HomeView.swift in Sources */,
+				0493EE682A972D5800180221 /* Healthy.swift in Sources */,
 				04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */,
 				04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */,
 				04A4C96A2A91AAAE000D7C8C /* MemberView.swift in Sources */,
