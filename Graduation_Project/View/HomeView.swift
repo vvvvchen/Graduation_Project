@@ -36,7 +36,9 @@ struct HomeView : View
                 }
             }
             
+            //分隔線
             Capsule(style: .continuous).frame(height: 1)
+            
             //MARK: 烹飪方法
             HStack
             {
@@ -58,7 +60,9 @@ struct HomeView : View
                 }
             }
             
+            //分隔線
             Capsule(style: .continuous).frame(height: 1)
+            
             //MARK: 其他功能
             HStack
             {
@@ -68,6 +72,7 @@ struct HomeView : View
                     {
                         Text("健康管理").font(.title)
                     }
+                
                 VStack
                 {
                     ForEach(0..<2)
@@ -75,9 +80,9 @@ struct HomeView : View
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color(.systemGray3))
                             .overlay
-                        {
-                            Text(index==0 ? "我的食譜":"購物清單").font(.title)
-                        }
+                            {
+                                Text(index==0 ? "我的食譜":"購物清單").font(.title)
+                            }
                     }
                 }
             }

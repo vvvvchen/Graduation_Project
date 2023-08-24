@@ -41,90 +41,105 @@ struct LoginView: View
             //MARK: 帳密不合格
             if(!self.valid)
             {
-                //MARK: Logo
+                //Logo
                 Circle()
                     .foregroundColor(.gray)
                     .frame(width: 150,height: 150)
                     .padding(.top,50)
+                
                 VStack(spacing: 60)
                 {
                     VStack(spacing: 30)
                     {
-                        //MARK: 使用者輸入帳號
+                        //MARK: 輸入帳號
                         TextField("Account", text: self.$information.0)
                             .padding()
                             .frame(width: 300, height: 50)
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(100)
                             .padding(10)
-                        //MARK: 使用者輸入密碼
+                        
+                        //MARK: 輸入密碼
                         SecureField("Password", text: self.$information.1)
                             .padding(10)
                             .frame(width: 300, height: 50)
                             .background(Color.gray.opacity(0.1))
                             .cornerRadius(100)
-                        //MARK: 跳轉到註冊畫面
+                        
+                        //MARK: SignInView
                         NavigationLink(destination: SigninView())
                         {
                             Text("尚未註冊嗎 ？請點擊我")
                                 .foregroundColor(Color(red: 0.574, green: 0.609, blue: 0.386))
                         }
+                        
                         //MARK: 協助功能
                         HStack
                         {
                             Button
                             {
-                                //MARK: 點擊「記住我」之後要執行的動作
+                                //點擊「記住我」之後要執行的動作
                                 withAnimation(.easeInOut)
                                 {
                                     self.rememberMe.toggle()
                                 }
                             }
-                        label:
+                            label:
                             {
                                 HStack(spacing: 5)
                                 {
                                     Circle()
                                         .foregroundColor(Color(.systemGray5))
                                         .frame(width: 15)
-                                    //MARK: 根據點擊狀態點擊更新畫面
+                                        //根據點擊狀態點擊更新畫面
                                         .overlay
-                                    {
-                                        Circle()
-                                            .foregroundColor(.blue)
-                                            .padding(3)
-                                            .opacity(self.rememberMe ? 1:0)
-                                    }
+                                        {
+                                            Circle()
+                                                .foregroundColor(.blue)
+                                                .padding(3)
+                                                .opacity(self.rememberMe ? 1:0)
+                                        }
+                                    
                                     Text("記住我").foregroundColor(.black)
                                 }
                             }
+                            
                             Spacer()
+                            
+                            //MARK: 忘記密碼
                             Button
                             {
-                                //MARK: 點擊「忘記密碼？」之後要執行的動作
+                                //點擊「忘記密碼？」之後要執行的動作
                                 self.forget.toggle()
                             }
-                        label:
+                            label:
                             {
                                 Text("忘記密碼？")
                             }
                         }
                         .font(.body)
-                        //MARK: 登入按鈕
+                        
                         //MARK: 一般登入
-                        Button {
-                            if self.checkInformation() {
-                                withAnimation(.easeInOut) {
+                        Button
+                        {
+                            if(self.checkInformation())
+                            {
+                                withAnimation(.easeInOut)
+                                {
                                     self.valid.toggle()
-                                    if rememberMe {
+                                    
+                                    if(self.rememberMe)
+                                    {
                                         // 將帳號密碼儲存到UserDefaults
                                         UserDefaults.standard.set(self.information.0, forKey: "savedAccount")
                                         UserDefaults.standard.set(self.information.1, forKey: "savedPassword")
                                     }
                                 }
-                            } else {
-                                showAlert = true
-                                alertMessage = "登入失敗！請確認帳號密碼是否正確"
+                            }
+                            else
+                            {
+                                self.showAlert=true
+                                self.alertMessage="登入失敗！請確認帳號密碼是否正確"
                             }
                         }
                         label:
@@ -137,23 +152,32 @@ struct LoginView: View
                                 .cornerRadius(100)
                                 .font(.title3)
                         }
+                        
                         HStack(spacing: 20)
                         {
                             // Apple
+                            
                             Spacer()
+                            
                             Circle()
                                 .foregroundColor(Color.gray.opacity(0.5))
                                 .frame(width: 50,height: 50)
-                            // Facebook
+                            //Facebook
+                            
                             Spacer()
+                            
                             Circle()
                                 .foregroundColor(Color.gray.opacity(0.5))
                                 .frame(width: 50,height: 50)
-                            // Google
+                            
+                            //Google
+                            
                             Spacer()
+                            
                             Circle()
                                 .foregroundColor(Color.gray.opacity(0.5))
                                 .frame(width: 50,height: 50)
+                            
                             Spacer()
                         }
                         Spacer()
@@ -162,10 +186,10 @@ struct LoginView: View
                 .padding()
                 .transition(.opacity)
             }
-            // MARK: 帳密合格
+            //MARK: 帳密合格
             else
             {
-                // MARK: 首頁
+                //MARK: 首頁
                 ContentView().transition(.opacity)
             }
         }
@@ -177,19 +201,21 @@ struct LoginView: View
                 .presentationDetents([.medium])
                 .presentationCornerRadius(30)
         }
-        
-        .onAppear {
-            if rememberMe,
-               let savedAccount = savedAccount,
-               let savedPassword = savedPassword {
-                self.information.0 = savedAccount
-                self.information.1 = savedPassword
-                self.valid = true
+        .onAppear
+        {
+            if(self.rememberMe),
+              let savedAccount=self.savedAccount,
+              let savedPassword=self.savedPassword
+            {
+                self.information.0=savedAccount
+                self.information.1=savedPassword
+                self.valid=true
             }
         }
         
-        // MARK: 登入失敗後跳轉視窗
-        .alert(isPresented: $showAlert) {
+        // MARK: 登入失敗
+        .alert(isPresented: self.$showAlert)
+        {
             Alert(
                 title: Text("提示"),
                 message: Text(alertMessage),

@@ -6,11 +6,13 @@
 //
 
 import Foundation
-struct Information : Hashable{
-    var name : String
-    var gender : String
-    var age :Int
-    var CM : CGFloat
-    var KG : CGFloat
-    var phone : String
+
+struct Information: Hashable
+{
+    var name: String
+    var gender: String
+    var age: Int
+    var cm: CGFloat
+    var kg: CGFloat
+    var phone: String
 }

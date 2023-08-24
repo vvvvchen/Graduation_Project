@@ -7,31 +7,33 @@
 
 import SwiftUI
 
-struct MemberButton: View {
-
+struct MemberButton: View
+{
     var image: String
     var title: String
     var itemContent: String
-
-    var body: some View {
-        Button(action: {
-
-        })
+    
+    var body: some View
+    {
+        Button
+        {
+            
+        }
+        label:
         {
             HStack
             {
-                Image(systemName: image)
-                    .font(.system(size: 17))
-                    .foregroundColor(.black)
-                Text(title)
-                    .foregroundColor(.black)
-                    .font(.system(size: 17))
+                Image(systemName: self.image)
+                
+                Text(self.title)
+                
                 Spacer()
-
-                Text(itemContent)
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray)
-            }.padding(.vertical, 15)
+                
+                Text(self.itemContent).foregroundColor(.gray)
+            }
+            .font(.title3)
+            .foregroundColor(.black)
+            .padding(.vertical, 15)
         }
     }
 }

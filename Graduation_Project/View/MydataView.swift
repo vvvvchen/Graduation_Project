@@ -72,7 +72,7 @@
 
 import SwiftUI
 
-struct MydataView: View {
+struct MyDataView: View {
     @State private var showAlert = false//警示提示視窗
         @State private var alertMessage = " "//提示訊息
         @State private var Changesuccess = false
@@ -95,6 +95,6 @@ struct MydataView: View {
 
     struct MydataView_Previews: PreviewProvider {
         static var previews: some View {
-            MydataView()
+            MyDataView()
         }
     }
