@@ -49,15 +49,15 @@ struct SideView: View
                     //MARK: 連結
                     NavigationStack
                     {
-                        NavigationLink(destination: MyDataView())
+                        NavigationLink(destination: SwiftUIView())
                         {
                             Text("過往食譜")
                         }
-                        NavigationLink(destination: MyDataView())
+                        NavigationLink(destination: SwiftUIView())
                         {
                             Text("食材紀錄")
                         }
-                        NavigationLink(destination: MyDataView())
+                        NavigationLink(destination: SwiftUIView())
                         {
                             Text("登出")
                         }

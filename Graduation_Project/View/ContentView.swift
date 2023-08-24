@@ -13,6 +13,7 @@ struct ContentView: View
     //TabView選擇的頁面
     @State private var select: Int=1
     @State private var showSide: Bool=false
+    @State private var showDetails = false
     
     var body: some View
     {
@@ -55,9 +56,7 @@ struct ContentView: View
             
             //MARK: SideView
             SideView(showSide: self.$showSide)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea(.all)
-                //展開SideView時 禁止TabView和HomeView
+            //展開SideView時 禁止TabView和HomeView
                 .disabled(self.showSide)
             
             if(self.showSide)
@@ -72,6 +71,7 @@ struct ContentView: View
                             self.showSide=false
                         }
                     }
+                    .ignoresSafeArea(.all)
             }
             
         }
@@ -176,19 +176,24 @@ struct ContentView: View
                     }
                 }
                 else if(self.select==2)
-                {
-                    ZStack
-                    {
-                        NavigationLink(destination: MyDataView())
-                        {
-                            //點擊「編輯」之後要執行的動作
-                            Text("編輯")
-                                .font(.body)
-                                .foregroundColor(.blue)
-                            
-                        }
-                    }
-                }
+                                {
+                                    ZStack
+                                    {
+                                        Button
+                                        {
+                                            showDetails.toggle()
+                                            //點擊「刪除紀錄」之後要執行的動作
+                                            
+                                        }
+                                        label:
+                                        {
+                                            Text("編輯")
+                                                .font(.body)
+                                                .foregroundColor(.blue)
+                                        }
+                                        .sheet(isPresented:$showDetails, content:MydataView())
+                                    }
+                                }
             }
         }
     }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0493EE492A9349BD00180221 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE482A9349BD00180221 /* TagButton.swift */; };
 		0493EE502A95F91200180221 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE4F2A95F91200180221 /* Information.swift */; };
+		0493EE572A97021700180221 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE562A97021700180221 /* SwiftUIView.swift */; };
 		04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */; };
 		04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9612A8F08CF000D7C8C /* SigninView.swift */; };
 		04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9632A91AA44000D7C8C /* FavoriteView.swift */; };
@@ -30,6 +31,7 @@
 /* Begin PBXFileReference section */
 		0493EE482A9349BD00180221 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		0493EE4F2A95F91200180221 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
+		0493EE562A97021700180221 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		04A4C9612A8F08CF000D7C8C /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		04A4C9632A91AA44000D7C8C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				04A4C9742A91BBCB000D7C8C /* MyDataView.swift */,
 				5460834C2A96EF8F00926662 /* SideView.swift */,
 				04A4C9612A8F08CF000D7C8C /* SigninView.swift */,
+				0493EE562A97021700180221 /* SwiftUIView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			files = (
 				5460834D2A96EF8F00926662 /* SideView.swift in Sources */,
 				04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */,
+				0493EE572A97021700180221 /* SwiftUIView.swift in Sources */,
 				04A4C9662A91AA6B000D7C8C /* ForgetPasswordView.swift in Sources */,
 				04A4C9792A92F5EB000D7C8C /* View.swift in Sources */,
 				04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */,
