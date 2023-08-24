@@ -13,7 +13,7 @@ struct ContentView: View
     //TabView選擇的頁面
     @State private var select: Int=1
     @State private var showSide: Bool=false
-    @State private var showDetails = false
+//    @State private var showDetails = false
     
     var body: some View
     {
@@ -181,7 +181,7 @@ struct ContentView: View
                                     {
                                         Button
                                         {
-                                            showDetails.toggle()
+//                                            showDetails.toggle()
                                             //點擊「刪除紀錄」之後要執行的動作
                                             
                                         }
@@ -191,7 +191,7 @@ struct ContentView: View
                                                 .font(.body)
                                                 .foregroundColor(.blue)
                                         }
-                                        .sheet(isPresented:$showDetails, content:MydataView())
+//                                        .sheet(isPresented:$showDetails, content:())
                                     }
                                 }
             }

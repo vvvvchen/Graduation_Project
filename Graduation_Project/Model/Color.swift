@@ -48,4 +48,4 @@ struct CustomToogleStyle: ToggleStyle
             }
         }
     }
-} 
+}
