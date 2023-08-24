@@ -7,12 +7,20 @@
 
 import Foundation
 
-struct Information: Hashable
+struct Information : Hashable
 {
-    var name: String
-    var gender: String
-    var age: Int
-    var cm: CGFloat
-    var kg: CGFloat
-    var phone: String
+    var image : String
+    var name : String
+    var gender : String
+    var age : Int
+    var CM : CGFloat
+    var KG : CGFloat
+    var phone : String
+    
+//    UserData(image:String,name:String,gender:String,age:Int,CM:CGFloat,KG :CGFloat,phone: String)
 }
+//class UserDataManager
+//{
+//    var userDatas: [UserData]
+//
+//}
