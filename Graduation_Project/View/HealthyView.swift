@@ -19,6 +19,10 @@ struct HealthyView: View {
                     .foregroundColor(.gray)
                     .frame(width: 150,height: 150)
                 Spacer()
+                  
+                
+                
+                 
             }
 
             //用戶名稱
