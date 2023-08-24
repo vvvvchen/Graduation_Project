@@ -66,13 +66,18 @@ struct HomeView : View
             //MARK: 其他功能
             HStack
             {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color(.systemGray3))
-                    .overlay
+                NavigationStack
+                {
+                    NavigationLink(destination: HealthyView())
                     {
-                        Text("健康管理").font(.title)
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(.systemGray3))
+                            .overlay
+                        {
+                            Text("健康管理").font(.title)
+                        }
                     }
-                
+                }
                 VStack
                 {
                     ForEach(0..<2)
