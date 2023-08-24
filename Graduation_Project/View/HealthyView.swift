@@ -7,50 +7,48 @@
 
 import SwiftUI
 
-struct HealthyView: View {
-    var body: some View {
-        VStack(spacing:10)
+struct HealthyView: View
+{
+    @State private var showBMIView = false
+    @State private var showKcalView = false
+    var body: some View
+    {
+        VStack(spacing:40)
         {
             //用戶頭像
             HStack
             {
-                Spacer()
                 Circle()
                     .foregroundColor(.gray)
                     .frame(width: 150,height: 150)
-                Spacer()
-                  
-                
-                
-                 
             }
 
             //用戶名稱
-            Spacer()
             Text("秋雨")
-            Spacer()
-
-            VStack
+            VStack(spacing:50)
             {
                 //MARK: 功能按鈕
-                Button
-                {
+                NavigationLink(destination: BMIView(), isActive: $showBMIView) {
+                    Button
+                    {
+                        showBMIView = true
+                    }
+                label:
+                    {
+                        HealthyButton(title: "BMI")
+                    }
+                }
 
+                NavigationLink(destination: KcalView(), isActive: $showKcalView) {
+                    Button
+                    {
+                        showKcalView = true
+                    }
+                label:
+                    {
+                        HealthyButton(title: "卡路里")
+                    }
                 }
-            label:
-                {
-                    HealthyButton(title: "BMI")
-                }
-                Spacer()
-                Button
-                {
-
-                }
-            label:
-                {
-                    HealthyButton(title: "卡路里")
-                }
-                Spacer()
                 Button
                 {
 
@@ -59,7 +57,6 @@ struct HealthyView: View {
                 {
                     HealthyButton(title: "身體素質")
                 }
-                Spacer()
                 Button
                 {
 
@@ -68,17 +65,18 @@ struct HealthyView: View {
                 {
                     HealthyButton(title: "未來展望")
                 }
-                Spacer()
 
             }
+
+            Spacer()
         }
     }
 }
 
-struct HealthyView_Previews: PreviewProvider {
-    static var previews: some View {
+struct HealthyView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
         HealthyView()
     }
 }
-
-

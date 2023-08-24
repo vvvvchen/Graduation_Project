@@ -9,10 +9,10 @@ import SwiftUI
 
 struct MemberView: View
 {
-    @State private var person: [Information] = [
-        Information( image: "", name: "fefee", gender: "男", age: 15, CM: 166, KG: 55, phone: "55555555")
-    ]
-    
+//    @State private var person: [Information] = [
+//        Information(image: "", name: "秋雨", gender: "男生", age: 16, CM: 166, KG: 45, phone: "0900000000")
+//    ]
+    @ObservedObject var userDataManager = UserDataManager()
     //TabView選擇的頁面
     @Binding var select: Int
     
@@ -27,8 +27,7 @@ struct MemberView: View
                 
                 List
                 {
-                    ForEach(self.person, id: \.self)
-                    {index in
+                   
                         //用戶頭貼
                         HStack
                         {
@@ -48,14 +47,6 @@ struct MemberView: View
                             Spacer()
                         }
                         .listRowSeparator(.hidden)
-                        //用戶名稱
-                        HStack
-                        {
-                            Spacer()
-                            Text("\(index.name)")
-                            Spacer()
-                            
-                        }
                         .listRowSeparator(.hidden)
                         //MARK: 標籤集
                         Section
@@ -156,7 +147,7 @@ struct MemberView: View
                             }
                             
                         }.listRowSeparator(.hidden)
-                        NavigationLink(destination: MydataView(person: self.$person)){
+                        NavigationLink(destination: MydataView(person: $userDataManager.person)){
                             Text("編輯個人資料")
                                 .foregroundColor(Color(red: 0.574, green: 0.609, blue: 0.386))
                         }
@@ -164,9 +155,12 @@ struct MemberView: View
                         
                         Section
                         {
+                            ForEach(userDataManager.person, id: \.self)
+                            {index in
                             VStack(alignment: .leading)
                             {
-                                MemberButton(image: "person.fill", title: "性別" ,itemContent: "\(index.gender)")
+                                MemberButton(image: "person.fill", title: "名稱" ,itemContent: "\(index.name)")
+                                MemberButton(image: "figure.arms.open", title: "性別" ,itemContent: "\(index.gender)")
                                 MemberButton(image: "birthday.cake.fill", title: "年齡", itemContent:"\(index.age)")
                                 MemberButton(image: "ruler", title: "身高", itemContent: "\(index.CM)CM")
                                 MemberButton(image: "dumbbell", title: "體重", itemContent: "\(index.KG)KG")

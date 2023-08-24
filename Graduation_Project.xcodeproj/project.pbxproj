@@ -12,6 +12,8 @@
 		0493EE572A97021700180221 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE562A97021700180221 /* SwiftUIView.swift */; };
 		0493EE682A972D5800180221 /* Healthy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE672A972D5800180221 /* Healthy.swift */; };
 		0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE692A972D8F00180221 /* HealthyView.swift */; };
+		0493EE6C2A9749CD00180221 /* BMIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE6B2A9749CD00180221 /* BMIView.swift */; };
+		0493EE6E2A9749F800180221 /* KcalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE6D2A9749F800180221 /* KcalView.swift */; };
 		04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */; };
 		04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9612A8F08CF000D7C8C /* SigninView.swift */; };
 		04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9632A91AA44000D7C8C /* FavoriteView.swift */; };
@@ -36,6 +38,8 @@
 		0493EE562A97021700180221 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		0493EE672A972D5800180221 /* Healthy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthy.swift; sourceTree = "<group>"; };
 		0493EE692A972D8F00180221 /* HealthyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthyView.swift; sourceTree = "<group>"; };
+		0493EE6B2A9749CD00180221 /* BMIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIView.swift; sourceTree = "<group>"; };
+		0493EE6D2A9749F800180221 /* KcalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KcalView.swift; sourceTree = "<group>"; };
 		04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		04A4C9612A8F08CF000D7C8C /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		04A4C9632A91AA44000D7C8C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				04A4C9612A8F08CF000D7C8C /* SigninView.swift */,
 				0493EE562A97021700180221 /* SwiftUIView.swift */,
 				0493EE692A972D8F00180221 /* HealthyView.swift */,
+				0493EE6B2A9749CD00180221 /* BMIView.swift */,
+				0493EE6D2A9749F800180221 /* KcalView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -265,6 +271,8 @@
 				04A4C9752A91BBCB000D7C8C /* MyDataView.swift in Sources */,
 				0493EE492A9349BD00180221 /* TagButton.swift in Sources */,
 				04A4C9802A95AE80000D7C8C /* Color.swift in Sources */,
+				0493EE6C2A9749CD00180221 /* BMIView.swift in Sources */,
+				0493EE6E2A9749F800180221 /* KcalView.swift in Sources */,
 				0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */,
 				0493EE502A95F91200180221 /* Information.swift in Sources */,
 				04A4C9682A91AA88000D7C8C /* HomeView.swift in Sources */,
