@@ -105,3 +105,6 @@ struct SideView_Previews: PreviewProvider
         ContentView()
     }
 }
+
+
+
