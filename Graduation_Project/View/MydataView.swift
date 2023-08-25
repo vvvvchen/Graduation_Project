@@ -7,23 +7,34 @@
 
 import SwiftUI
 
-struct MydataView: View {
+struct MydataView: View
+{
     @Binding var person: [Information]
+    @State private var tempPerson: [Information] = []
+    @Environment(\.dismiss) private var dismiss
     
-    @Environment(\.dismiss) var dismiss
+    @State private var showAlert: Bool=false//警示提示視窗
+    @State private var success: Bool=false
+    @State private var alertMessage: String=" "//提示訊息
     
-    @State private var showAlert = false//警示提示視窗
-    @State private var alertMessage = " "//提示訊息
-    @State private var Changesuccess = false
-    
-//    private func changecheck() -> Bool
-//    {
-//        return !self.name.isEmpty && !self.gender.isEmpty && !self.age.isEmpty && !self.CM.isEmpty && !self.KG.isEmpty && !self.phone.isEmpty
-//    }
-//
-    var body: some View {
-        NavigationStack{
-            List{
+    private func changecheck() -> Bool
+    {
+        for info in person
+        {
+            if info.name.isEmpty || info.gender.isEmpty || info.age <= 0 || info.CM <= 0 || info.KG <= 0 ||
+                info.phone.isEmpty
+            {
+                return false
+            }
+        }
+        return true
+    }
+    var body: some View
+    {
+        NavigationStack
+        {
+            List
+            {
                 ForEach(person.indices, id: \.self) { index in
                     Section("姓名")
                     {
@@ -55,40 +66,42 @@ struct MydataView: View {
                         
                     }
                 }
+                
                 Button("確認")
                 {
-//                    if(self.name.isEmpty || self.gender.isEmpty || self.age.isEmpty || self.CM.isEmpty || self.KG.isEmpty || self.phone.isEmpty )
-//                    {
-//                        self.showAlert=true
-//                        self.alertMessage="請填寫所有欄位"
-//                    }
-//                    else
-//                    {
-//                        person.append((name: self.name, gender: self.gender, age: self.age,CM: self.CM, KG: self.KG, phone: self.phone))
-//                        self.showAlert=true
-//                        self.alertMessage="註冊成功!"
-//                        self.success=true
-//
-//
-//                        if(self.changecheck())
-//                        {
-//                            self.dismiss()
-//                        }
-//
-//                        if(self.changecheck())
-//                        {
-//                            self.dismiss()
-//                        }
-//                    }
-                    //關閉畫面
-                    Changesuccess = true
-                    dismiss()
+                    if changecheck()
+                    {
+                        tempPerson = person // 保存更改后的值
+                        self.showAlert = true
+                        self.alertMessage = "修改成功"
+                        self.success = true
+                        
+                    }
                 }
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text("修改成功"), message: Text(alertMessage), dismissButton: .default(Text("確定")))
+                .alert(isPresented: self.$showAlert)
+                {
+                    Alert(
+                        title: Text(alertMessage),
+                        dismissButton: .default(Text("返回")){ self.dismiss() }
+                    )
                 }
-                .navigationTitle(Text("編輯個人資料"))
-                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationTitle(Text("編輯個人資料"))
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear
+            {
+                tempPerson = person // 在进入编辑页面时，将原始值保存到临时数组
+            }
+            .onDisappear
+            {
+                if(!success)
+                {
+                    person = tempPerson // 如果用户取消或返回，将临时数组的值还原
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2)
+                    {
+                        self.dismiss()
+                    }
+                }
             }
         }
     }

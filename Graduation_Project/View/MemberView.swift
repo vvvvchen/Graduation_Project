@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-struct MemberView: View
-{
 //    @State private var person: [Information] = [
 //        Information(image: "", name: "秋雨", gender: "男生", age: 16, CM: 166, KG: 45, phone: "0900000000")
 //    ]
+
+struct MemberView: View
+{
     @ObservedObject var userDataManager = UserDataManager()
+    
     //TabView選擇的頁面
     @Binding var select: Int
     
     var body: some View
     {
-        
         NavigationStack
         {
             ZStack
@@ -27,7 +28,6 @@ struct MemberView: View
                 
                 List
                 {
-                   
                         //用戶頭貼
                         HStack
                         {
@@ -147,16 +147,17 @@ struct MemberView: View
                             }
                             
                         }.listRowSeparator(.hidden)
-                        NavigationLink(destination: MydataView(person: $userDataManager.person)){
-                            Text("編輯個人資料")
-                                .foregroundColor(Color(red: 0.574, green: 0.609, blue: 0.386))
-                        }
-                        //MARK: 個人資料集
+                    NavigationLink(destination: MydataView(person: $userDataManager.person))
+                    {
+                        Text("編輯個人資料")
+                            .foregroundColor(Color(red: 0.574, green: 0.609, blue: 0.386))
+                    }
+                    //MARK: 個人資料集
                         
-                        Section
-                        {
-                            ForEach(userDataManager.person, id: \.self)
-                            {index in
+                    Section
+                    {
+                        ForEach(userDataManager.person, id: \.self)
+                        {index in
                             VStack(alignment: .leading)
                             {
                                 MemberButton(image: "person.fill", title: "名稱" ,itemContent: "\(index.name)")

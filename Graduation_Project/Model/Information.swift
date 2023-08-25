@@ -7,6 +7,8 @@
 
 import Foundation
 
+import Combine
+
 struct Information: Hashable
 {
     var image: String
@@ -23,8 +25,10 @@ struct Information: Hashable
 //{
 //    var person: [Information]=[Information(image: "", name: "", gender: "", age: 0, CM: 0, KG: 0, phone: "")]
 //}
-class UserDataManager: ObservableObject {
-    @Published var person: [Information] = [
+class UserDataManager: ObservableObject
+{
+    @Published var person: [Information] =
+    [
         Information(image: "", name: "秋雨", gender: "男生", age: 16, CM: 166, KG: 45, phone: "0911112345")
     ]
 }

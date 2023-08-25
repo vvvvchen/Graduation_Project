@@ -2,7 +2,7 @@
 //  SideView.swift
 //  Graduation_Project
 //
-//  Created by 曾品瑞 on 2023/8/24.
+//  Created by 0825.
 //
 
 import SwiftUI
@@ -10,25 +10,30 @@ import SwiftUI
 struct SideView: View
 {
     @AppStorage("colorScheme") private var colorScheme: Bool=true
+    @AppStorage("logIn") private var logIn: Bool = false
     
     @Binding var showSide: Bool
     
     @State var isDarkMode: Bool = false
     
+    @Environment(\.presentationMode) private var presentationMode
+    
     var body: some View
     {
+        
         GeometryReader
-        {geometry in
+        {
+            geometry in
             ZStack
             {
                 Rectangle()
                     .foregroundColor(Color(red: 0.994, green: 0.689, blue: 0.418))
                     .frame(maxHeight: .infinity)
-                    //true點按不會收回
+                //true點按不會收回
                     .onTapGesture
-                    {
-                        self.showSide=true
-                    }
+                {
+                    self.showSide=true
+                }
                 
                 //MARK: 深淺模式
                 VStack
@@ -57,22 +62,46 @@ struct SideView: View
                         {
                             Text("食材紀錄")
                         }
-                        NavigationLink(destination: SwiftUIView())
+                    }
+                    if logIn
+                    {
+                        Button(action:
+                                {
+                            // 清除保存的帳號和密碼信息
+                            UserDefaults.standard.removeObject(forKey: "savedAccount")
+                            UserDefaults.standard.removeObject(forKey: "savedPassword")
+                            
+                            logIn = false
+                            
+                            // 返回到登入畫面
+                            
+                            presentationMode.wrappedValue.dismiss()
+                        },
+                        label:
                         {
                             Text("登出")
-                        }
+                        })
                     }
                 }
                 .offset(x:self.showSide ? geometry.size.width * 0.15 : geometry.size.width * -1)
             }
             .ignoresSafeArea(.all)
             .offset(x: self.showSide ? geometry.size.width * -0.3:geometry.size.width * -1)
+            
         }
         .preferredColorScheme(self.colorScheme ? .light:.dark)
         .onChange(of: self.colorScheme)
-        {newValue in
+        {
+            newValue in
             self.isDarkMode = !self.colorScheme
         }
     }
     
+}
+struct SideView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
+        ContentView()
+    }
 }

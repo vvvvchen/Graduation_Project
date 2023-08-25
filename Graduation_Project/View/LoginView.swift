@@ -12,6 +12,8 @@ struct LoginView: View
 {
     //手機儲存「記住我」狀態
     @AppStorage("rememberMe") private var rememberMe: Bool=false
+    //AppStorage logIn -> Bool
+    @AppStorage("logIn") private var logIn: Bool = false
     
     //let定義
     private let savedAccount = UserDefaults.standard.string(forKey: "savedAccount")
@@ -134,6 +136,7 @@ struct LoginView: View
                                         UserDefaults.standard.set(self.information.0, forKey: "savedAccount")
                                         UserDefaults.standard.set(self.information.1, forKey: "savedPassword")
                                     }
+                                    self.logIn = true
                                 }
                             }
                             else
