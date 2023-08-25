@@ -9,13 +9,15 @@ import SwiftUI
 
 struct MydataView: View
 {
+    @Environment(\.dismiss) private var dismiss   //關閉當前畫面
     @Binding var person: [Information]
-    @State private var tempPerson: [Information] = []
-    @Environment(\.dismiss) private var dismiss
     
-    @State private var showAlert: Bool=false//警示提示視窗
+    @State private var showAlert: Bool=false     //警示提示視窗
     @State private var success: Bool=false
-    @State private var alertMessage: String=" "//提示訊息
+    @State private var alertMessage: String=" "  //提示訊息
+    
+    //MARK: 宣告一個新的儲存更改後的資料
+    @State private var tempPerson: [Information] = []
     
     private func changecheck() -> Bool
     {
@@ -29,60 +31,74 @@ struct MydataView: View
         }
         return true
     }
+    
     var body: some View
     {
         NavigationStack
         {
             List
             {
-                ForEach(person.indices, id: \.self) { index in
+                ForEach(tempPerson.indices, id: \.self) { index in
                     Section("姓名")
                     {
-                        TextField("Name", text: $person[index].name)
+                        TextField("Name", text: self.$tempPerson[index].name)
                     }
                     Section("性別")
                     {
-                        TextField("Gender", text: $person[index].gender)
+                        TextField("Gender", text: self.$tempPerson[index].gender)
                         
                     }
                     Section("年齡")
                     {
-                        TextField("Age", value: $person[index].age, formatter: NumberFormatter())
+                        TextField("Age", value: self.$tempPerson[index].age, formatter: NumberFormatter())
                         
                     }
                     Section("身高")
                     {
-                        TextField("CM", value: $person[index].CM, formatter: NumberFormatter())
+                        TextField("CM", value: self.$tempPerson[index].CM, formatter: NumberFormatter())
                         
                     }
                     Section("體重")
                     {
-                        TextField("KG", value: $person[index].KG, formatter: NumberFormatter())
-                        
+                        TextField("KG", value: self.$tempPerson[index].KG, formatter: NumberFormatter())
+   
                     }
                     Section("電話")
                     {
-                        TextField("Phone", text: $person[index].phone)
-                        
+                        TextField("Phone", text: self.$tempPerson[index].phone)
                     }
                 }
-                
                 Button("確認")
                 {
-                    if changecheck()
+                    if self.changecheck()
                     {
                         tempPerson = person // 保存更改后的值
-                        self.showAlert = true
-                        self.alertMessage = "修改成功"
+
+                        // 在这里可以添加额外的逻辑，例如成功保存后的操作
                         self.success = true
                         
+                        self.showAlert = true
+                        self.alertMessage = "修改成功"
+                    }
+                    else
+                    {
+                        self.showAlert = true
+                        self.alertMessage = "請填寫所有欄位"
                     }
                 }
                 .alert(isPresented: self.$showAlert)
                 {
                     Alert(
                         title: Text(alertMessage),
-                        dismissButton: .default(Text("返回")){ self.dismiss() }
+                        dismissButton: self.alertMessage=="請填寫所有欄位" ? .default(Text("確認")):.cancel(Text("確認"))
+                        {
+                            //
+                            for i in 0..<self.person.count
+                            {
+                                self.person[i]=self.tempPerson[i]
+                            }
+                            self.dismiss()
+                        }
                     )
                 }
             }
@@ -91,17 +107,6 @@ struct MydataView: View
             .onAppear
             {
                 tempPerson = person // 在进入编辑页面时，将原始值保存到临时数组
-            }
-            .onDisappear
-            {
-                if(!success)
-                {
-                    person = tempPerson // 如果用户取消或返回，将临时数组的值还原
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2)
-                    {
-                        self.dismiss()
-                    }
-                }
             }
         }
     }

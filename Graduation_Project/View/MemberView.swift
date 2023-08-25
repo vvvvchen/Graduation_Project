@@ -7,16 +7,14 @@
 
 import SwiftUI
 
-//    @State private var person: [Information] = [
-//        Information(image: "", name: "秋雨", gender: "男生", age: 16, CM: 166, KG: 45, phone: "0900000000")
-//    ]
-
 struct MemberView: View
 {
     @ObservedObject var userDataManager = UserDataManager()
     
     //TabView選擇的頁面
     @Binding var select: Int
+    
+    @State private var showAlertOnAppear = false // 是否在视图即将显示时显示警示视窗
     
     var body: some View
     {
@@ -152,6 +150,7 @@ struct MemberView: View
                         Text("編輯個人資料")
                             .foregroundColor(Color(red: 0.574, green: 0.609, blue: 0.386))
                     }
+                    
                     //MARK: 個人資料集
                         
                     Section
