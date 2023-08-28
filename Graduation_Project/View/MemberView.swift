@@ -10,7 +10,6 @@ import SwiftUI
 struct MemberView: View
 {
     @ObservedObject var userDataManager = UserDataManager()
-    
     //TabView選擇的頁面
     @Binding var select: Int
     

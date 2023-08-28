@@ -57,6 +57,7 @@
 		04A4D0592A8E118D0050A5C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0582A8E118D0050A5C4 /* ContentView.swift */; };
 		04A4D05B2A8E118F0050A5C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */; };
 		04A4D05E2A8E118F0050A5C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */; };
+		1C534FCB2A9C7AC900911C42 /* SignInEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C534FCA2A9C7AC900911C42 /* SignInEmailView.swift */; };
 		5460834D2A96EF8F00926662 /* SideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460834C2A96EF8F00926662 /* SideView.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		04A4D0582A8E118D0050A5C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1C534FCA2A9C7AC900911C42 /* SignInEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailView.swift; sourceTree = "<group>"; };
 		5460834C2A96EF8F00926662 /* SideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +220,7 @@
 		04A4D0552A8E118D0050A5C4 /* Graduation_Project */ = {
 			isa = PBXGroup;
 			children = (
+				1C534FC72A9C784E00911C42 /* Authentication */,
 				5455272C2A961392005DE334 /* Picture */,
 				04A4C97C2A95AD30000D7C8C /* Color */,
 				04A4C96E2A91ABC7000D7C8C /* Extension */,
@@ -237,6 +240,14 @@
 				04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1C534FC72A9C784E00911C42 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				1C534FCA2A9C7AC900911C42 /* SignInEmailView.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		5455272C2A961392005DE334 /* Picture */ = {
@@ -364,6 +375,7 @@
 				0493EE6C2A9749CD00180221 /* BMIView.swift in Sources */,
 				0493EE6E2A9749F800180221 /* KcalView.swift in Sources */,
 				0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */,
+				1C534FCB2A9C7AC900911C42 /* SignInEmailView.swift in Sources */,
 				0493EE502A95F91200180221 /* Information.swift in Sources */,
 				04A4C9682A91AA88000D7C8C /* HomeView.swift in Sources */,
 				0493EE682A972D5800180221 /* Healthy.swift in Sources */,

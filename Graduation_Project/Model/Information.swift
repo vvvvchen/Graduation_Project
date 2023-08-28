@@ -18,13 +18,13 @@ struct Information: Hashable
     var CM: CGFloat
     var KG: CGFloat
     var phone: String
-   
 }
 //變數 變數名稱: [型態]=[Information(image: 圖片名稱, name: 名字, gender: 性別, age: 0, CM: 0, KG: 0, phone: "")]
 //class UserDataManager
 //{
 //    var person: [Information]=[Information(image: "", name: "", gender: "", age: 0, CM: 0, KG: 0, phone: "")]
 //}
+
 class UserDataManager: ObservableObject
 {
     @Published var person: [Information] =

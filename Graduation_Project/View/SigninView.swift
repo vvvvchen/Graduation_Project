@@ -2,7 +2,7 @@
 //  SigninView.swift
 //  Graduation_Project
 //
-//  Created by Mac on 2023/8/20.
+//  MARK: 註冊 Created by Mac on 2023/8/20.
 //
 
 import SwiftUI
@@ -23,7 +23,8 @@ struct SigninView: View
     //密碼驗證
     @State private var againpassword: String=""
     @State private var users: [(account:String,password:String,againpassword:String)]=[]
-    //想確認帳號是否被註冊過(以後處理）
+    
+    //MARK: 想確認帳號是否被註冊過(以後處理）
     
     //MARK: 驗證密碼
     private func passcheck() -> Bool
@@ -113,7 +114,7 @@ struct SigninView: View
             }
         }
         .padding()
-        .navigationTitle(Text("登入"))
+        .navigationTitle(Text("註冊"))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

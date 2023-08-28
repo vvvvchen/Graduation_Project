@@ -21,7 +21,7 @@ struct MydataView: View
     
     private func changecheck() -> Bool
     {
-        for info in person
+        for info in tempPerson
         {
             if info.name.isEmpty || info.gender.isEmpty || info.age <= 0 || info.CM <= 0 || info.KG <= 0 ||
                 info.phone.isEmpty
@@ -38,6 +38,7 @@ struct MydataView: View
         {
             List
             {
+                
                 ForEach(tempPerson.indices, id: \.self) { index in
                     Section("姓名")
                     {
@@ -45,8 +46,16 @@ struct MydataView: View
                     }
                     Section("性別")
                     {
-                        TextField("Gender", text: self.$tempPerson[index].gender)
-                        
+//                        HStack{
+//                            Text(self.$tempPerson[index].gender)
+//                            Picker(selection:self.$tempPerson[index].gender, label: Text("")) {
+//                                Text("男性").tag("男性")
+//                                Text("女性").tag("女性")
+//                                Text("隱私").tag("隱私")
+                                TextField("Gender", text: self.$tempPerson[index].gender)
+//                            }
+//                            .pickerStyle(.wheel)
+//                        }
                     }
                     Section("年齡")
                     {
@@ -61,7 +70,7 @@ struct MydataView: View
                     Section("體重")
                     {
                         TextField("KG", value: self.$tempPerson[index].KG, formatter: NumberFormatter())
-   
+                        
                     }
                     Section("電話")
                     {
@@ -73,7 +82,7 @@ struct MydataView: View
                     if self.changecheck()
                     {
                         tempPerson = person // 保存更改后的值
-
+                        
                         // 在这里可以添加额外的逻辑，例如成功保存后的操作
                         self.success = true
                         
@@ -102,6 +111,7 @@ struct MydataView: View
                     )
                 }
             }
+            
             .navigationTitle(Text("編輯個人資料"))
             .navigationBarTitleDisplayMode(.inline)
             .onAppear

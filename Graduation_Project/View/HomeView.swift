@@ -31,6 +31,7 @@ struct HomeView : View
                             .overlay
                             {
                                 Text("今日推薦").font(.title)
+                                    .foregroundColor(Color("textcolor"))
                             }
                     }
                 }
@@ -54,7 +55,9 @@ struct HomeView : View
                             .fill(Color(.systemGray3))
                             .overlay
                             {
-                                Text(index).font(.title)
+                                Text(index)
+                                    .font(.title)
+                                    .foregroundColor(Color("textcolor"))
                             }
                     }
                 }
@@ -75,6 +78,7 @@ struct HomeView : View
                             .overlay
                         {
                             Text("健康管理").font(.title)
+                                .foregroundColor(Color("textcolor"))
                         }
                     }
                 }
@@ -87,6 +91,7 @@ struct HomeView : View
                             .overlay
                             {
                                 Text(index==0 ? "我的食譜":"購物清單").font(.title)
+                                    .foregroundColor(Color("textcolor"))
                             }
                     }
                 }
