@@ -95,6 +95,7 @@ struct MydataView: View
                         self.alertMessage = "請填寫所有欄位"
                     }
                 }
+            
                 .alert(isPresented: self.$showAlert)
                 {
                     Alert(

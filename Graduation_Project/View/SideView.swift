@@ -97,6 +97,12 @@ struct SideView: View
         }
     }
     
+    
+    
+    
+    
+    
+    
 }
 struct SideView_Previews: PreviewProvider
 {
