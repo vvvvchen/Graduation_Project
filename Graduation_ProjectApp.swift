@@ -10,12 +10,12 @@ import Firebase
 
 @main
 
-struct Graduation_ProjectApp: App {
-    
+struct GraduationProjectApp: App {
+
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    
+
     @AppStorage("colorScheme") private var colorScheme: Bool = true
-    
+
     init()
     {
         // 執行移除 "colorScheme" 鍵的操作
@@ -35,7 +35,7 @@ struct Graduation_ProjectApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
+  func application( application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
     {
         FirebaseApp.configure()
         return true

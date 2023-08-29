@@ -9,8 +9,7 @@ import SwiftUI
 
 struct HealthyView: View
 {
-    @State private var showBMIView = false
-    @State private var showKcalView = false
+
     var body: some View
     {
         VStack(spacing:40)
@@ -22,53 +21,37 @@ struct HealthyView: View
                     .foregroundColor(.gray)
                     .frame(width: 150,height: 150)
             }
-
+            
             //用戶名稱
             Text("秋雨")
-            VStack(spacing:50)
+            
+            NavigationStack
             {
-                //MARK: 功能按鈕
-                NavigationLink(destination: BMIView(), isActive: $showBMIView) {
-                    Button
-                    {
-                        showBMIView = true
-                    }
-                label:
+                VStack(spacing:50)
+                {
+                    //MARK: 導航頁面
+                    NavigationLink(destination: BMIView())
                     {
                         HealthyButton(title: "BMI")
                     }
-                }
-
-                NavigationLink(destination: KcalView(), isActive: $showKcalView) {
-                    Button
-                    {
-                        showKcalView = true
-                    }
-                label:
+                    
+                    NavigationLink(destination: KcalView())
                     {
                         HealthyButton(title: "卡路里")
                     }
+                    NavigationLink(destination: BodyView())
+                    {
+                        HealthyButton(title: "身體素質")
+                    }
+                    NavigationLink(destination: SwiftUIView())
+                    {
+                        HealthyButton(title: "未來展望")
+                    }
+                    
                 }
-                Button
-                {
-
-                }
-            label:
-                {
-                    HealthyButton(title: "身體素質")
-                }
-                Button
-                {
-
-                }
-            label:
-                {
-                    HealthyButton(title: "未來展望")
-                }
-
+                
+                Spacer()
             }
-
-            Spacer()
         }
     }
 }

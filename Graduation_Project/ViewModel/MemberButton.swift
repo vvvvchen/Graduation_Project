@@ -1,4 +1,3 @@
-//
 //  MemberButton.swift
 //  Graduation_Project
 //
@@ -12,23 +11,23 @@ struct MemberButton: View
     var image: String
     var title: String
     var itemContent: String
-    
+
     var body: some View
     {
         Button
         {
-            
+
         }
         label:
         {
             HStack
             {
                 Image(systemName: self.image)
-                
+
                 Text(self.title)
-                
+
                 Spacer()
-                
+
                 Text(self.itemContent).foregroundColor(.gray)
             }
             .font(.title3)
@@ -37,8 +36,3 @@ struct MemberButton: View
         }
     }
 }
-
-
-
-
-

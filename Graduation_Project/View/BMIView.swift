@@ -66,26 +66,28 @@ struct BMIView: View
             //            }
             
             //MARK: 折線圖
-            
             Chart(allSensors)
             {
                 sensor in
                 
-                // 只保留最近三個記錄
-                let recentRecords = Array(sensor.records.suffix(3))
+                //依照日期對紀錄進行分組
+                let groupedRecords = Dictionary(grouping: sensor.records, by: { formattedDate($0.date) })
                 
-                ForEach(recentRecords)
+                //只保留每天的最新數據
+                let latestRecords = groupedRecords.mapValues { $0.last! }
+                
+                ForEach(latestRecords.sorted(by: { $0.key < $1.key }), id: \.key)
                 {
-                    record in
+                    date, record in
                     
                     LineMark(
-                        x: .value("Day", formattedDate(record.date)),
+                        x: .value("Day", date),
                         y: .value("Value", record.bmi)
                     )
                     .lineStyle(.init(lineWidth: 5))
                     
                     PointMark(
-                        x: .value("Day", formattedDate(record.date)),
+                        x: .value("Day", date),
                         y: .value("Value", record.bmi)
                     )
                     .annotation(position: .top)
@@ -97,12 +99,10 @@ struct BMIView: View
                 }
                 
                 // 使用 sensor.id
-                
                 .foregroundStyle(by: .value("Location", sensor.id))
                 // 使用 sensor.id
                 .symbol(by: .value("Sensor Location", sensor.id))
                 .symbolSize(100)
-                
             }
             .chartForegroundStyleScale([
                 "BMI":.orange
@@ -152,13 +152,13 @@ struct BMIView: View
             }
             
             Button(action:
-                    {
+            {
                 if let heightValue = Double(height), let weightValue = Double(weight)
                 {
                     let newRecord = BMIRecord(height: heightValue, weight: weightValue)
                     
                     if let existingSensorIndex = allSensors.firstIndex(where:
-                                                                        {
+                                                                    {
                         $0.id == "BMI"
                         
                     }) {

@@ -15,8 +15,8 @@ extension View
         HStack
         {
             Image(image)
-            
-            Text("\(title)")
+
+            Text("(title)")
                 .bold()
                 .font(.body)
                 .foregroundColor(fore)
@@ -27,7 +27,7 @@ extension View
                 .shadow(color: Color(.systemGray3), radius: 5, y: 5)
         }
     }
-    
+
     //用戶成就標籤
     func _Tag2Button(image: String, title: String, fore: Color, back: Color) -> some View
     {
@@ -38,8 +38,8 @@ extension View
                 //字體大小
                 .font(.title3)
                 .foregroundColor(fore)
-            
-            Text("\(title)成就")
+
+            Text("(title)成就")
                 .bold()
                 .font(.body)
                 .foregroundColor(fore)

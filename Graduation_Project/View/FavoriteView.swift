@@ -1,8 +1,7 @@
 //
 //  Favorite.swift
-//  TopicIM110
 //
-//  Created by 曾品瑞 on 2023/8/18.
+//  Created on 2023/8/18.
 //
 
 import SwiftUI
@@ -11,7 +10,7 @@ struct FavoriteView : View
 {
     //TabView選擇的頁面
     @Binding var select: Int
-    
+
     var body: some View
     {
         ZStack
@@ -29,12 +28,12 @@ struct FavoriteView : View
                             Circle()
                                 .fill(Color(.systemGray3))
                                 .frame(width: 50)
-                            
+
                             Text("收藏料理")
                                 .font(.title3)
                                 .foregroundColor(.black)
                         }
-                        
+
                         Text("料理作法")
                             .font(.title2)
                             .foregroundColor(.black)

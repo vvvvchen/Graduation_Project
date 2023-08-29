@@ -1,193 +1,169 @@
 //
-//  Member.swift
-//  TopicIM110
+//  MemberView.swift
 //
-//  Created by 覓食陳 on 2023/8/21.
+//  Created by on 2023/8/28.
 //
 
 import SwiftUI
+import PhotosUI
 
 struct MemberView: View
 {
-    @ObservedObject var userDataManager = UserDataManager()
-    //TabView選擇的頁面
-    @Binding var select: Int
+    @AppStorage("userImage") private var userImage: Data?
     
-    @State private var showAlertOnAppear = false // 是否在视图即将显示时显示警示视窗
+    @Binding var select: Int
+    @Binding var information: Information
+    
+    @State private var pickImage: PhotosPickerItem?
+    
+    private let label: [InformationLabel]=[
+        InformationLabel(image: "person.fill", label: "名稱"),
+        InformationLabel(image: "figure.arms.open", label: "性別"),
+        InformationLabel(image: "birthday.cake.fill", label: "年齡"),
+        InformationLabel(image: "ruler", label: "身高"),
+        InformationLabel(image: "dumbbell", label: "體重"),
+        InformationLabel(image: "phone", label: "手機號碼")
+    ]
+    private let tag: [String]=["高血壓", "尿酸", "高血脂", "美食尋寶家", "7日打卡"]
+    
+    //MARK: 設定顯示資訊
+    private func setInformation(index: Int) -> String
+    {
+        switch(index)
+        {
+            case 0:
+                return self.information.name
+            case 1:
+                return self.information.gender
+            case 2:
+                return "\(self.information.age)"
+            case 3:
+                return "\(self.information.height)"
+            case 4:
+                return "\(self.information.weight)"
+            case 5:
+                return self.information.phone
+            default:
+                return ""
+        }
+    }
     
     var body: some View
     {
-        NavigationStack
+        VStack(spacing: 20)
         {
-            ZStack
+            //MARK: 頭像
+            if let userImage=self.userImage,
+               let image=UIImage(data: userImage)
             {
-                Color.white.ignoresSafeArea(.all)
-                
-                List
+                PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
                 {
-                        //用戶頭貼
-                        HStack
-                        {
-                            //user image目前用圓形代替
-                            //                Image("user image")
-                            //                    .resizable()
-                            //                    .aspectRatio(contentMode: .fit)
-                            //                    .frame(width: 150.0, height: 150.0)
-                            //                    .clipShape(Circle())//圓形裁減
-                            //                    .padding(.top, -300)
-                            
-                            Spacer()
-                            Circle()
-                                .foregroundColor(.gray)
-                                .frame(width: 150,height: 150)
-                            
-                            Spacer()
-                        }
-                        .listRowSeparator(.hidden)
-                        .listRowSeparator(.hidden)
-                        //MARK: 標籤集
-                        Section
-                        {
-                            //紀錄用戶身體健康指標標籤
-                            HStack
-                            {
-                                Spacer()
-                                //高血糖
-                                VStack(spacing:5)
-                                {
-                                    Button
-                                    {
-                                        //點擊標籤去到標籤收藏館
-                                    }
-                                label:
-                                    {
-                                        _Tag1Button(
-                                            image: "",
-                                            title: "高血糖",
-                                            fore: .gray,
-                                            back: .white
-                                        )
-                                    }
-                                }
-                                //尿酸
-                                VStack(spacing:5)
-                                {
-                                    Button
-                                    {
-                                        //點擊標籤去到標籤收藏館
-                                    }
-                                label:
-                                    {
-                                        _Tag1Button(
-                                            image: "",
-                                            title: "尿酸",
-                                            fore: .gray,
-                                            back: .white
-                                        )
-                                    }
-                                }
-                                //高血脂
-                                VStack(spacing:5)
-                                {
-                                    Button
-                                    {
-                                        //點擊標籤去到標籤收藏館
-                                    }
-                                label:
-                                    {
-                                        _Tag1Button(
-                                            image: "",
-                                            title: "高血脂",
-                                            fore: .gray,
-                                            back: .white
-                                        )
-                                    }
-                                }
-                                Spacer()
-                            }
-                            //用戶成就標籤
-                            HStack{
-                                //美食尋寶家
-                                VStack(spacing:5)
-                                {
-                                    Button
-                                    {
-                                        //點擊標籤去到標籤收藏館
-                                    }
-                                label:
-                                    {
-                                        _Tag2Button(
-                                            image: "",
-                                            title: "美食尋寶家",
-                                            fore: .gray,
-                                            back: .white
-                                        )
-                                    }
-                                }
-                                //7日打卡成功
-                                VStack(spacing:5)
-                                {
-                                    Button
-                                    {
-                                        //點擊標籤去到標籤收藏館
-                                    }
-                                label:
-                                    {
-                                        _Tag2Button(
-                                            image: "",
-                                            title: "7日打卡成功",
-                                            fore: .gray,
-                                            back: .white
-                                        )
-                                    }
-                                }
-                            }
-                            
-                        }.listRowSeparator(.hidden)
-                    NavigationLink(destination: MydataView(person: $userDataManager.person))
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 200)
+                        .background(.gray)
+                        .clipShape(Circle())
+                }
+                .onChange(of: self.pickImage)
+                {image in
+                    Task
                     {
-                        Text("編輯個人資料")
-                            .foregroundColor(Color(red: 0.574, green: 0.609, blue: 0.386))
-                    }
-                    
-                    //MARK: 個人資料集
-                        
-                    Section
-                    {
-                        ForEach(userDataManager.person, id: \.self)
-                        {index in
-                            VStack(alignment: .leading)
-                            {
-                                MemberButton(image: "person.fill", title: "名稱" ,itemContent: "\(index.name)")
-                                MemberButton(image: "figure.arms.open", title: "性別" ,itemContent: "\(index.gender)")
-                                MemberButton(image: "birthday.cake.fill", title: "年齡", itemContent:"\(index.age)")
-                                MemberButton(image: "ruler", title: "身高", itemContent: "\(index.CM)CM")
-                                MemberButton(image: "dumbbell", title: "體重", itemContent: "\(index.KG)KG")
-                                MemberButton(image: "phone", title: "手機號碼", itemContent: "\(index.phone)")
-                            }
+                        if let data=try? await image?.loadTransferable(type: Data.self)
+                        {
+                            self.userImage=data
                         }
                     }
                 }
-                .listStyle(.plain)
             }
-            .navigationTitle(Text("會員"))
-            .navigationBarTitleDisplayMode(.inline)
+            else
+            {
+                PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
+                {
+                    Circle()
+                        .fill(.gray)
+                        .scaledToFit()
+                        .frame(width: 200)
+                }
+                .onChange(of: self.pickImage)
+                {image in
+                    Task
+                    {
+                        if let data=try? await image?.loadTransferable(type: Data.self)
+                        {
+                            self.userImage=data
+                        }
+                    }
+                }
+            }
+            
+            //MARK: 標籤
+            VStack(spacing: 20)
+            {
+                HStack(spacing: 20)
+                {
+                    ForEach(0..<3)
+                    {index in
+                        Capsule()
+                            .fill(.white)
+                            .frame(width: 100, height: 30)
+                            .shadow(color: .gray, radius: 3, y: 3)
+                            .overlay(Text(self.tag[index]))
+                    }
+                }
+                
+                HStack(spacing: 20)
+                {
+                    ForEach(3..<5)
+                    {index in
+                        Capsule()
+                            .fill(.white)
+                            .frame(width: 100, height: 30)
+                            .shadow(color: .gray, radius: 3, y: 3)
+                            .overlay(Text(self.tag[index]))
+                    }
+                }
+            }
+            
+            //MARK: 使用者資訊
+            List
+            {
+                ForEach(self.label.indices, id: \.self)
+                {index in
+                    HStack
+                    {
+                        self.label[index]
+                        
+                       Text(self.setInformation(index: index)).foregroundColor(.gray)
+                    }
+                    .frame(height: 40)
+                }
+                .listRowSeparator(.hidden)
+            }
+            .listStyle(.plain)
         }
     }
 }
 
-//MARK: 想放一個視窗更換用戶圖貼用
-//struct UsersHeadSticker : View
-//{
-//    var body: some View
-//    {
-//
-//    }
-//}
 struct MemberView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        ContentView()
+        NavigationStack
+        {
+            MemberView(
+                select: .constant(2),
+                information: .constant(
+                    Information(
+                        name: "Justin",
+                        gender: "男性",
+                        age: 21,
+                        height: 170,
+                        weight: 53,
+                        phone: "0800012000"
+                    )
+                )
+            )
+        }
     }
 }

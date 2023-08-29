@@ -11,37 +11,44 @@ struct SideView: View
 {
     @AppStorage("colorScheme") private var colorScheme: Bool=true
     @AppStorage("logIn") private var logIn: Bool = false
-    
+
     @Binding var showSide: Bool
-    
+
     @State var isDarkMode: Bool = false
-    
+
     @Environment(\.presentationMode) private var presentationMode
-    
+
     var body: some View
     {
-        
-        GeometryReader
+        ZStack
         {
-            geometry in
-            ZStack
+            //MARK: 背景
+            Color.black
+                .opacity(self.showSide ? 0.5:0)
+                .onTapGesture
             {
-                Rectangle()
-                    .foregroundColor(Color(red: 0.994, green: 0.689, blue: 0.418))
-                    .frame(maxHeight: .infinity)
-                //true點按不會收回
-                    .onTapGesture
+                withAnimation(.spring())
                 {
-                    self.showSide=true
+                    self.showSide.toggle()
                 }
-                
-                //MARK: 深淺模式
+            }
+
+            //MARK: 側邊欄
+            Rectangle()
+                .fill(.orange)
+                .frame(maxWidth: UIScreen.main.bounds.width/1.5)
+                .overlay
+            {
+                //MARK: 項目連結
                 VStack
                 {
+                    //MARK: 深淺模式
+                    
                     HStack
                     {
-                        Image(systemName: self.isDarkMode ? "moon.fill":"sun.max.fill").font(.largeTitle)
-                        
+                        Image(systemName: self.isDarkMode ? "moon.fill":"sun.max.fill")
+                            .font(.largeTitle)
+                            .foregroundColor(self.isDarkMode ? Color.white : Color.black)
                         Toggle("", isOn: self.$colorScheme)
                             .toggleStyle(CustomToogleStyle())
                             .padding()
@@ -54,41 +61,32 @@ struct SideView: View
                     //MARK: 連結
                     NavigationStack
                     {
-                        NavigationLink(destination: SwiftUIView())
-                        {
-                            Text("過往食譜")
-                        }
-                        NavigationLink(destination: SwiftUIView())
-                        {
-                            Text("食材紀錄")
+                        VStack{
+                            NavigationLink(destination: SwiftUIView())
+                            {
+                                Text("過往食譜")
+                            }
+                            NavigationLink(destination: SwiftUIView())
+                            {
+                                Text("食材紀錄")
+                            }
                         }
                     }
-                    if logIn
+                    Button("登出")
                     {
-                        Button(action:
-                                {
-                            // 清除保存的帳號和密碼信息
-                            UserDefaults.standard.removeObject(forKey: "savedAccount")
-                            UserDefaults.standard.removeObject(forKey: "savedPassword")
-                            
-                            logIn = false
-                            
-                            // 返回到登入畫面
-                            
-                            presentationMode.wrappedValue.dismiss()
-                        },
-                        label:
+                        withAnimation(.easeInOut)
                         {
-                            Text("登出")
-                        })
+                            self.logIn=false
+                        }
                     }
                 }
-                .offset(x:self.showSide ? geometry.size.width * 0.15 : geometry.size.width * -1)
+                .font(.title)
+                .foregroundColor(.black)
             }
-            .ignoresSafeArea(.all)
-            .offset(x: self.showSide ? geometry.size.width * -0.3:geometry.size.width * -1)
-            
+            .offset(x: self.showSide ? -70:-330)
+            .animation(.spring(), value: self.showSide)
         }
+        .ignoresSafeArea(.all)
         .preferredColorScheme(self.colorScheme ? .light:.dark)
         .onChange(of: self.colorScheme)
         {
@@ -96,14 +94,8 @@ struct SideView: View
             self.isDarkMode = !self.colorScheme
         }
     }
-    
-    
-    
-    
-    
-    
-    
 }
+
 struct SideView_Previews: PreviewProvider
 {
     static var previews: some View
@@ -111,6 +103,3 @@ struct SideView_Previews: PreviewProvider
         ContentView()
     }
 }
-
-
-

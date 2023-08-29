@@ -1,6 +1,5 @@
 //
 //  ContentView.swift
-//  TopicIM110
 //
 //  Created by 0822
 //
@@ -9,199 +8,143 @@ import SwiftUI
 
 struct ContentView: View
 {
+    //切換深淺模式
     @State var isDarkMode: Bool=false
+    
     //TabView選擇的頁面
-    @State private var select: Int=1
     @State private var showSide: Bool=false
-//    @State private var showDetails = false
+    @State private var select: Int=1
+    @State private var information: Information=Information(name: "品瑞", gender: "男性", age: 21, height: 170, weight: 55, phone: "0800012000")
     
     var body: some View
     {
         ZStack
         {
+            //MARK: TabView
             TabView(selection: self.$select)
             {
-                //MARK: FavoriteView
-                FavoriteView(select: self.$select)
-                    .tabItem
-                    {
-                        Image(systemName: "heart.fill")
-                        
-                        Text("我的最愛")
-                        
-                    }
+                ProgressView()
                     .tag(0)
+                    .tabItem
+                    {
+                        Label("我的最愛", systemImage: "heart.fill")
+                    }
                 
-                //MARK: HomeView
                 HomeView(select: self.$select)
-                    .tabItem
-                    {
-                        Image(systemName: "house.fill")
-                        
-                        Text("主頁")
-                    }
                     .tag(1)
-                
-                //MARK: MemberView
-                MemberView(select: self.$select)
                     .tabItem
                     {
-                        Image(systemName: "person.fill")
-                        
-                        Text("會員")
-                            .background(self.isDarkMode ? Color("D") : Color("L"))
+                        Label("主頁", systemImage: "house.fill")
                     }
+                
+                MemberView(select: self.$select, information: self.$information)
                     .tag(2)
-            }
-            
-            //MARK: SideView
-            SideView(showSide: self.$showSide)
-            //展開SideView時 禁止TabView和HomeView
-                .disabled(self.showSide)
-            
-            if(self.showSide)
-            {
-                SideView(showSide: self.$showSide)
-                    .background(Color(.systemGray5).opacity(0.1))
-                    //返回動畫控制處
-                    .onTapGesture
+                    .tabItem
                     {
-                        withAnimation(.easeInOut(duration: 0.25))
-                        {
-                            self.showSide=false
-                        }
+                        Label("會員", systemImage: "person.fill")
                     }
-                    .ignoresSafeArea(.all)
             }
+            .tint(.black)
             
+            SideView(showSide: self.$showSide)
         }
-        .tint(.black)
-        //不要顯示NavigationBarTitle
+        .ignoresSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar
         {
-            //MARK: 選單
+            //MARK: 選單按鈕
             ToolbarItem(placement: .navigationBarLeading)
             {
-                NavigationStack
+                Button
                 {
-                    ZStack
+                    withAnimation(.spring())
                     {
-                        Button
-                        {
-                            //顯示動畫控制處
-                            withAnimation(.easeInOut(duration: 0.25))
-                            {
-                                self.showSide=true
-                            }
+                        self.showSide.toggle()
+                    }
+                }
+                label:
+                {
+                    VStack
+                    {
+                        ForEach(0..<3)
+                        {_ in
+                            Capsule()
+                                .fill(.black)
+                                .frame(width: 30, height: 3)
                         }
-                        label:
-                        {
-                            VStack(spacing: 6)
-                            {
-                                ForEach(0..<3)
-                                {_ in
-                                    Capsule(style: .continuous)
-                                        .fill(.black)
-                                        .frame(width: 30, height: 3)
-                                }
-                            }
-                        }
-                        .opacity(self.showSide ? 0:1)
                     }
                 }
             }
             
-            //MARK: 搜尋列
+            //MARK: 搜尋按鈕
             ToolbarItem(placement: .principal)
             {
                 HStack
                 {
-                    if(self.showSide)
-                    {
-                        Spacer()
-                    }
-                    RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(Color(.systemGray5))
-                        .frame(maxWidth: self.showSide ? 45:.infinity)
-                        .overlay
-                    {
-                        HStack
-                        {
-                            Spacer()
-                            
-                            Image(systemName: "magnifyingglass")
-                        }
-                        .padding(.horizontal)
-                    }
-                    .opacity(self.select==1 ? 1:0)
+                    Spacer().opacity(self.showSide ? 1:0)
                     
+                    Button
+                    {
+                    }
+                    label:
+                    {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color(.systemGray3))
+                            .frame(width: self.showSide ? 60:250)
+                            .overlay
+                            {
+                                Image(systemName: "magnifyingglass")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.black)
+                                    .frame(maxWidth: .infinity, alignment: self.showSide ? .trailing:.leading)
+                                    .frame(height: 20)
+                                    .padding(.horizontal, 10)
+                            }
+                    }
                 }
+                .opacity(self.select==1 ? 1:0)
+                .animation(.easeInOut.speed(2), value: self.select)
             }
-            //MARK: 相機
+            
+            //MARK: 相機按鈕或編輯按鈕
             ToolbarItem(placement: .navigationBarTrailing)
             {
-                if(self.select==1)
+                Button
                 {
-                    ZStack
+                }
+                label:
+                {
+                    if(self.select==1)
                     {
-                        Button
+                        Image(systemName: "camera.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(.black)
+                            .frame(height: 30)
+                            .transition(.opacity.animation(.easeInOut.speed(2)))
+                    }
+                    else if(self.select==2)
+                    {
+                        NavigationLink(destination: MydataView(information: self.$information))
                         {
-                            //照相功能
+                            Text("編輯")
                         }
-                        label:
-                        {
-                            Image(systemName: "camera.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 30)
-                                .foregroundColor(.black)
-                        }
+                        .transition(.opacity.animation(.easeInOut.speed(2)))
                     }
                 }
-                else if(self.select==0)
-                {
-                    ZStack
-                    {
-                        Button
-                        {
-                            //點擊「刪除紀錄」之後要執行的動作
-                        }
-                        label:
-                        {
-                            Text("刪除紀錄")
-                                .font(.body)
-                                .foregroundColor(.blue)
-                        }
-                    }
-                }
-                else if(self.select==2)
-                                {
-                                    ZStack
-                                    {
-                                        Button
-                                        {
-//                                            showDetails.toggle()
-                                            //點擊「刪除紀錄」之後要執行的動作
-                                            
-                                        }
-                                        label:
-                                        {
-                                            Text("編輯")
-                                                .font(.body)
-                                                .foregroundColor(.blue)
-                                        }
-//                                        .sheet(isPresented:$showDetails, content:())
-                                    }
-                                }
             }
         }
     }
 }
+
 struct ContentView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        ContentView()
+        NavigationStack
+        {
+            ContentView()
+        }
     }
 }

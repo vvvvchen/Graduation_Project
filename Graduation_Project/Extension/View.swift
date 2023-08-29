@@ -22,7 +22,7 @@ extension View
 struct TextLimit: ViewModifier
 {
     @Binding var text: String
-    
+
     var max: Int
     //舉例：Text("").font(.largeTitle)
     func body(content: Content) -> some View
