@@ -9,14 +9,12 @@ struct FoodItem: Identifiable
     let timestamp: Date
 }
 
-
 struct KcalView: View
 {
     @State private var foodName = ""
     @State private var calories = ""
     @State private var foodList: [FoodItem] = []
     @State private var totalCalories = 0.0
-    
     
     //設置日期格式和時間格式
     var dateFormatter: DateFormatter
@@ -44,21 +42,23 @@ struct KcalView: View
                 TextField("請輸入卡路里", text: $calories)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                //只允許輸入數字
+                    //只允許輸入數字
                     .keyboardType(.numberPad)
                     .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification))
                 {
                     _ in
                     //輸入非數字，會幫你直接清空
-                    calories = calories.filter
+                        calories = calories.filter
                     {
                         "0123456789.".contains($0)
                     }
-                }
+                    }
             }
             
-            Button(action: {
-                if let caloriesValue = Double(calories) {
+            Button(action:
+                    {
+                if let caloriesValue = Double(calories)
+                {
                     let newFoodItem = FoodItem(name: foodName, calories: caloriesValue, timestamp: Date())
                     foodList.append(newFoodItem)
                     totalCalories += caloriesValue
@@ -71,7 +71,6 @@ struct KcalView: View
                 Text("新增食物")
                     .foregroundColor(Color("textcolor"))
             }
-            
             //使用者輸入後顯示的列表
             List(foodList)
             {
@@ -87,22 +86,39 @@ struct KcalView: View
                     Spacer()
                     Button(action:
                             {
+                        //刪除食物操作
                         deleteFood(item)
                     }) {
                         Image(systemName: "trash")
                             .foregroundColor(Color(red: 0.995, green: 0.477, blue: 0.33))
                     }
+                    .buttonStyle(BorderlessButtonStyle())
                 }
                 .padding()
             }
             
-            Text("總卡路里： \(totalCalories, specifier: "%.2f") kcal")
+            Text("總卡路里： \(totalCaloriesForToday, specifier: "%.2f") kcal")
                 .font(.headline)
                 .padding()
             
             Spacer()
         }
         .padding()
+    }
+    
+    var totalCaloriesForToday: Double
+    {
+        let currentDate = Date()
+        return foodList
+            .filter
+        {
+            Calendar.current.isDate($0.timestamp, inSameDayAs: currentDate)
+            
+        }
+            .reduce(0)
+        {
+            $0 + $1.calories
+            }
     }
     
     //從foodList中刪除特定的食物項目
@@ -112,7 +128,10 @@ struct KcalView: View
         if Calendar.current.isDate(item.timestamp, inSameDayAs: Date())
         {
             totalCalories -= item.calories
-            if let index = foodList.firstIndex(where: { $0.id == item.id })
+            if let index = foodList.firstIndex(where:
+            {
+                $0.id == item.id
+            })
             {
                 foodList.remove(at: index)
             }
@@ -124,8 +143,11 @@ struct KcalView: View
     }
 }
 
-struct KcalView_Previews: PreviewProvider {
-    static var previews: some View {
+struct KcalView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
         KcalView()
     }
 }
+
