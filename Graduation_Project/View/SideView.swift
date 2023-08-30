@@ -20,6 +20,7 @@ struct SideView: View
     
     @Environment(\.presentationMode) private var presentationMode
     
+    //根據showSide設定圖片是否被縮放，側邊欄展開時，圖片保持原始尺寸，側邊欄沒展開時，圖片縮放為0
     var imageScaleEffect: CGFloat {
         self.showSide ? 1.0 : 0.0
     }
@@ -60,6 +61,7 @@ struct SideView: View
                                 .clipShape(Circle())
                                 .padding(.bottom, 0)
                                 .clipShape(Circle())
+                                //圖片縮放設置為imageScaleEffect
                                 .scaleEffect(imageScaleEffect)
                             Spacer()
                         }
