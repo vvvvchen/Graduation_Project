@@ -69,14 +69,14 @@ struct LoginView: View
                 VStack(spacing: 20)
                 {
                     //MARK: logo
-//                    Image()
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width: 150)
-//                        .background(.gray)
-//                        .clipShape(Circle())
-//                        .padding(.bottom, 50)
-                        
+                    //                    Image()
+                    //                        .resizable()
+                    //                        .scaledToFit()
+                    //                        .frame(width: 150)
+                    //                        .background(.gray)
+                    //                        .clipShape(Circle())
+                    //                        .padding(.bottom, 50)
+                    
                     Circle()
                         .fill(.gray)
                         .scaledToFit()
@@ -154,7 +154,7 @@ struct LoginView: View
                     {
                         self.checkStatus()
                     }
-                    label:
+                label:
                     {
                         Text("登入")
                             .font(.title3)

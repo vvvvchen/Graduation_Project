@@ -10,7 +10,7 @@ import FirebaseAuth
 struct SigninView: View
 {
     @AppStorage("uid") var userID: String = ""
-
+    
     //關閉當前畫面
     @Environment(\.dismiss)private var dismiss
     //警示提示視窗
@@ -77,8 +77,8 @@ struct SigninView: View
                         authResult, error in
                         if let error = error
                         {
-                         print(error)
-                         return
+                            print(error)
+                            return
                         }
                         if let authResult = authResult
                         {

@@ -11,13 +11,13 @@ struct SideView: View
 {
     @AppStorage("colorScheme") private var colorScheme: Bool=true
     @AppStorage("logIn") private var logIn: Bool = false
-
+    
     @Binding var showSide: Bool
-
+    
     @State var isDarkMode: Bool = false
-
+    
     @Environment(\.presentationMode) private var presentationMode
-
+    
     var body: some View
     {
         ZStack
@@ -32,7 +32,7 @@ struct SideView: View
                     self.showSide.toggle()
                 }
             }
-
+            
             //MARK: 側邊欄
             Rectangle()
                 .fill(.orange)
