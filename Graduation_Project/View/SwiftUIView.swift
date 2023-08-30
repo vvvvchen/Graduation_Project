@@ -7,17 +7,26 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+struct SwiftUIView: View
+{
     @State private var showSheet: Bool=false
     @State private var up: Bool=false
     private let title: [String]=["A", "B", "C", "D", "E"]
-    var body: some View {
-        NavigationStack {
-            VStack(spacing: 50) {
-                ForEach(self.title, id: \.self) {index in
-                    Button {
+    var body: some View
+    {
+        NavigationStack
+        {
+            VStack(spacing: 50)
+            {
+                ForEach(self.title, id: \.self)
+                {
+                    index in
+                    Button
+                    {
                         self.showSheet.toggle()
-                    } label: {
+                    }
+                label:
+                    {
                         Text(index)
                             .bold()
                             .font(.largeTitle)
@@ -29,43 +38,57 @@ struct SwiftUIView: View {
                     }
                 }
             }
-            .sheet(isPresented: self.$showSheet) {
-                ZStack {
-                    VStack {
+            .sheet(isPresented: self.$showSheet)
+            {
+                ZStack
+                {
+                    VStack
+                    {
                         Rectangle()
                             .fill(Color.indigo.gradient)
                             .frame(height: self.up ? 200:250)
-                            .overlay(alignment: .topTrailing) {
-                                Button {
-                                    withAnimation(.spring()) {
-                                        self.up.toggle()
-                                    }
-                                } label: {
-                                    Image(systemName: self.up ? "chevron.down":"chevron.up")
-                                        .resizable()
-                                        .frame(width: 40, height: 20)
-                                        .foregroundColor(.black)
+                            .overlay(alignment: .topTrailing)
+                        {
+                            Button
+                            {
+                                withAnimation(.spring())
+                                {
+                                    self.up.toggle()
                                 }
-                                .padding()
                             }
+                        label:
+                            {
+                                Image(systemName: self.up ? "chevron.down":"chevron.up")
+                                    .resizable()
+                                    .frame(width: 40, height: 20)
+                                    .foregroundColor(.black)
+                            }
+                            .padding()
+                        }
                         
                         Rectangle()
                             .fill(.white)
-                            .overlay {
-                                List {
-                                    ForEach(1..<21) {index in
-                                        Text("\(index)")
-                                            .font(.largeTitle)
-                                            .frame(maxWidth: .infinity)
-                                    }
+                            .overlay
+                        {
+                            List
+                            {
+                                ForEach(1..<21)
+                                {
+                                    index in
+                                    Text("\(index)")
+                                        .font(.largeTitle)
+                                        .frame(maxWidth: .infinity)
                                 }
-                                .listStyle(.inset)
-                                .padding(.top, self.up ? 0:100)
                             }
+                            .listStyle(.inset)
+                            .padding(.top, self.up ? 0:100)
+                        }
                     }
                     
-                    VStack {
-                        VStack {
+                    VStack
+                    {
+                        VStack
+                        {
                             Text("TITLE")
                                 .bold()
                                 .font(.largeTitle)
@@ -87,8 +110,10 @@ struct SwiftUIView: View {
         }
     }
 }
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
+struct SwiftUIView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
         SwiftUIView()
     }
 }
