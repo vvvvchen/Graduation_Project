@@ -13,7 +13,7 @@ extension HealthyView
     {
         Text(title)
             .font(.body)
-            .foregroundColor(.black)
+            .foregroundColor(Color("textcolor"))
             .padding()
             .frame(width: 300)
             .background(Color(.systemGray3))

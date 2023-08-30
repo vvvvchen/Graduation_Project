@@ -9,54 +9,74 @@ import SwiftUI
 
 struct BodyView: View
 {
+    @State private var uricAcidChecked = false
+    @State private var Hypertension = false
+    @State private var Hyperglycemia = false
+    @State private var Hyperlipidemia = false
+    
     var body: some View
     {
-        VStack(alignment: .leading, spacing: 5)
+        VStack(alignment: .leading, spacing: 20)
         {
-            HStack(spacing: 90)
+            HStack
             {
-                Circle()
-                    .foregroundColor(.gray)
-                    .frame(width: 120,height: 120)
-                    .padding(.top,50)
+                Toggle("", isOn: $uricAcidChecked)
+                    .toggleStyle(CheckBoxToggleStyle(shape: .square))
                 Text("  尿酸")
-                    .font(.system(size:20))
-                    .offset(y: 20)
+                
             }
             
-            HStack(spacing: 90)
+            HStack
             {
-                Circle()
-                    .foregroundColor(.gray)
-                    .frame(width: 120,height: 120)
-                    .padding(.top,50)
-                Text("高血壓")
-                    .font(.system(size:20))
-                    .offset(y: 20)
-            }
-            HStack(spacing: 90)
-            {
-                Circle()
-                    .foregroundColor(.gray)
-                    .frame(width: 120,height: 120)
-                    .padding(.top,50)
-                Text("高血糖")
-                    .font(.system(size:20))
-                    .offset(y: 20)
+                Toggle("", isOn: $Hypertension)
+                    .toggleStyle(CheckBoxToggleStyle(shape: .square))
+                Text("  高血壓")
+                
             }
             
-            HStack(spacing: 90)
+            HStack
             {
-                Circle()
-                    .foregroundColor(.gray)
-                    .frame(width: 120,height: 120)
-                    .padding(.top,50)
-                Text("高血脂")
-                    .font(.system(size:20))
-                    .offset(y: 20)
+                Toggle("", isOn: $Hyperglycemia)
+                    .toggleStyle(CheckBoxToggleStyle(shape: .square))
+                Text("  高血糖")
+            }
+            
+            HStack
+            {
+                Toggle("", isOn: $Hyperlipidemia)
+                    .toggleStyle(CheckBoxToggleStyle(shape: .square))
+                Text("  高血脂")
             }
         }
         .padding()
+    }
+    
+    struct CheckBoxToggleStyle: ToggleStyle
+    {
+        enum CheckBoxShape: String
+        {
+            case circle
+            case square
+        }
+        let shape : CheckBoxShape
+        init(shape: CheckBoxShape = .circle)
+        {
+            self.shape = shape
+        }
+        //configuration中包含isOn和label
+        func makeBody(configuration: Configuration) -> some View
+        {
+            let systemName:String = configuration.isOn ? "checkmark.\(shape.rawValue).fill" : shape.rawValue
+            Button(action:
+            {
+                configuration.isOn.toggle()
+            }) {
+                configuration.label
+                Image(systemName: systemName)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+            }
+        }
     }
 }
 

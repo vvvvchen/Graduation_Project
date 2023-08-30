@@ -26,23 +26,23 @@ struct ContentView: View
                 ProgressView()
                     .tag(0)
                     .tabItem
-                    {
-                        Label("我的最愛", systemImage: "heart.fill")
-                    }
+                {
+                    Label("我的最愛", systemImage: "heart.fill")
+                }
                 
                 HomeView(select: self.$select)
                     .tag(1)
                     .tabItem
-                    {
-                        Label("主頁", systemImage: "house.fill")
-                    }
+                {
+                    Label("主頁", systemImage: "house.fill")
+                }
                 
                 MemberView(select: self.$select, information: self.$information)
                     .tag(2)
                     .tabItem
-                    {
-                        Label("會員", systemImage: "person.fill")
-                    }
+                {
+                    Label("會員", systemImage: "person.fill")
+                }
             }
             .tint(.black)
             
@@ -53,6 +53,7 @@ struct ContentView: View
         .toolbar
         {
             //MARK: 選單按鈕
+            //MARK: 選單按鈕
             ToolbarItem(placement: .navigationBarLeading)
             {
                 Button
@@ -62,7 +63,7 @@ struct ContentView: View
                         self.showSide.toggle()
                     }
                 }
-                label:
+            label:
                 {
                     VStack
                     {
@@ -74,6 +75,7 @@ struct ContentView: View
                         }
                     }
                 }
+                .opacity(self.showSide ? 0:1)
             }
             
             //MARK: 搜尋按鈕
@@ -86,21 +88,21 @@ struct ContentView: View
                     Button
                     {
                     }
-                    label:
+                label:
                     {
                         RoundedRectangle(cornerRadius: 5)
                             .fill(Color(.systemGray3))
                             .frame(width: self.showSide ? 60:250)
                             .overlay
-                            {
-                                Image(systemName: "magnifyingglass")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .foregroundColor(.black)
-                                    .frame(maxWidth: .infinity, alignment: self.showSide ? .trailing:.leading)
-                                    .frame(height: 20)
-                                    .padding(.horizontal, 10)
-                            }
+                        {
+                            Image(systemName: "magnifyingglass")
+                                .resizable()
+                                .scaledToFit()
+                                .foregroundColor(.black)
+                                .frame(maxWidth: .infinity, alignment: self.showSide ? .trailing:.leading)
+                                .frame(height: 20)
+                                .padding(.horizontal, 10)
+                        }
                     }
                 }
                 .opacity(self.select==1 ? 1:0)
@@ -113,7 +115,7 @@ struct ContentView: View
                 Button
                 {
                 }
-                label:
+            label:
                 {
                     if(self.select==1)
                     {

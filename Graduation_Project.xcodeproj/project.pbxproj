@@ -59,6 +59,7 @@
 		04A4D05E2A8E118F0050A5C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */; };
 		04C7308B2A9D850100BAF806 /* BodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308A2A9D850100BAF806 /* BodyView.swift */; };
 		04C7308D2A9DAA7000BAF806 /* InformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */; };
+		04C7308F2A9EEB7800BAF806 /* MyrecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */; };
 		5460834D2A96EF8F00926662 /* SideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5460834C2A96EF8F00926662 /* SideView.swift */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		04C7308A2A9D850100BAF806 /* BodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyView.swift; sourceTree = "<group>"; };
 		04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationLabel.swift; sourceTree = "<group>"; };
+		04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyrecipeView.swift; sourceTree = "<group>"; };
 		5460834C2A96EF8F00926662 /* SideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +174,7 @@
 				0493EE6B2A9749CD00180221 /* BMIView.swift */,
 				0493EE6D2A9749F800180221 /* KcalView.swift */,
 				04C7308A2A9D850100BAF806 /* BodyView.swift */,
+				04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */,
 				0493EE502A95F91200180221 /* Information.swift in Sources */,
 				04A4C9682A91AA88000D7C8C /* HomeView.swift in Sources */,
+				04C7308F2A9EEB7800BAF806 /* MyrecipeView.swift in Sources */,
 				0493EE682A972D5800180221 /* Healthy.swift in Sources */,
 				04C7308D2A9DAA7000BAF806 /* InformationLabel.swift in Sources */,
 				04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */,

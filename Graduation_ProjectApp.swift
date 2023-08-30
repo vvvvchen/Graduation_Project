@@ -27,6 +27,7 @@ struct GraduationProjectApp: App {
         {
             LoginView()
                 .preferredColorScheme(self.colorScheme ? .light:.dark)
+            //SwiftUIView()
             //SigninView()
             //SideView()
 

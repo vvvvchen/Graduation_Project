@@ -11,13 +11,13 @@ struct SideView: View
 {
     @AppStorage("colorScheme") private var colorScheme: Bool=true
     @AppStorage("logIn") private var logIn: Bool = false
-
+    
     @Binding var showSide: Bool
-
+    
     @State var isDarkMode: Bool = false
-
+    
     @Environment(\.presentationMode) private var presentationMode
-
+    
     var body: some View
     {
         ZStack
@@ -32,7 +32,7 @@ struct SideView: View
                     self.showSide.toggle()
                 }
             }
-
+            
             //MARK: 側邊欄
             Rectangle()
                 .fill(.orange)
@@ -43,20 +43,16 @@ struct SideView: View
                 VStack
                 {
                     //MARK: 深淺模式
-                    
-                    HStack
-                    {
+                    HStack{
                         Image(systemName: self.isDarkMode ? "moon.fill":"sun.max.fill")
                             .font(.largeTitle)
                             .foregroundColor(self.isDarkMode ? Color.white : Color.black)
+                            .padding(.leading, 60)
                         Toggle("", isOn: self.$colorScheme)
-                            .toggleStyle(CustomToogleStyle())
-                            .padding()
+                            .padding(.trailing, 60)
+                            .tint(Color.black)
+                        
                     }
-                    .cornerRadius(20)
-                    .frame(width:290,height: 25)
-                    .shadow(color: .black.opacity(0.2), radius: 10, x: 10,y: 10)
-                    .padding(.top,-200)
                     
                     //MARK: 連結
                     NavigationStack
@@ -72,6 +68,7 @@ struct SideView: View
                             }
                         }
                     }
+                    
                     Button("登出")
                     {
                         withAnimation(.easeInOut)
@@ -88,6 +85,7 @@ struct SideView: View
         }
         .ignoresSafeArea(.all)
         .preferredColorScheme(self.colorScheme ? .light:.dark)
+        
         .onChange(of: self.colorScheme)
         {
             newValue in

@@ -71,10 +71,16 @@ struct BMIView: View
                 sensor in
                 
                 //依照日期對紀錄進行分組
-                let groupedRecords = Dictionary(grouping: sensor.records, by: { formattedDate($0.date) })
+                let groupedRecords = Dictionary(grouping: sensor.records, by:
+                                                    {
+                    formattedDate($0.date)
+                })
                 
                 //只保留每天的最新數據
-                let latestRecords = groupedRecords.mapValues { $0.last! }
+                let latestRecords = groupedRecords.mapValues
+                {
+                    $0.last!
+                }
                 
                 ForEach(latestRecords.sorted(by: { $0.key < $1.key }), id: \.key)
                 {
@@ -94,7 +100,7 @@ struct BMIView: View
                     {
                         Text("\(record.bmi, specifier: "%.2f")")
                             .font(.system(size: 12))
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("textcolor"))
                     }
                 }
                 
@@ -132,7 +138,9 @@ struct BMIView: View
                 {
                     _ in
                     //輸入非數字，會幫你直接清空
-                    height = height.filter { "0123456789.".contains($0)
+                    height = height.filter
+                    {
+                        "0123456789.".contains($0)
                     }
                 }
                 
@@ -152,13 +160,13 @@ struct BMIView: View
             }
             
             Button(action:
-            {
+                    {
                 if let heightValue = Double(height), let weightValue = Double(weight)
                 {
                     let newRecord = BMIRecord(height: heightValue, weight: weightValue)
                     
                     if let existingSensorIndex = allSensors.firstIndex(where:
-                                                                    {
+                                                                        {
                         $0.id == "BMI"
                         
                     }) {
