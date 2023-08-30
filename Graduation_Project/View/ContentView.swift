@@ -91,7 +91,7 @@ struct ContentView: View
                     {
                         RoundedRectangle(cornerRadius: 5)
                             .fill(Color(.systemGray3))
-                            .frame(width: self.showSide ? 60:250,height: 38)
+                            .frame(width: self.showSide ? 59:250,height: 38)
                             .overlay
                         {
                             Image(systemName: "magnifyingglass")

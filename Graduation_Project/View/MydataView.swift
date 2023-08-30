@@ -14,7 +14,7 @@ struct MydataView: View
     @Environment(\.dismiss) private var dismiss
 
     @State private var success: Bool=false
-    @State private var temporary: [String]=["", "", "", "", ""]
+    @State private var temporary: [String]=["", "", "", "", "",""]
 
     //MARK: List欄位
     private func setListView(index: Int) -> some View
@@ -67,9 +67,10 @@ struct MydataView: View
     {
         self.information.name=self.temporary[0]
         self.information.gender=self.temporary[1]
-        self.information.height=CGFloat(Double(self.temporary[2]) ?? self.information.height)
-        self.information.weight=CGFloat(Double(self.temporary[3]) ?? self.information.weight)
-        self.information.phone=self.temporary[4]
+        self.information.age=(Int(self.temporary[2]) ?? self.information.age)
+        self.information.height=CGFloat(Double(self.temporary[3]) ?? self.information.height)
+        self.information.weight=CGFloat(Double(self.temporary[4]) ?? self.information.weight)
+        self.information.phone=self.temporary[5]
     }
     var body: some View
     {
@@ -115,9 +116,10 @@ struct MydataView: View
         {
             self.temporary[0]=self.information.name
             self.temporary[1]=self.information.gender
-            self.temporary[2]="(self.information.height)"
-            self.temporary[3]="(self.information.weight)"
-            self.temporary[4]=self.information.phone
+            self.temporary[2]="(self.information.age)"
+            self.temporary[3]="(self.information.height)"
+            self.temporary[4]="(self.information.weight)"
+            self.temporary[5]=self.information.phone
         }
     }
 }
