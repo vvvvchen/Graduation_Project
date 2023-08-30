@@ -3,4 +3,99 @@
    uuid = "3D9BEE24-D158-4535-826C-E551A8EAC547"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CF42AC63-9DC9-4424-83BB-FADF3D128CDA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Graduation_Project/View/FavoriteView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "FavoriteView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "CF42AC63-9DC9-4424-83BB-FADF3D128CDA - b975fc5dd376202f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.FavoriteView.select.getter : Swift.Int"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/Graduation_Project/Graduation_Project/View/FavoriteView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "CF42AC63-9DC9-4424-83BB-FADF3D128CDA - 7098ad25d2d7ec3b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.FavoriteView.select.setter : Swift.Int"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/Graduation_Project/Graduation_Project/View/FavoriteView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "CF42AC63-9DC9-4424-83BB-FADF3D128CDA - f969c0b80bf51d28"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.FavoriteView.select.modify : Swift.Int"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/Graduation_Project/Graduation_Project/View/FavoriteView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  uuid = "CF42AC63-9DC9-4424-83BB-FADF3D128CDA - ec6f83d371de9b3b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.FavoriteView.select.modify : Swift.Int with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/Graduation_Project/Graduation_Project/View/FavoriteView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "CF42AC63-9DC9-4424-83BB-FADF3D128CDA - 456249aa4d8551f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.FavoriteView.$select.getter : SwiftUI.Binding&lt;Swift.Int&gt;"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/Graduation_Project/Graduation_Project/View/FavoriteView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "212">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
