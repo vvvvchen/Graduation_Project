@@ -6,11 +6,12 @@
 
 
 import SwiftUI
-
+import FirebaseAuth
 //登入畫面
 struct LoginView: View
 {
-
+    @AppStorage("uid") var userID: String = ""
+    
     //AppStorage logIn -> Bool
     @AppStorage("logIn") private var logIn: Bool = false
     @AppStorage("userImage") private var userImage: Data?
@@ -27,20 +28,31 @@ struct LoginView: View
     @State private var alertMessage = " "
     //手機儲存「記住我」狀態
     @State private var remember: Bool=false //之後要改
-    @State private var account: (String, String)=("", "")
+    @State private var account: String = ""
+    @State private var password: String = ""
     
     //MARK: 檢查帳密
     private func checkStatus()
     {
-        if(self.account.0=="14" && self.account.1=="123")
-        {
-            withAnimation(.easeInOut)
+        //Authentication...
+        
+        Auth.auth().signIn(withEmail: account, password: password)
+        {authResult, error in
+            if let error = error
             {
-                self.logIn=true
+                print(error)
+                return
             }
-        }
-        else
-        {
+            else if let authResult = authResult
+            {
+                print(authResult.user.uid)
+                userID = authResult.user.uid
+                
+                withAnimation(.easeInOut)
+                {
+                    self.logIn=true
+                }
+            }
         }
     }
     
@@ -56,38 +68,32 @@ struct LoginView: View
             {
                 VStack(spacing: 20)
                 {
-                    //MARK: 頭像
-                    if let userImage=self.userImage,
-                       let image=UIImage(data: userImage)
-                    {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 150)
-                            .background(.gray)
-                            .clipShape(Circle())
-                            .padding(.bottom, 50)
-                    }
-                    else
-                    {
-                        Circle()
-                            .fill(.gray)
-                            .scaledToFit()
-                            .frame(width: 150)
-                            .padding(.bottom, 50)
-                    }
+                    //MARK: logo
+//                    Image()
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 150)
+//                        .background(.gray)
+//                        .clipShape(Circle())
+//                        .padding(.bottom, 50)
+                        
+                    Circle()
+                        .fill(.gray)
+                        .scaledToFit()
+                        .frame(width: 150)
+                        .padding(.bottom, 50)
                     
                     VStack(spacing: 30)
                     {
                         //MARK: 帳號
-                        TextField("帳號...", text: self.$account.0)
+                        TextField("帳號...", text: self.$account)
                             .scrollContentBackground(.hidden)
                             .padding()
                             .background(Color(.systemGray5))
                             .clipShape(Capsule())
                         
                         //MARK: 密碼
-                        SecureField("密碼...", text: self.$account.1)
+                        SecureField("密碼...", text: self.$password)
                             .scrollContentBackground(.hidden)
                             .padding()
                             .background(Color(.systemGray5))
@@ -111,19 +117,19 @@ struct LoginView: View
                                 .fill(Color(.systemGray6))
                                 .frame(width: 20)
                                 .overlay
+                            {
+                                Circle()
+                                    .fill(.blue)
+                                    .padding(5)
+                                    .opacity(self.remember ? 1:0)
+                            }
+                            .onTapGesture
+                            {
+                                withAnimation(.easeInOut)
                                 {
-                                    Circle()
-                                        .fill(.blue)
-                                        .padding(5)
-                                        .opacity(self.remember ? 1:0)
+                                    self.remember.toggle()
                                 }
-                                .onTapGesture
-                                {
-                                    withAnimation(.easeInOut)
-                                    {
-                                        self.remember.toggle()
-                                    }
-                                }
+                            }
                             
                             Text("記住我").font(.callout)
                         }

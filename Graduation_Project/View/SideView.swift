@@ -11,13 +11,13 @@ struct SideView: View
 {
     @AppStorage("colorScheme") private var colorScheme: Bool=true
     @AppStorage("logIn") private var logIn: Bool = false
-    
+
     @Binding var showSide: Bool
-    
+
     @State var isDarkMode: Bool = false
-    
+
     @Environment(\.presentationMode) private var presentationMode
-    
+
     var body: some View
     {
         ZStack
@@ -32,7 +32,7 @@ struct SideView: View
                     self.showSide.toggle()
                 }
             }
-            
+
             //MARK: 側邊欄
             Rectangle()
                 .fill(.orange)
@@ -58,23 +58,30 @@ struct SideView: View
                     NavigationStack
                     {
                         VStack{
-                            NavigationLink(destination: SwiftUIView())
-                            {
-                                Text("過往食譜")
+                            HStack{
+                                NavigationLink(destination: SwiftUIView())
+                                {
+                                    Text("過往食譜")
+                                        .font(.system(size:20))
+                                }
                             }
                             NavigationLink(destination: SwiftUIView())
                             {
                                 Text("食材紀錄")
+                                    .font(.system(size:20))
                             }
                         }
                     }
                     
-                    Button("登出")
-                    {
+                    Button(action:
+                            {
                         withAnimation(.easeInOut)
                         {
-                            self.logIn=false
+                            self.logIn = false
                         }
+                    }) {
+                        Text("登出")
+                            .font(.system(size:20))
                     }
                 }
                 .font(.title)

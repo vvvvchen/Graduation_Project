@@ -53,7 +53,6 @@ struct ContentView: View
         .toolbar
         {
             //MARK: 選單按鈕
-            //MARK: 選單按鈕
             ToolbarItem(placement: .navigationBarLeading)
             {
                 Button
@@ -70,7 +69,7 @@ struct ContentView: View
                         ForEach(0..<3)
                         {_ in
                             Capsule()
-                                .fill(.black)
+                                .fill(Color("cameracolor"))
                                 .frame(width: 30, height: 3)
                         }
                     }
@@ -92,13 +91,13 @@ struct ContentView: View
                     {
                         RoundedRectangle(cornerRadius: 5)
                             .fill(Color(.systemGray3))
-                            .frame(width: self.showSide ? 60:250)
+                            .frame(width: self.showSide ? 60:250,height: 38)
                             .overlay
                         {
                             Image(systemName: "magnifyingglass")
                                 .resizable()
                                 .scaledToFit()
-                                .foregroundColor(.black)
+                                .foregroundColor(Color("cameracolor"))
                                 .frame(maxWidth: .infinity, alignment: self.showSide ? .trailing:.leading)
                                 .frame(height: 20)
                                 .padding(.horizontal, 10)
@@ -122,7 +121,7 @@ struct ContentView: View
                         Image(systemName: "camera.fill")
                             .resizable()
                             .scaledToFit()
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("cameracolor"))
                             .frame(height: 30)
                             .transition(.opacity.animation(.easeInOut.speed(2)))
                     }

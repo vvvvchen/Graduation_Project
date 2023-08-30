@@ -6,21 +6,22 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseCore
 
 @main
 
 struct GraduationProjectApp: App {
 
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     @AppStorage("colorScheme") private var colorScheme: Bool = true
 
     init()
     {
+        FirebaseApp.configure()
         // 執行移除 "colorScheme" 鍵的操作
         UserDefaults.standard.removeObject(forKey: "colorScheme")
     }
+
     var body: some Scene
     {
         WindowGroup
@@ -30,15 +31,6 @@ struct GraduationProjectApp: App {
             //SwiftUIView()
             //SigninView()
             //SideView()
-
         }
     }
-}
-
-class AppDelegate: NSObject, UIApplicationDelegate {
-  func application( application: UIApplication,didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool
-    {
-        FirebaseApp.configure()
-        return true
-  }
 }

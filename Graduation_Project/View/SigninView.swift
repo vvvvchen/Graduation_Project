@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
-
+import FirebaseAuth
 struct SigninView: View
 {
+    @AppStorage("uid") var userID: String = ""
+
     //關閉當前畫面
     @Environment(\.dismiss)private var dismiss
     //警示提示視窗
@@ -70,6 +72,20 @@ struct SigninView: View
                 
                 Button("註冊")
                 {
+                    Auth.auth().createUser(withEmail: account, password: password)
+                    {
+                        authResult, error in
+                        if let error = error
+                        {
+                         print(error)
+                         return
+                        }
+                        if let authResult = authResult
+                        {
+                            print(authResult.user.uid)
+                            userID = authResult.user.uid
+                        }
+                    }
                     if(self.account.isEmpty || self.password.isEmpty || self.againpassword.isEmpty)
                     {
                         self.showAlert=true
