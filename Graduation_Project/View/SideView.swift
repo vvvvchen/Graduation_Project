@@ -41,7 +41,7 @@ struct SideView: View
             
             //MARK: 側邊欄
             Rectangle()
-                .fill(.orange)
+                .fill(Color("sidebackgroundcolor"))
                 .frame(maxWidth: UIScreen.main.bounds.width/1.5)
                 .overlay
             {
@@ -82,19 +82,21 @@ struct SideView: View
                         Spacer()
                         Text("秋雨")
                             .font(.system(size: 20))
-                            .foregroundColor(Color("textcolor"))
+                            .foregroundColor(Color("sidecolor"))
                         Spacer()
                     }
+                    
+                    //MARK: 深淺模式
                     HStack
                     {
                         Image(systemName: self.isDarkMode ? "moon.fill" : "sun.max.fill")
                             .font(.system(size: 27))
-                            .foregroundColor(self.isDarkMode ? Color.white : Color.black)
+                            .foregroundColor(Color("sidecolor"))
                             .frame(width: 80)
                         
                         Text(self.isDarkMode ? "深色模式" : "淺色模式")
                             .font(.system(size: 20))
-                            .foregroundColor(Color("textcolor"))
+                            .foregroundColor(Color("sidecolor"))
                             .alignmentGuide(.leading) { d in d[.leading] }
                         
                         Toggle("", isOn: self.$colorScheme)
@@ -102,17 +104,17 @@ struct SideView: View
                             .scaleEffect(0.75)
                             .padding(.trailing, 15)
                     }
-                    
+                    padding(.bottom, 25)
                     HStack
                     {
                         Image(systemName: "clock.badge.checkmark")
                             .font(.system(size: 27))
-                            .foregroundColor(Color("textcolor"))
+                            .foregroundColor(Color("sidecolor"))
                             .frame(width: 80)
                         
                         Text("過往食譜")
                             .font(.system(size: 20))
-                            .foregroundColor(Color("textcolor"))
+                            .foregroundColor(Color("sidecolor"))
                             .alignmentGuide(.leading)
                         {
                             d in d[.leading]
@@ -123,12 +125,12 @@ struct SideView: View
                     {
                         Image(systemName: "list.clipboard")
                             .font(.system(size: 27))
-                            .foregroundColor(Color("textcolor"))
+                            .foregroundColor(Color("sidecolor"))
                             .frame(width: 80)
                         
                         Text("食材紀錄")
                             .font(.system(size: 20))
-                            .foregroundColor(Color("textcolor"))
+                            .foregroundColor(Color("sidecolor"))
                             .alignmentGuide(.leading)
                         {
                             d in d[.leading]
@@ -146,12 +148,12 @@ struct SideView: View
                         {
                             Image(systemName: "power")
                                 .font(.system(size: 27))
-                                .foregroundColor(Color("textcolor"))
+                                .foregroundColor(Color("sidecolor"))
                                 .frame(width: 80)
                             
                             Text("登出")
                                 .font(.system(size: 20))
-                                .foregroundColor(Color("textcolor"))
+                                .foregroundColor(Color("sidecolor"))
                                 .alignmentGuide(.leading)
                             {
                                 d in d[.leading]
@@ -159,9 +161,7 @@ struct SideView: View
                         }
                     }
                 }
-                .padding(.bottom, 225)
-                .font(.title)
-                .foregroundColor(.black)
+                .padding(.bottom, 220)
             }
             .offset(x: self.showSide ? -70:-330)
             .animation(.spring(), value: self.showSide)

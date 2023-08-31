@@ -54,7 +54,7 @@ struct MyrecipeView: View
             .navigationBarItems(trailing:
                                     Button(action:
                                             {
-                // 初始化新記事本內容
+                //  初始化新記事本內容
                 newNoteTitle = ""
                 newNoteContent = ""
                 isCreatingNote = true
@@ -139,7 +139,8 @@ struct EditNoteView: View
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
-                .foregroundColor(.orange) // 進入編輯後儲存的顏色為綠色
+                // 進入編輯後儲存的顏色為綠色
+                .foregroundColor(.orange)
                 .padding()
             }
             .navigationBarTitle("編輯")

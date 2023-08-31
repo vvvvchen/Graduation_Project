@@ -11,7 +11,7 @@ struct HomeView: View
 {
     @Binding var select: Int
     
-    private let cook: [String]=["煎", "煮", "炒", "炸", "烘"]
+    private let cook: [String]=["煎", "煮", "炒", "炸", "烤","蒸","冷","烘"]
     
     var body: some View
     {
@@ -39,19 +39,21 @@ struct HomeView: View
                 Capsule().frame(height: 1).padding(.vertical)
                 
                 //MARK: 烹飪方法
-                HStack
-                {
-                    ForEach(0..<5)
-                    {index in
-                        Circle()
-                            .fill(.gray)
-                            .scaledToFit()
-                            .frame(width: 60)
-                            .overlay(Text(self.cook[index]).font(.title))
-                        
-                        
-                        if(index<4){
-                            Spacer()
+                ScrollView(.horizontal) {
+                    HStack
+                    {
+                        ForEach(0..<8)
+                        {index in
+                            Circle()
+                                .fill(.gray)
+                                .scaledToFit()
+                                .frame(width: 60)
+                                .overlay(Text(self.cook[index]).font(.title))
+                            
+                            
+                            if(index<8){
+                                Spacer()
+                            }
                         }
                     }
                 }
