@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04157EEB2AA0689000C44D5B /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04157EEA2AA0689000C44D5B /* MenuView.swift */; };
 		0493EE492A9349BD00180221 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE482A9349BD00180221 /* TagButton.swift */; };
 		0493EE502A95F91200180221 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE4F2A95F91200180221 /* Information.swift */; };
 		0493EE572A97021700180221 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE562A97021700180221 /* SwiftUIView.swift */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04157EEA2AA0689000C44D5B /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		0493EE482A9349BD00180221 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		0493EE4F2A95F91200180221 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		0493EE562A97021700180221 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				0493EE6D2A9749F800180221 /* KcalView.swift */,
 				04C7308A2A9D850100BAF806 /* BodyView.swift */,
 				04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */,
+				04157EEA2AA0689000C44D5B /* MenuView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5460834D2A96EF8F00926662 /* SideView.swift in Sources */,
+				04157EEB2AA0689000C44D5B /* MenuView.swift in Sources */,
 				04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */,
 				0493EE572A97021700180221 /* SwiftUIView.swift in Sources */,
 				04A4C9662A91AA6B000D7C8C /* ForgetPasswordView.swift in Sources */,

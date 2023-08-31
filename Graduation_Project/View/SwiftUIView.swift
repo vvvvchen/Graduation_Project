@@ -9,24 +9,42 @@ import SwiftUI
 
 struct SwiftUIView: View
 {
+    //是否顯示底部的彈出式圖
     @State private var showSheet: Bool=false
+    //控制彈出式圖是否在頂部
     @State private var up: Bool=false
-    private let title: [String]=["A", "B", "C", "D", "E"]
+    //當前拖動垂直位置
+    @State private var drag: CGFloat=0
+    //最終位置（上方或下方）用於隱藏或顯示彈出式視圖
+    @State private var end: CGFloat=0
+    //起始位置，用於恢復視圖位置
+    @State private var start: CGFloat=0
+    //存儲被點擊按鈕的標題
+    @State private var selectedTitle: String = ""
+    
+    
+    //標題陣列
+    private let title: [String]=["番茄炒蛋", "荷包蛋", "炒高麗菜", "冰糖肘子"]
+    private let englishtitle: [String]=["Tomato Scrambled Eggs", "Poached Eggs", "Fried Cabbage", "Pork Joint Stewed With Rock Sugar"]
+    
+    
     var body: some View
     {
         NavigationStack
         {
             VStack(spacing: 50)
             {
+                //遍歷標題數組，為每個標題創建按鈕
                 ForEach(self.title, id: \.self)
                 {
                     index in
-                    Button
-                    {
+                    Button(action:
+                            {
+                        //點擊按鈕時顯示彈出視圖，並將選定的標題存儲到selectedTitle
+                        self.selectedTitle = index
+                        //點擊按鈕時顯示或隱藏彈出式視圖
                         self.showSheet.toggle()
-                    }
-                label:
-                    {
+                    }){
                         Text(index)
                             .bold()
                             .font(.largeTitle)
@@ -38,73 +56,74 @@ struct SwiftUIView: View
                     }
                 }
             }
+            //彈出式視圖
             .sheet(isPresented: self.$showSheet)
             {
-                ZStack
+                NavigationStack
                 {
-                    VStack
+                    ZStack(alignment: .top)
                     {
-                        Rectangle()
-                            .fill(Color.indigo.gradient)
-                            .frame(height: self.up ? 200:250)
-                            .overlay(alignment: .topTrailing)
-                        {
-                            Button
-                            {
-                                withAnimation(.spring())
-                                {
-                                    self.up.toggle()
-                                }
-                            }
-                        label:
-                            {
-                                Image(systemName: self.up ? "chevron.down":"chevron.up")
-                                    .resizable()
-                                    .frame(width: 40, height: 20)
-                                    .foregroundColor(.black)
-                            }
-                            .padding()
-                        }
+                        //背景色
+                        Color(.systemGray6).ignoresSafeArea()
                         
-                        Rectangle()
-                            .fill(.white)
-                            .overlay
+                        VStack(spacing: 0)
                         {
-                            List
+                            Rectangle()
+                                .fill(.indigo.gradient)
+                            //頭部顏色區域
+                                .frame(height: 300)
+                            
+                            VStack
                             {
-                                ForEach(1..<21)
-                                {
-                                    index in
-                                    Text("\(index)")
-                                        .font(.largeTitle)
-                                        .frame(maxWidth: .infinity)
-                                }
+                                Text(selectedTitle)
+                                    .bold()
+                                    .font(.largeTitle)
+                                
+                                Text(englishtitle[title.firstIndex(of: selectedTitle) ?? 0])
+                                    .font(.headline)
+                                    .foregroundColor(.gray)
                             }
-                            .listStyle(.inset)
-                            .padding(.top, self.up ? 0:100)
+                            .padding(.vertical)
+                            .frame(maxWidth: .infinity)
+                            .offset(y: self.start)
+                            .offset(y: self.drag)
+                            .offset(y: self.end)
+                            //拖動手勢處理
+                            .gesture(
+                                DragGesture()
+                                    .onChanged {value in
+                                        withAnimation(.easeInOut)
+                                        {
+                                            self.drag=value.translation.height
+                                        }
+                                    }
+                                    .onEnded
+                                {
+                                    value in
+                                    withAnimation(.spring())
+                                    {
+                                        //根據拖動距離決定最終位置
+                                        self.end=self.drag <= -100 ? -150:0
+                                        self.drag=0
+                                    }
+                                }
+                            )
+                            //MARK: 測試文本
+                            ScrollView(.vertical, showsIndicators: false) {
+                                Text("This is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.\nThis is an additional text.")
+                                    .font(.system(size:20))
+                                    .foregroundColor(.black)
+                                    .padding(.bottom, 20)
+                            }
                         }
                     }
-                    
-                    VStack
-                    {
-                        VStack
-                        {
-                            Text("TITLE")
-                                .bold()
-                                .font(.largeTitle)
-                            
-                            Text("SUBTITLE")
-                                .font(.title3)
-                            
-                            Capsule().frame(height: 1)
-                        }
-                        .foregroundColor(self.up ? .white:.black)
-                        .background(.clear)
-                        .offset(y: self.up ? -250:-75)
-                    }
+                    //導航欄標題
+                    .navigationBarTitleDisplayMode(.inline)
                 }
+                //彈出視圖内容交互方式
                 .presentationContentInteraction(.scrolls)
                 .presentationCornerRadius(20)
+                //彈出視圖拖動指示器
                 .presentationDragIndicator(.visible)
             }
         }

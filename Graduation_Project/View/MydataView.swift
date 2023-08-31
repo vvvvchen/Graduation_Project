@@ -10,32 +10,95 @@ import SwiftUI
 struct MydataView: View
 {
     @Binding var information: Information
-
+    
     @Environment(\.dismiss) private var dismiss
-
+    
     @State private var success: Bool=false
-    @State private var temporary: [String]=["", "", "", "", "",""]
-
+    //  @State private var height: Int=0
+    @State private var temporary: [Any]=["", "", "", "", "",""]
+    
     //MARK: List欄位
     private func setListView(index: Int) -> some View
     {
-        if(index==0 || (index>=2 && index<=5))
+        if(index==0 || (index>=5 && index<=5))
         {
-            return AnyView(TextField("", text: self.$temporary[index]))
+            return AnyView(TextField("", text: Binding<String>(
+                get: { self.temporary[index] as? String ?? "" },
+                set: { self.temporary[index] = $0 }
+            )))
         }
         else if(index==1)
         {
             return AnyView(
-                Picker("", selection: self.$temporary[index])
+                Picker("", selection: Binding<String>(
+                    get: { self.temporary[index] as? String ?? "" },
+                    set: { self.temporary[index] = $0 }
+                ))
                 {
                     Text("男性").tag("男性")
                     Text("女性").tag("女性")
                     Text("隱私").tag("隱私")
                 }
-                .pickerStyle(.wheel)
-                .frame(height: 100)
+                    .pickerStyle(.wheel)
+                    .frame(width: 330, height: 43)
             )
         }
+        else if(index==2)
+        {
+            return AnyView(
+                Picker("", selection: Binding<String>(
+                    get: { self.temporary[index] as? String ?? "" },
+                    set: { self.temporary[index] = $0 }
+                ))
+                {
+                    ForEach(0..<120)
+                    { age in
+                        Text("\(age)歲").tag("\(age)歲")
+                    }
+                }
+                    .pickerStyle(.wheel)
+                    .frame(width: 330, height: 43)
+            )
+        }
+        else if(index==3)
+        {
+            return AnyView(
+                HStack {
+                    TextField("", text: Binding<String>(
+                        get: { self.temporary[index] as? String ?? "" },
+                        set: { self.temporary[index] = $0 }
+                    ))
+                    Stepper("", value: Binding<CGFloat>(
+                        get: { self.temporary[index] as? CGFloat ?? 0.0 },
+                        set: { newValue in
+                            if let newValue = newValue as? Any {
+                                self.temporary[index] = newValue
+                            }
+                        }
+                    ), in: 0...230)
+                }
+            )
+        }
+        else if(index==4)
+        {
+            return AnyView(
+                HStack {
+                    TextField("", text: Binding<String>(
+                        get: { self.temporary[index] as? String ?? "" },
+                        set: { self.temporary[index] = $0 }
+                    ))
+                    Stepper("", value: Binding<CGFloat>(
+                        get: { self.temporary[index] as? CGFloat ?? 0.0 },
+                        set: { newValue in
+                            if let newValue = newValue as? Any {
+                                self.temporary[index] = newValue
+                            }
+                        }
+                    ), in: 0...230)
+                })
+            
+        }
+        
         else
         {
             return AnyView(Text("ERROR"))
@@ -46,80 +109,93 @@ struct MydataView: View
     {
         switch(index)
         {
-            case 0:
-                return "名字"
-            case 1:
-                return "性別"
-            case 2:
-                return "年齡"
-            case 3:
-                return "身高"
-            case 4:
-                return "體重"
-            case 5:
-                return "手機號碼"
-            default:
-                return ""
+        case 0:
+            return "名字"
+        case 1:
+            return "性別"
+        case 2:
+            return "年齡"
+        case 3:
+            return "身高"
+        case 4:
+            return "體重"
+        case 5:
+            return "手機號碼"
+        default:
+            return ""
         }
     }
     //MARK: 更新資訊
     private func updateInformation() async
     {
-        self.information.name=self.temporary[0]
-        self.information.gender=self.temporary[1]
-        self.information.age=(Int(self.temporary[2]) ?? self.information.age)
-        self.information.height=CGFloat(Double(self.temporary[3]) ?? self.information.height)
-        self.information.weight=CGFloat(Double(self.temporary[4]) ?? self.information.weight)
-        self.information.phone=self.temporary[5]
-    }
-    var body: some View
-    {
-        ZStack
+        if let name = temporary[0] as? String
         {
-            //MARK: List
-            List
-            {
-                ForEach(0..<self.temporary.count, id: \.self)
-                {index in
-                    Section(self.setSection(index: index))
+            information.name = name
+        }
+        if let gender = temporary[1] as? String
+        {
+            information.gender = gender
+        }
+        if let ageString = temporary[2] as? String, let age = Int(ageString)
+        {
+            information.age = age
+        }
+        if let heightString = temporary[3] as? String, let height = Double(heightString)
+        {
+            information.height = CGFloat(height)
+        }
+        if let weightString = temporary[4] as? String, let weight = Double(weightString)
+        {
+            information.weight = CGFloat(weight)
+        }
+        if let phone = temporary[5] as? String
+        {
+            information.phone = phone
+        }
+    }
+    
+    var body: some View {
+        ZStack {
+            List {
+                ForEach(0..<temporary.count, id: \.self)
+                {
+                    index in
+                    Section(setSection(index: index))
                     {
-                        self.setListView(index: index)
+                        setListView(index: index)
                     }
                     .headerProminence(.increased)
                 }
-
-                //MARK: 確認按鈕
+                
                 Button("確認")
                 {
                     Task
                     {
                         await self.updateInformation()
                     }
-
-                    self.success.toggle()
+                    success.toggle()
                 }
                 .frame(maxWidth: .infinity)
             }
             .font(.title3)
-            .alert("修改成功", isPresented: self.$success)
+            .alert("修改成功", isPresented: $success)
             {
                 Button("確認")
                 {
-                    self.dismiss()
+                    dismiss()
                 }
             }
         }
         .navigationTitle("編輯個人資料")
         .navigationBarTitleDisplayMode(.inline)
-        //MARK: 初始化資訊
         .onAppear
         {
-            self.temporary[0]=self.information.name
-            self.temporary[1]=self.information.gender
-            self.temporary[2]="(self.information.age)"
-            self.temporary[3]="(self.information.height)"
-            self.temporary[4]="(self.information.weight)"
-            self.temporary[5]=self.information.phone
+            temporary[0] = information.name
+            temporary[1] = information.gender
+            temporary[2] = "\(information.age)"
+            temporary[3] = "\(information.height)"
+            temporary[4] = "\(information.weight)"
+            temporary[5] = information.phone
         }
     }
 }

@@ -39,7 +39,7 @@ struct HomeView: View
                 Capsule().frame(height: 1).padding(.vertical)
                 
                 //MARK: 烹飪方法
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                     HStack
                     {
                         ForEach(0..<8)

@@ -12,7 +12,6 @@ struct SideView: View
     @AppStorage("colorScheme") private var colorScheme: Bool=true
     @AppStorage("logIn") private var logIn: Bool = false
     @AppStorage("userImage") private var userImage: Data?
-    //@AppStorage("userImage") private var userImage: Data?
     
     @Binding var showSide: Bool
     
@@ -83,6 +82,7 @@ struct SideView: View
                         Text("秋雨")
                             .font(.system(size: 20))
                             .foregroundColor(Color("sidecolor"))
+                            .padding(.bottom,15)
                         Spacer()
                     }
                     
@@ -100,7 +100,7 @@ struct SideView: View
                             .alignmentGuide(.leading) { d in d[.leading] }
                         
                         Toggle("", isOn: self.$colorScheme)
-                            .tint(Color.black)
+                            .tint(Color("sidebuttomcolor"))
                             .scaleEffect(0.75)
                             .padding(.trailing, 15)
                     }
