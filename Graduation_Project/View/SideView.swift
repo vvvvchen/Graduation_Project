@@ -104,7 +104,6 @@ struct SideView: View
                             .scaleEffect(0.75)
                             .padding(.trailing, 15)
                     }
-                    padding(.bottom, 25)
                     HStack
                     {
                         Image(systemName: "clock.badge.checkmark")
