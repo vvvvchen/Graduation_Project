@@ -12,12 +12,24 @@ struct MydataView: View
     @Binding var information: Information
     
     @Environment(\.dismiss) private var dismiss
-    
+    @State private var showAlert = false//警示提示視窗
+    @State private var alertMessage = " "//提示訊息
     @State private var success: Bool=false
     //  @State private var height: Int=0
     @State private var temporary: [Any]=["", "", "", "", "",""]
     
-    //MARK: List欄位
+    private func checkInformation() -> Bool
+    {
+        for _ in 0..<self.temporary.count
+        {
+            if(self.temporary.isEmpty)
+            {
+                return false
+            }
+        }
+        return true
+    }
+    
     private func setListView(index: Int) -> some View
     {
         if(index==0 || (index>=5 && index<=5))
@@ -46,19 +58,12 @@ struct MydataView: View
         else if(index==2)
         {
             return AnyView(
-                Picker("", selection: Binding<String>(
-                    get: { self.temporary[index] as? String ?? "" },
-                    set: { self.temporary[index] = $0 }
-                ))
-                {
-                    ForEach(0..<120)
-                    { age in
-                        Text("\(age)歲").tag("\(age)歲")
-                    }
-                }
-                    .pickerStyle(.wheel)
-                    .frame(width: 330, height: 43)
-            )
+                HStack {
+                    TextField("", text: Binding<String>(
+                        get: { self.temporary[index] as? String ?? "" },
+                        set: { self.temporary[index] = $0 }
+                    ))
+                })
         }
         else if(index==3)
         {
@@ -68,14 +73,6 @@ struct MydataView: View
                         get: { self.temporary[index] as? String ?? "" },
                         set: { self.temporary[index] = $0 }
                     ))
-                    Stepper("", value: Binding<CGFloat>(
-                        get: { self.temporary[index] as? CGFloat ?? 0.0 },
-                        set: { newValue in
-                            if let newValue = newValue as? Any {
-                                self.temporary[index] = newValue
-                            }
-                        }
-                    ), in: 0...230)
                 }
             )
         }
@@ -87,16 +84,14 @@ struct MydataView: View
                         get: { self.temporary[index] as? String ?? "" },
                         set: { self.temporary[index] = $0 }
                     ))
-                    Stepper("", value: Binding<CGFloat>(
-                        get: { self.temporary[index] as? CGFloat ?? 0.0 },
-                        set: { newValue in
-                            if let newValue = newValue as? Any {
-                                self.temporary[index] = newValue
-                            }
-                        }
-                    ), in: 0...230)
                 })
-            
+        }
+        else if(index==5)
+        {
+            return AnyView(TextField("", text: Binding<String>(
+                get: { self.temporary[index] as? String ?? "" },
+                set: { self.temporary[index] = $0 }
+            )))
         }
         
         else
@@ -126,63 +121,67 @@ struct MydataView: View
         }
     }
     //MARK: 更新資訊
-    private func updateInformation() async
-    {
-        if let name = temporary[0] as? String
-        {
+    private func updateInformation() async {
+        if let name = temporary[0] as? String {
             information.name = name
         }
-        if let gender = temporary[1] as? String
-        {
+        if let gender = temporary[1] as? String {
             information.gender = gender
         }
-        if let ageString = temporary[2] as? String, let age = Int(ageString)
-        {
+        if let ageString = temporary[2] as? String, let age = Int(ageString) {
             information.age = age
         }
-        if let heightString = temporary[3] as? String, let height = Double(heightString)
-        {
+        if let heightString = temporary[3] as? String, let height = Double(heightString) {
             information.height = CGFloat(height)
         }
-        if let weightString = temporary[4] as? String, let weight = Double(weightString)
-        {
+        if let weightString = temporary[4] as? String, let weight = Double(weightString) {
             information.weight = CGFloat(weight)
         }
-        if let phone = temporary[5] as? String
-        {
+        if let phone = temporary[5] as? String {
             information.phone = phone
         }
     }
     
-    var body: some View {
-        ZStack {
-            List {
+    var body: some View
+    {
+        ZStack
+        {
+            List
+            {
                 ForEach(0..<temporary.count, id: \.self)
                 {
-                    index in
-                    Section(setSection(index: index))
+                    index in Section(setSection(index: index))
                     {
                         setListView(index: index)
                     }
                     .headerProminence(.increased)
                 }
-                
                 Button("確認")
                 {
                     Task
                     {
-                        await self.updateInformation()
+                        if(self.checkInformation())
+                        {
+                            self.showAlert=true
+                            self.alertMessage="請填寫所有欄位"
+                        }
+                        else
+                        {
+                            self.alertMessage="修改成功"
+                            //show alert: invalid...
+                            //請填寫所有欄位
+                        }
                     }
-                    success.toggle()
                 }
+
                 .frame(maxWidth: .infinity)
             }
             .font(.title3)
-            .alert("修改成功", isPresented: $success)
+            .alert(alertMessage, isPresented: $showAlert)
             {
                 Button("確認")
                 {
-                    dismiss()
+                    self.dismiss()
                 }
             }
         }
@@ -196,10 +195,10 @@ struct MydataView: View
             temporary[3] = "\(information.height)"
             temporary[4] = "\(information.weight)"
             temporary[5] = information.phone
+            
         }
     }
 }
-
 struct MydataView_Previews: PreviewProvider
 {
     static var previews: some View
@@ -214,10 +213,7 @@ struct MydataView_Previews: PreviewProvider
                         age: 21,
                         height: 170,
                         weight: 53,
-                        phone: "0800012000"
-                    )
-                )
-            )
+                        phone: "0800012000")))
         }
     }
 }

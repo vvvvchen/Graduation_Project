@@ -91,10 +91,10 @@ struct SigninView: View
                         self.showAlert=true
                         self.alertMessage="請填寫所有欄位"
                     }
-                    else if(self.password.count<4)
+                    else if(self.password.count<6)
                     {
                         self.showAlert=true
-                        self.alertMessage="密碼需大於4字元"
+                        self.alertMessage="密碼需大於6字元"
                     }
                     else if(!self.passcheck())
                     {

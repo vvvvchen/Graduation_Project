@@ -43,6 +43,8 @@
 		0493EEA42A98415E00180221 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 0493EEA32A98415E00180221 /* FirebaseStorage */; };
 		0493EEA62A98415E00180221 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 0493EEA52A98415E00180221 /* FirebaseStorageCombine-Community */; };
 		0493EEAA2A98447A00180221 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0493EEA92A98447A00180221 /* GoogleService-Info.plist */; };
+		04A3444D2AA9637300F70DF2 /* ForumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3444C2AA9637300F70DF2 /* ForumView.swift */; };
+		04A3444F2AA9638000F70DF2 /* AIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3444E2AA9638000F70DF2 /* AIView.swift */; };
 		04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */; };
 		04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9612A8F08CF000D7C8C /* SigninView.swift */; };
 		04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9632A91AA44000D7C8C /* FavoriteView.swift */; };
@@ -52,7 +54,6 @@
 		04A4C9752A91BBCB000D7C8C /* MyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9742A91BBCB000D7C8C /* MyDataView.swift */; };
 		04A4C9792A92F5EB000D7C8C /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9782A92F5EB000D7C8C /* View.swift */; };
 		04A4C97E2A95AD51000D7C8C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4C97D2A95AD51000D7C8C /* Assets.xcassets */; };
-		04A4C9802A95AE80000D7C8C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C97F2A95AE80000D7C8C /* Color.swift */; };
 		04A4C9862A95E6D2000D7C8C /* MemberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9852A95E6D2000D7C8C /* MemberButton.swift */; };
 		04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */; };
 		04A4D0592A8E118D0050A5C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0582A8E118D0050A5C4 /* ContentView.swift */; };
@@ -74,6 +75,8 @@
 		0493EE6B2A9749CD00180221 /* BMIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIView.swift; sourceTree = "<group>"; };
 		0493EE6D2A9749F800180221 /* KcalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KcalView.swift; sourceTree = "<group>"; };
 		0493EEA92A98447A00180221 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		04A3444C2AA9637300F70DF2 /* ForumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumView.swift; sourceTree = "<group>"; };
+		04A3444E2AA9638000F70DF2 /* AIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIView.swift; sourceTree = "<group>"; };
 		04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		04A4C9612A8F08CF000D7C8C /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		04A4C9632A91AA44000D7C8C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
@@ -83,7 +86,6 @@
 		04A4C9742A91BBCB000D7C8C /* MyDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataView.swift; sourceTree = "<group>"; };
 		04A4C9782A92F5EB000D7C8C /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		04A4C97D2A95AD51000D7C8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		04A4C97F2A95AE80000D7C8C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		04A4C9852A95E6D2000D7C8C /* MemberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberButton.swift; sourceTree = "<group>"; };
 		04A4D0532A8E118D0050A5C4 /* Graduation_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graduation_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graduation_ProjectApp.swift; sourceTree = "<group>"; };
@@ -137,7 +139,6 @@
 		0493EE532A95F9C000180221 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				04A4C97F2A95AE80000D7C8C /* Color.swift */,
 				0493EE4F2A95F91200180221 /* Information.swift */,
 			);
 			path = Model;
@@ -178,6 +179,8 @@
 				04C7308A2A9D850100BAF806 /* BodyView.swift */,
 				04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */,
 				04157EEA2AA0689000C44D5B /* MenuView.swift */,
+				04A3444C2AA9637300F70DF2 /* ForumView.swift */,
+				04A3444E2AA9638000F70DF2 /* AIView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 			files = (
 				5460834D2A96EF8F00926662 /* SideView.swift in Sources */,
 				04157EEB2AA0689000C44D5B /* MenuView.swift in Sources */,
+				04A3444F2AA9638000F70DF2 /* AIView.swift in Sources */,
 				04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */,
 				0493EE572A97021700180221 /* SwiftUIView.swift in Sources */,
 				04A4C9662A91AA6B000D7C8C /* ForgetPasswordView.swift in Sources */,
@@ -374,7 +378,6 @@
 				04A4D0592A8E118D0050A5C4 /* ContentView.swift in Sources */,
 				04A4C9752A91BBCB000D7C8C /* MyDataView.swift in Sources */,
 				0493EE492A9349BD00180221 /* TagButton.swift in Sources */,
-				04A4C9802A95AE80000D7C8C /* Color.swift in Sources */,
 				0493EE6C2A9749CD00180221 /* BMIView.swift in Sources */,
 				0493EE6E2A9749F800180221 /* KcalView.swift in Sources */,
 				0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */,
@@ -386,6 +389,7 @@
 				04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */,
 				04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */,
 				04A4C96A2A91AAAE000D7C8C /* MemberView.swift in Sources */,
+				04A3444D2AA9637300F70DF2 /* ForumView.swift in Sources */,
 				04A4C9862A95E6D2000D7C8C /* MemberButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

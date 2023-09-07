@@ -52,46 +52,54 @@ struct MemberView: View
     {
         VStack(spacing: 20)
         {
-            //MARK: 頭像
-            if let userImage=self.userImage,
-               let image=UIImage(data: userImage)
+            VStack(spacing: 20)
             {
-                PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
+                //MARK: 頭像
+                if let userImage=self.userImage,
+                   let image=UIImage(data: userImage)
                 {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 200)
-                        .background(.gray)
-                        .clipShape(Circle())
-                }
-                .onChange(of: self.pickImage)
-                {image in
-                    Task
+                    PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
                     {
-                        if let data=try? await image?.loadTransferable(type: Data.self)
+                        Circle()
+                            .fill(.gray)
+                            .scaledToFit()
+                            .frame(width: 160)
+                            .overlay
                         {
-                            self.userImage=data
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(Circle())
+                        }
+                    }
+                    .onChange(of: self.pickImage)
+                    {image in
+                        Task
+                        {
+                            if let data=try? await image?.loadTransferable(type: Data.self)
+                            {
+                                self.userImage=data
+                            }
                         }
                     }
                 }
-            }
-            else
-            {
-                PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
+                else
                 {
-                    Circle()
-                        .fill(.gray)
-                        .scaledToFit()
-                        .frame(width: 200)
-                }
-                .onChange(of: self.pickImage)
-                {image in
-                    Task
+                    PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
                     {
-                        if let data=try? await image?.loadTransferable(type: Data.self)
+                        Circle()
+                            .fill(.gray)
+                            .scaledToFit()
+                            .frame(width: 160)
+                    }
+                    .onChange(of: self.pickImage)
+                    {image in
+                        Task
                         {
-                            self.userImage=data
+                            if let data=try? await image?.loadTransferable(type: Data.self)
+                            {
+                                self.userImage=data
+                            }
                         }
                     }
                 }
