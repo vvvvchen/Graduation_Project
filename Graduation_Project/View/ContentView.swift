@@ -13,8 +13,9 @@ struct ContentView: View
     
     //TabView選擇的頁面
     @State private var showSide: Bool=false
-    @State private var select: Int=1
-    @State private var information: Information=Information(name: "品瑞", gender: "男性", age: 21, height: 170, weight: 55, phone: "0800012000")
+    //跟蹤標籤頁
+    @State private var select: Int=0
+    @State private var information: Information=Information(name:"vc", gender: "女性", age: 20, height: 161, weight: 50, BMI:19.68)
     
     var body: some View
     {
@@ -92,16 +93,16 @@ struct ContentView: View
                 {
                     Label("我的最愛", systemImage: "heart.fill")
                 }
-                MemberView(select: self.$select, information: self.$information)
+                MyView(select: self.$select, information: self.$information)
                     .tag(4)
                     .tabItem
                 {
-                    Label("會員", systemImage: "person.fill")
+                    Label("我的", systemImage: "person.fill")
                 }
             }
+            
             .tint(.black)
             
-            SideView(showSide: self.$showSide)
         }
         .ignoresSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline)

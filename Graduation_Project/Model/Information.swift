@@ -14,5 +14,5 @@ struct Information
     var age: Int
     var height: CGFloat
     var weight: CGFloat
-    var phone: String
+    var BMI: CGFloat
 }

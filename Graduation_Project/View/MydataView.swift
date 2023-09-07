@@ -15,7 +15,6 @@ struct MydataView: View
     @State private var showAlert = false//警示提示視窗
     @State private var alertMessage = " "//提示訊息
     @State private var success: Bool=false
-    //  @State private var height: Int=0
     @State private var temporary: [Any]=["", "", "", "", "",""]
     
     private func checkInformation() -> Bool
@@ -115,7 +114,7 @@ struct MydataView: View
         case 4:
             return "體重"
         case 5:
-            return "手機號碼"
+            return "BMI"
         default:
             return ""
         }
@@ -137,8 +136,8 @@ struct MydataView: View
         if let weightString = temporary[4] as? String, let weight = Double(weightString) {
             information.weight = CGFloat(weight)
         }
-        if let phone = temporary[5] as? String {
-            information.phone = phone
+        if let BMIString = temporary[5] as? String, let BMI = Double(BMIString) {
+            information.BMI = CGFloat(BMI)
         }
     }
     
@@ -194,7 +193,7 @@ struct MydataView: View
             temporary[2] = "\(information.age)"
             temporary[3] = "\(information.height)"
             temporary[4] = "\(information.weight)"
-            temporary[5] = information.phone
+            temporary[5] = "\(information.BMI)"
             
         }
     }
@@ -213,7 +212,7 @@ struct MydataView_Previews: PreviewProvider
                         age: 21,
                         height: 170,
                         weight: 53,
-                        phone: "0800012000")))
+                        BMI: 19.5)))
         }
     }
 }

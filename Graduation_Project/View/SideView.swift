@@ -12,13 +12,13 @@ struct SideView: View
     @AppStorage("colorScheme") private var colorScheme: Bool=true
     @AppStorage("logIn") private var logIn: Bool = false
     @AppStorage("userImage") private var userImage: Data?
-    
+
     @Binding var showSide: Bool
-    
+
     @State var isDarkMode: Bool = false
-    
+
     @Environment(\.presentationMode) private var presentationMode
-    
+
     //根據showSide設定圖片是否被縮放，側邊欄展開時，圖片保持原始尺寸，側邊欄沒展開時，圖片縮放為0
     var imageScaleEffect: CGFloat {
         self.showSide ? 1.0 : 0.0
@@ -37,7 +37,7 @@ struct SideView: View
                     self.showSide.toggle()
                 }
             }
-            
+
             //MARK: 側邊欄
             Rectangle()
                 .fill(Color("sidebackgroundcolor"))
@@ -75,7 +75,7 @@ struct SideView: View
                             Spacer()
                         }
                     }
-                    
+
                     HStack
                     {
                         Spacer()
@@ -85,7 +85,7 @@ struct SideView: View
                             .padding(.bottom,15)
                         Spacer()
                     }
-                    
+
                     //MARK: 深淺模式
                     HStack
                     {
@@ -93,12 +93,12 @@ struct SideView: View
                             .font(.system(size: 27))
                             .foregroundColor(Color("sidecolor"))
                             .frame(width: 80)
-                        
+
                         Text(self.isDarkMode ? "深色模式" : "淺色模式")
                             .font(.system(size: 20))
                             .foregroundColor(Color("sidecolor"))
                             .alignmentGuide(.leading) { d in d[.leading] }
-                        
+
                         Toggle("", isOn: self.$colorScheme)
                             .tint(Color("sidebuttomcolor"))
                             .scaleEffect(0.75)
@@ -110,7 +110,7 @@ struct SideView: View
                             .font(.system(size: 27))
                             .foregroundColor(Color("sidecolor"))
                             .frame(width: 80)
-                        
+
                         Text("過往食譜")
                             .font(.system(size: 20))
                             .foregroundColor(Color("sidecolor"))
@@ -119,14 +119,14 @@ struct SideView: View
                             d in d[.leading]
                         }
                     }
-                    
+
                     HStack
                     {
                         Image(systemName: "list.clipboard")
                             .font(.system(size: 27))
                             .foregroundColor(Color("sidecolor"))
                             .frame(width: 80)
-                        
+
                         Text("食材紀錄")
                             .font(.system(size: 20))
                             .foregroundColor(Color("sidecolor"))
@@ -135,7 +135,7 @@ struct SideView: View
                             d in d[.leading]
                         }
                     }
-                    
+
                     Button(action:
                             {
                         withAnimation(.easeInOut)
@@ -149,7 +149,7 @@ struct SideView: View
                                 .font(.system(size: 27))
                                 .foregroundColor(Color("sidecolor"))
                                 .frame(width: 80)
-                            
+
                             Text("登出")
                                 .font(.system(size: 20))
                                 .foregroundColor(Color("sidecolor"))
@@ -167,7 +167,7 @@ struct SideView: View
         }
         .ignoresSafeArea(.all)
         .preferredColorScheme(self.colorScheme ? .light:.dark)
-        
+
         .onChange(of: self.colorScheme)
         {
             newValue in
