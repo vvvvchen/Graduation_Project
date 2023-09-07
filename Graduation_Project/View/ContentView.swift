@@ -17,6 +17,8 @@ struct ContentView: View
     @State private var select: Int=0
     @State private var information: Information=Information(name:"vc", gender: "女性", age: 20, height: 161, weight: 50, BMI:19.68)
     
+    @StateObject private var cameraManagerViewModel = CameraManagerViewModel()
+    
     var body: some View
     {
         //MARK: TabView
@@ -80,7 +82,7 @@ struct ContentView: View
                     Label("分享", systemImage: "globe")
                 }
                 
-                AIView()
+                CameraContentView(cameraManagerViewModel: self.cameraManagerViewModel)
                     .tag(2)
                     .tabItem
                 {
@@ -106,96 +108,6 @@ struct ContentView: View
         }
         .ignoresSafeArea(.all)
         .navigationBarTitleDisplayMode(.inline)
-        
-        
-        //        .opacity(self.select==1 ? 1:0)
-        //        .animation(.easeInOut.speed(2), value: self.select)
-        //        .toolbar
-        //        {
-        //MARK: 選單按鈕
-        //            ToolbarItem(placement: .navigationBarLeading)
-        //            {
-        //                Button
-        //                {
-        //                    withAnimation(.spring())
-        //                    {
-        //                        self.showSide.toggle()
-        //                    }
-        //                }
-        //            label:
-        //                {
-        //                    VStack
-        //                    {
-        //                        ForEach(0..<3)
-        //                        {_ in
-        //                            Capsule()
-        //                                .fill(Color("cameracolor"))
-        //                                .frame(width: 30, height: 3)
-        //                        }
-        //                    }
-        //                }
-        //                .opacity(self.showSide ? 0:1)
-        //            }
-        //
-        //MARK: 搜尋按鈕
-        //            ToolbarItem(placement: .principal)
-        //            {
-        //                HStack
-        //                {
-        //                    Spacer().opacity(self.showSide ? 1:0)
-        //
-        //                    Button
-        //                    {
-        //                    }
-        //                label:
-        //                    {
-        //                        RoundedRectangle(cornerRadius: 5)
-        //                            .fill(Color(.systemGray3))
-        //                            .frame(width: self.showSide ? 59:250,height: 38)
-        //                            .overlay
-        //                        {
-        //                            Image(systemName: "magnifyingglass")
-        //                                .resizable()
-        //                                .scaledToFit()
-        //                                .foregroundColor(Color("cameracolor"))
-        //                                .frame(maxWidth: .infinity, alignment: self.showSide ? .trailing:.leading)
-        //                                .frame(height: 20)
-        //                                .padding(.horizontal, 10)
-        //                        }
-        //                    }
-        //                }
-        //                .opacity(self.select==1 ? 1:0)
-        //                .animation(.easeInOut.speed(2), value: self.select)
-        //            }
-        //
-        //MARK: 相機按鈕或編輯按鈕
-        //            ToolbarItem(placement: .navigationBarTrailing)
-        //            {
-        //                Button
-        //                {
-        //                }
-        //            label:
-        //                {
-        //                    if(self.select==1)
-        //                    {
-        //                        Image(systemName: "camera.fill")
-        //                            .resizable()
-        //                            .scaledToFit()
-        //                            .foregroundColor(Color("cameracolor"))
-        //                            .frame(height: 30)
-        //                            .transition(.opacity.animation(.easeInOut.speed(2)))
-        //                    }
-        //                    else if(self.select==2)
-        //                    {
-        //                        NavigationLink(destination: MydataView(information: self.$information))
-        //                        {
-        //                            Text("編輯")
-        //                        }
-        //                        .transition(.opacity.animation(.easeInOut.speed(2)))
-        //                    }
-        //                }
-        //            }
-        //        }
     }
 }
 

@@ -46,6 +46,15 @@
 		04A3444D2AA9637300F70DF2 /* ForumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3444C2AA9637300F70DF2 /* ForumView.swift */; };
 		04A3444F2AA9638000F70DF2 /* AIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3444E2AA9638000F70DF2 /* AIView.swift */; };
 		04A3447B2AA9B28500F70DF2 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3447A2AA9B28500F70DF2 /* MyView.swift */; };
+		04A3447E2AA9B38100F70DF2 /* CameraManagerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3447D2AA9B38100F70DF2 /* CameraManagerTypes.swift */; };
+		04A344802AA9B39C00F70DF2 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3447F2AA9B39C00F70DF2 /* CameraManager.swift */; };
+		04A344822AA9B3A800F70DF2 /* CameraManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A344812AA9B3A800F70DF2 /* CameraManagerViewModel.swift */; };
+		04A344892AA9B3B400F70DF2 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A344832AA9B3B400F70DF2 /* CameraPreviewView.swift */; };
+		04A3448A2AA9B3B400F70DF2 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A344842AA9B3B400F70DF2 /* CustomVideoPlayer.swift */; };
+		04A3448C2AA9B3B400F70DF2 /* CapturedPreviewOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A344862AA9B3B400F70DF2 /* CapturedPreviewOverlay.swift */; };
+		04A3448D2AA9B3B400F70DF2 /* CameraOveraly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A344872AA9B3B400F70DF2 /* CameraOveraly.swift */; };
+		04A344912AA9B41E00F70DF2 /* CameraManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A344902AA9B41E00F70DF2 /* CameraManagerTests.swift */; };
+		04A344942AA9B46100F70DF2 /* CameraContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A344932AA9B46100F70DF2 /* CameraContentView.swift */; };
 		04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */; };
 		04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9612A8F08CF000D7C8C /* SigninView.swift */; };
 		04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9632A91AA44000D7C8C /* FavoriteView.swift */; };
@@ -58,7 +67,7 @@
 		04A4C9862A95E6D2000D7C8C /* MemberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4C9852A95E6D2000D7C8C /* MemberButton.swift */; };
 		04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */; };
 		04A4D0592A8E118D0050A5C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0582A8E118D0050A5C4 /* ContentView.swift */; };
-		04A4D05B2A8E118F0050A5C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */; };
+		04A4D05B2A8E118F0050A5C4 /* camera.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05A2A8E118F0050A5C4 /* camera.xcassets */; };
 		04A4D05E2A8E118F0050A5C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */; };
 		04C7308B2A9D850100BAF806 /* BodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308A2A9D850100BAF806 /* BodyView.swift */; };
 		04C7308D2A9DAA7000BAF806 /* InformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */; };
@@ -79,6 +88,16 @@
 		04A3444C2AA9637300F70DF2 /* ForumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumView.swift; sourceTree = "<group>"; };
 		04A3444E2AA9638000F70DF2 /* AIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIView.swift; sourceTree = "<group>"; };
 		04A3447A2AA9B28500F70DF2 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
+		04A3447D2AA9B38100F70DF2 /* CameraManagerTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerTypes.swift; sourceTree = "<group>"; };
+		04A3447F2AA9B39C00F70DF2 /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		04A344812AA9B3A800F70DF2 /* CameraManagerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerViewModel.swift; sourceTree = "<group>"; };
+		04A344832AA9B3B400F70DF2 /* CameraPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		04A344842AA9B3B400F70DF2 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
+		04A344862AA9B3B400F70DF2 /* CapturedPreviewOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedPreviewOverlay.swift; sourceTree = "<group>"; };
+		04A344872AA9B3B400F70DF2 /* CameraOveraly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraOveraly.swift; sourceTree = "<group>"; };
+		04A344902AA9B41E00F70DF2 /* CameraManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerTests.swift; sourceTree = "<group>"; };
+		04A344932AA9B46100F70DF2 /* CameraContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraContentView.swift; sourceTree = "<group>"; };
+		04A344952AA9B7C800F70DF2 /* Graduation-Project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Graduation-Project-Info.plist"; sourceTree = SOURCE_ROOT; };
 		04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		04A4C9612A8F08CF000D7C8C /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		04A4C9632A91AA44000D7C8C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
@@ -92,7 +111,7 @@
 		04A4D0532A8E118D0050A5C4 /* Graduation_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graduation_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graduation_ProjectApp.swift; sourceTree = "<group>"; };
 		04A4D0582A8E118D0050A5C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04A4D05A2A8E118F0050A5C4 /* camera.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = camera.xcassets; sourceTree = "<group>"; };
 		04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		04C7308A2A9D850100BAF806 /* BodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyView.swift; sourceTree = "<group>"; };
 		04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationLabel.swift; sourceTree = "<group>"; };
@@ -141,6 +160,7 @@
 		0493EE532A95F9C000180221 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				04A3447F2AA9B39C00F70DF2 /* CameraManager.swift */,
 				0493EE4F2A95F91200180221 /* Information.swift */,
 			);
 			path = Model;
@@ -162,9 +182,38 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		04A3447C2AA9B38100F70DF2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				04A3447D2AA9B38100F70DF2 /* CameraManagerTypes.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		04A3448F2AA9B41E00F70DF2 /* CameraTests */ = {
+			isa = PBXGroup;
+			children = (
+				04A344902AA9B41E00F70DF2 /* CameraManagerTests.swift */,
+			);
+			path = CameraTests;
+			sourceTree = "<group>";
+		};
+		04A344922AA9B43300F70DF2 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				04A344932AA9B46100F70DF2 /* CameraContentView.swift */,
+				04A344842AA9B3B400F70DF2 /* CustomVideoPlayer.swift */,
+				04A344872AA9B3B400F70DF2 /* CameraOveraly.swift */,
+				04A344832AA9B3B400F70DF2 /* CameraPreviewView.swift */,
+				04A344862AA9B3B400F70DF2 /* CapturedPreviewOverlay.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		04A4C96D2A91AB89000D7C8C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04A344922AA9B43300F70DF2 /* Camera */,
 				04A4D0582A8E118D0050A5C4 /* ContentView.swift */,
 				04A4C9632A91AA44000D7C8C /* FavoriteView.swift */,
 				04A4C9652A91AA6B000D7C8C /* ForgetPasswordView.swift */,
@@ -208,6 +257,7 @@
 		04A4C9832A95E646000D7C8C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				04A344812AA9B3A800F70DF2 /* CameraManagerViewModel.swift */,
 				0493EE482A9349BD00180221 /* TagButton.swift */,
 				04A4C9852A95E6D2000D7C8C /* MemberButton.swift */,
 				04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */,
@@ -236,14 +286,17 @@
 		04A4D0552A8E118D0050A5C4 /* Graduation_Project */ = {
 			isa = PBXGroup;
 			children = (
+				04A344952AA9B7C800F70DF2 /* Graduation-Project-Info.plist */,
 				04A4D05C2A8E118F0050A5C4 /* Preview Content */,
 				5455272C2A961392005DE334 /* Picture */,
 				04A4C97C2A95AD30000D7C8C /* Color */,
+				04A3448F2AA9B41E00F70DF2 /* CameraTests */,
 				04A4C96E2A91ABC7000D7C8C /* Extension */,
 				0493EE552A95FA9300180221 /* Function */,
 				0493EE532A95F9C000180221 /* Model */,
 				04A4C96D2A91AB89000D7C8C /* View */,
 				04A4C9832A95E646000D7C8C /* ViewModel */,
+				04A3447C2AA9B38100F70DF2 /* Utilities */,
 				0493EE542A95FA3100180221 /* ViewModifier */,
 			);
 			path = Graduation_Project;
@@ -260,7 +313,7 @@
 		5455272C2A961392005DE334 /* Picture */ = {
 			isa = PBXGroup;
 			children = (
-				04A4D05A2A8E118F0050A5C4 /* Assets.xcassets */,
+				04A4D05A2A8E118F0050A5C4 /* camera.xcassets */,
 			);
 			path = Picture;
 			sourceTree = "<group>";
@@ -357,7 +410,7 @@
 			files = (
 				04A4D05E2A8E118F0050A5C4 /* Preview Assets.xcassets in Resources */,
 				0493EEAA2A98447A00180221 /* GoogleService-Info.plist in Resources */,
-				04A4D05B2A8E118F0050A5C4 /* Assets.xcassets in Resources */,
+				04A4D05B2A8E118F0050A5C4 /* camera.xcassets in Resources */,
 				04A4C97E2A95AD51000D7C8C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,12 +422,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A3448A2AA9B3B400F70DF2 /* CustomVideoPlayer.swift in Sources */,
 				5460834D2A96EF8F00926662 /* SideView.swift in Sources */,
 				04157EEB2AA0689000C44D5B /* MenuView.swift in Sources */,
+				04A344892AA9B3B400F70DF2 /* CameraPreviewView.swift in Sources */,
 				04A3444F2AA9638000F70DF2 /* AIView.swift in Sources */,
+				04A344822AA9B3A800F70DF2 /* CameraManagerViewModel.swift in Sources */,
+				04A344912AA9B41E00F70DF2 /* CameraManagerTests.swift in Sources */,
 				04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */,
 				0493EE572A97021700180221 /* SwiftUIView.swift in Sources */,
 				04A4C9662A91AA6B000D7C8C /* ForgetPasswordView.swift in Sources */,
+				04A3448D2AA9B3B400F70DF2 /* CameraOveraly.swift in Sources */,
+				04A344942AA9B46100F70DF2 /* CameraContentView.swift in Sources */,
 				04A4C9792A92F5EB000D7C8C /* View.swift in Sources */,
 				04A4C9642A91AA44000D7C8C /* FavoriteView.swift in Sources */,
 				04C7308B2A9D850100BAF806 /* BodyView.swift in Sources */,
@@ -383,6 +442,7 @@
 				0493EE492A9349BD00180221 /* TagButton.swift in Sources */,
 				04A3447B2AA9B28500F70DF2 /* MyView.swift in Sources */,
 				0493EE6C2A9749CD00180221 /* BMIView.swift in Sources */,
+				04A3448C2AA9B3B400F70DF2 /* CapturedPreviewOverlay.swift in Sources */,
 				0493EE6E2A9749F800180221 /* KcalView.swift in Sources */,
 				0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */,
 				0493EE502A95F91200180221 /* Information.swift in Sources */,
@@ -391,7 +451,9 @@
 				0493EE682A972D5800180221 /* Healthy.swift in Sources */,
 				04C7308D2A9DAA7000BAF806 /* InformationLabel.swift in Sources */,
 				04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */,
+				04A344802AA9B39C00F70DF2 /* CameraManager.swift in Sources */,
 				04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */,
+				04A3447E2AA9B38100F70DF2 /* CameraManagerTypes.swift in Sources */,
 				04A4C96A2A91AAAE000D7C8C /* MemberView.swift in Sources */,
 				04A3444D2AA9637300F70DF2 /* ForumView.swift in Sources */,
 				04A4C9862A95E6D2000D7C8C /* MemberButton.swift in Sources */,
@@ -526,6 +588,11 @@
 				DEVELOPMENT_TEAM = WPR9PZZJ8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Graduation-Project-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Its needed";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Mic is needed";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save photos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Needed to save video photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -536,7 +603,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "v.Graduation-Project";
+				PRODUCT_BUNDLE_IDENTIFIER = wusdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -555,6 +622,11 @@
 				DEVELOPMENT_TEAM = WPR9PZZJ8R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Graduation-Project-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Its needed";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Mic is needed";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save photos";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Needed to save video photo";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -565,7 +637,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "v.Graduation-Project";
+				PRODUCT_BUNDLE_IDENTIFIER = wusdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
