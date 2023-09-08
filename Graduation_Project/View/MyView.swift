@@ -165,19 +165,19 @@ struct MyView: View
                             InformationLabel(image: "figure.strengthtraining.traditional", label: "BMI")
                         }
                     }
-
+                    
                     HStack
                     {
                         NavigationLink(destination: BMIView()) {
                             InformationLabel(system: false,image: self.isDarkMode ? "hypertension2" : "hypertension", label: "高血壓")
-
+                            
                         }
                     }
                     HStack
                     {
                         NavigationLink(destination: BMIView()) {
                             InformationLabel(system: false,image: self.isDarkMode ? "high blood sugar2" : "high blood sugar", label: "高血糖")
-
+                            
                         }
                     }
                     HStack
@@ -190,8 +190,18 @@ struct MyView: View
                 .listRowSeparator(.hidden)
                 Section(header:Text("食譜相關"))
                 {
-                    InformationLabel(image: "clock.arrow.circlepath", label: "查閱過往")
-                    InformationLabel(image: "doc.on.clipboard", label: "食材紀錄")
+                    HStack
+                    {
+                        NavigationLink(destination: MenuView()) {
+                            InformationLabel(image: "clock.arrow.circlepath", label: "查閱過往")
+                        }
+                    }
+                    HStack
+                    {
+                        NavigationLink(destination: MenuView()) {
+                            InformationLabel(image: "doc.on.clipboard", label: "食材紀錄")
+                        }
+                    }
                 }
                 .listRowSeparator(.hidden)
                 Section(header:Text("設定相關"))
@@ -247,7 +257,7 @@ struct MyView: View
             }
             .listStyle(.plain)
             .background(.clear)
-
+            
             //設定背景為白色，不要是灰色
             .listStyle(InsetListStyle())
             //控制深淺模式切換

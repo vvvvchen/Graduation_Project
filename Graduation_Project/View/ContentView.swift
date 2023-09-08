@@ -72,8 +72,7 @@ struct ContentView: View
                     .tag(0)
                     .tabItem
                 {
-                    Label(
-                        "主頁", systemImage: "house.fill")                    
+                    Label("主頁", systemImage: "house.fill")                    
                 }
                 
                 ForumView()
@@ -103,8 +102,8 @@ struct ContentView: View
                     Label("我的", systemImage: "person.fill")
                 }
             }
-            
-            .tint(.black)
+            //點選後的顏色
+            .tint(.orange)
             
         }
         .ignoresSafeArea(.all)
