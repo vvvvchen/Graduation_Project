@@ -43,7 +43,6 @@
 		0493EEA62A98415E00180221 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 0493EEA52A98415E00180221 /* FirebaseStorageCombine-Community */; };
 		0493EEAA2A98447A00180221 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0493EEA92A98447A00180221 /* GoogleService-Info.plist */; };
 		04A3444D2AA9637300F70DF2 /* ForumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3444C2AA9637300F70DF2 /* ForumView.swift */; };
-		04A3444F2AA9638000F70DF2 /* AIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3444E2AA9638000F70DF2 /* AIView.swift */; };
 		04A3447B2AA9B28500F70DF2 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3447A2AA9B28500F70DF2 /* MyView.swift */; };
 		04A3447E2AA9B38100F70DF2 /* CameraManagerTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3447D2AA9B38100F70DF2 /* CameraManagerTypes.swift */; };
 		04A344802AA9B39C00F70DF2 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3447F2AA9B39C00F70DF2 /* CameraManager.swift */; };
@@ -66,7 +65,7 @@
 		04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */; };
 		04A4D0592A8E118D0050A5C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A4D0582A8E118D0050A5C4 /* ContentView.swift */; };
 		04A4D05B2A8E118F0050A5C4 /* camera.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05A2A8E118F0050A5C4 /* camera.xcassets */; };
-		04A4D05E2A8E118F0050A5C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */; };
+		04A4D05E2A8E118F0050A5C4 /* body.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04A4D05D2A8E118F0050A5C4 /* body.xcassets */; };
 		04C7308B2A9D850100BAF806 /* BodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308A2A9D850100BAF806 /* BodyView.swift */; };
 		04C7308D2A9DAA7000BAF806 /* InformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */; };
 		04C7308F2A9EEB7800BAF806 /* MyrecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */; };
@@ -82,7 +81,6 @@
 		0493EE6B2A9749CD00180221 /* BMIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIView.swift; sourceTree = "<group>"; };
 		0493EEA92A98447A00180221 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04A3444C2AA9637300F70DF2 /* ForumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumView.swift; sourceTree = "<group>"; };
-		04A3444E2AA9638000F70DF2 /* AIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIView.swift; sourceTree = "<group>"; };
 		04A3447A2AA9B28500F70DF2 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
 		04A3447D2AA9B38100F70DF2 /* CameraManagerTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManagerTypes.swift; sourceTree = "<group>"; };
 		04A3447F2AA9B39C00F70DF2 /* CameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
@@ -107,7 +105,7 @@
 		04A4D0562A8E118D0050A5C4 /* Graduation_ProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graduation_ProjectApp.swift; sourceTree = "<group>"; };
 		04A4D0582A8E118D0050A5C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		04A4D05A2A8E118F0050A5C4 /* camera.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = camera.xcassets; sourceTree = "<group>"; };
-		04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		04A4D05D2A8E118F0050A5C4 /* body.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = body.xcassets; sourceTree = "<group>"; };
 		04C7308A2A9D850100BAF806 /* BodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyView.swift; sourceTree = "<group>"; };
 		04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationLabel.swift; sourceTree = "<group>"; };
 		04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyrecipeView.swift; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 				04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */,
 				04157EEA2AA0689000C44D5B /* MenuView.swift */,
 				04A3444C2AA9637300F70DF2 /* ForumView.swift */,
-				04A3444E2AA9638000F70DF2 /* AIView.swift */,
 				04A3447A2AA9B28500F70DF2 /* MyView.swift */,
 			);
 			path = View;
@@ -296,7 +293,7 @@
 		04A4D05C2A8E118F0050A5C4 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				04A4D05D2A8E118F0050A5C4 /* Preview Assets.xcassets */,
+				04A4D05D2A8E118F0050A5C4 /* body.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -399,7 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A4D05E2A8E118F0050A5C4 /* Preview Assets.xcassets in Resources */,
+				04A4D05E2A8E118F0050A5C4 /* body.xcassets in Resources */,
 				0493EEAA2A98447A00180221 /* GoogleService-Info.plist in Resources */,
 				04A4D05B2A8E118F0050A5C4 /* camera.xcassets in Resources */,
 				04A4C97E2A95AD51000D7C8C /* Assets.xcassets in Resources */,
@@ -416,7 +413,6 @@
 				04A3448A2AA9B3B400F70DF2 /* CustomVideoPlayer.swift in Sources */,
 				04157EEB2AA0689000C44D5B /* MenuView.swift in Sources */,
 				04A344892AA9B3B400F70DF2 /* CameraPreviewView.swift in Sources */,
-				04A3444F2AA9638000F70DF2 /* AIView.swift in Sources */,
 				04A344822AA9B3A800F70DF2 /* CameraManagerViewModel.swift in Sources */,
 				04A344912AA9B41E00F70DF2 /* CameraManagerTests.swift in Sources */,
 				04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */,

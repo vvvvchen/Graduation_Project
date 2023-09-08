@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InformationLabel: View
 {
+    var system: Bool=true
     let image: String
     let label: String
 
@@ -16,10 +17,20 @@ struct InformationLabel: View
     {
         HStack(spacing: 20)
         {
-            Image(systemName: self.image)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30, height: 30)
+            if(self.system)
+            {
+                Image(systemName: self.image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height: 30)
+            }
+            else
+            {
+                Image(self.image)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height: 30)
+            }
 
             Text(self.label)
                 .bold()

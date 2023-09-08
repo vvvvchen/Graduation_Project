@@ -168,19 +168,19 @@ struct MyView: View
                         HStack
                         {
                             NavigationLink(destination: BMIView()) {
-                                InformationLabel(image: "figure.strengthtraining.traditional", label: "高血壓")
+                                InformationLabel(system: false, image: "hypertension", label: "高血壓")
                             }
                         }
                         HStack
                         {
                             NavigationLink(destination: BMIView()) {
-                                InformationLabel(image: "figure.strengthtraining.traditional", label: "高血糖")
+                                InformationLabel(system: false,image: "high blood sugar", label: "高血糖")
                             }
                         }
                         HStack
                         {
                             NavigationLink(destination: BMIView()) {
-                                InformationLabel(image: "figure.strengthtraining.traditional", label: "高血脂")
+                                InformationLabel(system: false,image: "hyperlipidemia", label: "高血脂")
                             }
                         }
                     }
@@ -241,7 +241,8 @@ struct MyView: View
                     }
                     
                 }
-                .background(Color("menusheetbackgroundcolor"))
+                .background(.clear)
+//                .background(Color("menusheetbackgroundcolor"))
                 .listRowSeparator(.hidden)
                 //設定背景為白色，不要是灰色
                 .listStyle(.plain)

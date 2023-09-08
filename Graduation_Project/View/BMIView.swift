@@ -52,19 +52,6 @@ struct BMIView: View
     {
         VStack(spacing: 30)
         {
-            //list
-            //            ForEach(bmiRecords)
-            //            {
-            //                record in
-            //                HStack
-            //                {
-            //                    Text("\(record.bmi, specifier: "%.2f")")
-            //                    Spacer()
-            //                    Text("\(formattedDate(record.date))")
-            //                        .foregroundColor(.gray)
-            //                }
-            //            }
-            
             //MARK: 折線圖
             Chart(allSensors)
             {
