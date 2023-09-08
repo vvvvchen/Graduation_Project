@@ -14,7 +14,6 @@ struct MyView: View
     @AppStorage("colorScheme") private var colorScheme: Bool=true
     @AppStorage("logIn") private var logIn: Bool = false
     
-    
     @Binding var select: Int
     @Binding var information: Information
     
@@ -22,7 +21,6 @@ struct MyView: View
     @State var isDarkMode: Bool = false
     
     @Environment(\.presentationMode) private var presentationMode
-    
     
     private let label: [InformationLabel]=[
         InformationLabel(image: "person.fill", label: "名稱"),
@@ -51,7 +49,7 @@ struct MyView: View
         case 4:
             return "\(self.information.weight)"
         case 5:
-            return "\(self.information.BMI)"
+            return String(format: "%.2f", CalculateBMI(weight: information.weight, height: information.height))
         default:
             return ""
         }
@@ -155,6 +153,36 @@ struct MyView: View
                             Text(self.setInformation(index: index)).foregroundColor(.gray)
                         }
                         .frame(height: 40)
+                    }
+                    
+                    Section(header:Text("數值紀錄"))
+                    {
+                        
+                        HStack
+                        {
+                            NavigationLink(destination: BMIView()) {
+                                InformationLabel(image: "figure.strengthtraining.traditional", label: "BMI")
+                            }
+                        }
+
+                        HStack
+                        {
+                            NavigationLink(destination: BMIView()) {
+                                InformationLabel(image: "figure.strengthtraining.traditional", label: "高血壓")
+                            }
+                        }
+                        HStack
+                        {
+                            NavigationLink(destination: BMIView()) {
+                                InformationLabel(image: "figure.strengthtraining.traditional", label: "高血糖")
+                            }
+                        }
+                        HStack
+                        {
+                            NavigationLink(destination: BMIView()) {
+                                InformationLabel(image: "figure.strengthtraining.traditional", label: "高血脂")
+                            }
+                        }
                     }
                     
                     Section(header:Text("食譜相關"))

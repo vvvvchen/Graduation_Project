@@ -15,13 +15,13 @@ struct MydataView: View
     @State private var showAlert = false//警示提示視窗
     @State private var alertMessage = " "//提示訊息
     @State private var success: Bool=false
-    @State private var temporary: [Any]=["", "", "", "", "",""]
+    @State private var temporary: [String]=["", "", "", "", "",""]
     
     private func checkInformation() -> Bool
     {
-        for _ in 0..<self.temporary.count
+        for i in self.temporary
         {
-            if(self.temporary.isEmpty)
+            if(i.isEmpty)
             {
                 return false
             }
@@ -31,7 +31,7 @@ struct MydataView: View
     
     private func setListView(index: Int) -> some View
     {
-        if(index==0 || (index>=5 && index<=5))
+        if(index==0 || (index>=5 && index<=4))
         {
             return AnyView(TextField("", text: Binding<String>(
                 get: { self.temporary[index] as? String ?? "" },
@@ -54,45 +54,27 @@ struct MydataView: View
                     .frame(width: 330, height: 43)
             )
         }
-        else if(index==2)
+        else if(index==2 || index == 3 || index == 4)
         {
             return AnyView(
-                HStack {
+                HStack
+                {
                     TextField("", text: Binding<String>(
-                        get: { self.temporary[index] as? String ?? "" },
+                        get: { self.temporary[index] as? String ?? ""
+                            
+                        },
                         set: { self.temporary[index] = $0 }
                     ))
                 })
         }
-        else if(index==3)
+        else if(index == 5)
         {
             return AnyView(
-                HStack {
-                    TextField("", text: Binding<String>(
-                        get: { self.temporary[index] as? String ?? "" },
-                        set: { self.temporary[index] = $0 }
-                    ))
-                }
-            )
-        }
-        else if(index==4)
-        {
-            return AnyView(
-                HStack {
-                    TextField("", text: Binding<String>(
-                        get: { self.temporary[index] as? String ?? "" },
-                        set: { self.temporary[index] = $0 }
-                    ))
+                HStack
+                {
+                    Text(String(format: "%.2f", CalculateBMI(weight: information.weight, height: information.height)))
                 })
         }
-        else if(index==5)
-        {
-            return AnyView(TextField("", text: Binding<String>(
-                get: { self.temporary[index] as? String ?? "" },
-                set: { self.temporary[index] = $0 }
-            )))
-        }
-        
         else
         {
             return AnyView(Text("ERROR"))
@@ -121,23 +103,23 @@ struct MydataView: View
     }
     //MARK: 更新資訊
     private func updateInformation() async {
-        if let name = temporary[0] as? String {
-            information.name = name
+        if let name = self.temporary[0] as? String {
+            self.information.name = name
         }
-        if let gender = temporary[1] as? String {
-            information.gender = gender
+        if let gender = self.temporary[1] as? String {
+            self.information.gender = gender
         }
-        if let ageString = temporary[2] as? String, let age = Int(ageString) {
-            information.age = age
+        if let ageString = self.temporary[2] as? String, let age = Int(ageString) {
+            self.information.age = age
         }
-        if let heightString = temporary[3] as? String, let height = Double(heightString) {
-            information.height = CGFloat(height)
+        if let heightString = self.temporary[3] as? String, let height = Double(heightString) {
+            self.information.height = Double(height)
         }
-        if let weightString = temporary[4] as? String, let weight = Double(weightString) {
-            information.weight = CGFloat(weight)
+        if let weightString = self.temporary[4] as? String, let weight = Double(weightString) {
+            self.information.weight = Double(weight)
         }
-        if let BMIString = temporary[5] as? String, let BMI = Double(BMIString) {
-            information.BMI = CGFloat(BMI)
+        if let BMIString = self.temporary[5] as? String, let BMI = Double(BMIString) {
+            self.information.BMI = Double(BMI)
         }
     }
     
@@ -161,27 +143,34 @@ struct MydataView: View
                     {
                         if(self.checkInformation())
                         {
-                            self.showAlert=true
-                            self.alertMessage="請填寫所有欄位"
+                            await self.updateInformation()
+                            self.success = true
+                            self.alertMessage = "修改成功"
                         }
                         else
                         {
-                            self.alertMessage="修改成功"
+                            self.alertMessage = "請填寫所有欄位"
+                            
                             //show alert: invalid...
                             //請填寫所有欄位
                         }
+                        
+                        self.showAlert=true
                     }
                 }
-
+                
                 .frame(maxWidth: .infinity)
             }
             .font(.title3)
-            .alert(alertMessage, isPresented: $showAlert)
+            .alert(isPresented: self.$showAlert)
             {
-                Button("確認")
-                {
-                    self.dismiss()
-                }
+                Alert(
+                    title: Text(alertMessage),
+                    dismissButton: self.alertMessage=="請填寫所有欄位" ? .default(Text("確認")):.cancel(Text("確認"))
+                    {
+                        self.dismiss()
+                    }
+                )
             }
         }
         .navigationTitle("編輯個人資料")
@@ -198,21 +187,21 @@ struct MydataView: View
         }
     }
 }
-struct MydataView_Previews: PreviewProvider
-{
-    static var previews: some View
-    {
-        NavigationStack
-        {
-            MydataView(
-                information: .constant(
-                    Information(
-                        name: "Justin",
-                        gender: "男性",
-                        age: 21,
-                        height: 170,
-                        weight: 53,
-                        BMI: 19.5)))
-        }
-    }
-}
+//struct MydataView_Previews: PreviewProvider
+//{
+//    static var previews: some View
+//    {
+//        NavigationStack
+//        {
+//            MydataView(
+//                information: .constant(
+//                    Information(
+//                        name: "Justin",
+//                        gender: "男性",
+//                        age: 21,
+//                        height: 170,
+//                        weight: 53,
+//                        BMI: 19.5)))
+//        }
+//    }
+//}

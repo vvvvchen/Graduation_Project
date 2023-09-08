@@ -12,7 +12,7 @@ struct Information
     var name: String
     var gender: String
     var age: Int
-    var height: CGFloat
-    var weight: CGFloat
-    var BMI: CGFloat
+    var height: Double
+    var weight: Double
+    var BMI: Double
 }
