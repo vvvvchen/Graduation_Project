@@ -142,6 +142,7 @@ struct MyView: View
             //MARK: 使用者資訊
             List
             {
+                
                 Section(header:Text("個人資訊"))
                 {
                     ForEach(self.label.indices, id: \.self)
@@ -168,21 +169,21 @@ struct MyView: View
                     
                     HStack
                     {
-                        NavigationLink(destination: BMIView()) {
+                        NavigationLink(destination: MenuView()) {
                             InformationLabel(system: false,image: self.isDarkMode ? "hypertension2" : "hypertension", label: "高血壓")
                             
                         }
                     }
                     HStack
                     {
-                        NavigationLink(destination: BMIView()) {
+                        NavigationLink(destination: MenuView()) {
                             InformationLabel(system: false,image: self.isDarkMode ? "high blood sugar2" : "high blood sugar", label: "高血糖")
                             
                         }
                     }
                     HStack
                     {
-                        NavigationLink(destination: BMIView()) {
+                        NavigationLink(destination: MenuView()) {
                             InformationLabel(system: false,image: self.isDarkMode ? "hyperlipidemiar2" : "hyperlipidemia", label: "高血脂")
                         }
                     }

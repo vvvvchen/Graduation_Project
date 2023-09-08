@@ -10,7 +10,6 @@ import SwiftUI
 struct MydataView: View
 {
     @Binding var information: Information
-    
     @Environment(\.dismiss) private var dismiss
     @State private var showAlert = false//警示提示視窗
     @State private var alertMessage = " "//提示訊息

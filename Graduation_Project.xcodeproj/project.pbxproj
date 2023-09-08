@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		04157EEB2AA0689000C44D5B /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04157EEA2AA0689000C44D5B /* MenuView.swift */; };
+		044A74C32AAB1FE100ACA736 /* BMIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044A74C22AAB1FE100ACA736 /* BMIView.swift */; };
 		0493EE492A9349BD00180221 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE482A9349BD00180221 /* TagButton.swift */; };
 		0493EE502A95F91200180221 /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE4F2A95F91200180221 /* Information.swift */; };
-		0493EE572A97021700180221 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE562A97021700180221 /* SwiftUIView.swift */; };
 		0493EE682A972D5800180221 /* Healthy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE672A972D5800180221 /* Healthy.swift */; };
 		0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE692A972D8F00180221 /* HealthyView.swift */; };
-		0493EE6C2A9749CD00180221 /* BMIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE6B2A9749CD00180221 /* BMIView.swift */; };
+		0493EE6C2A9749CD00180221 /* BMIiiiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0493EE6B2A9749CD00180221 /* BMIiiiView.swift */; };
 		0493EE722A98415E00180221 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0493EE712A98415E00180221 /* FirebaseAnalytics */; };
 		0493EE742A98415E00180221 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 0493EE732A98415E00180221 /* FirebaseAnalyticsOnDeviceConversion */; };
 		0493EE762A98415E00180221 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0493EE752A98415E00180221 /* FirebaseAnalyticsSwift */; };
@@ -73,12 +73,12 @@
 
 /* Begin PBXFileReference section */
 		04157EEA2AA0689000C44D5B /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		044A74C22AAB1FE100ACA736 /* BMIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIView.swift; sourceTree = "<group>"; };
 		0493EE482A9349BD00180221 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		0493EE4F2A95F91200180221 /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
-		0493EE562A97021700180221 /* SwiftUIView.swift */ = {isa = PBXFileReference; indentWidth = 3; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		0493EE672A972D5800180221 /* Healthy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Healthy.swift; sourceTree = "<group>"; };
 		0493EE692A972D8F00180221 /* HealthyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthyView.swift; sourceTree = "<group>"; };
-		0493EE6B2A9749CD00180221 /* BMIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIView.swift; sourceTree = "<group>"; };
+		0493EE6B2A9749CD00180221 /* BMIiiiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIiiiView.swift; sourceTree = "<group>"; };
 		0493EEA92A98447A00180221 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		04A3444C2AA9637300F70DF2 /* ForumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForumView.swift; sourceTree = "<group>"; };
 		04A3447A2AA9B28500F70DF2 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
@@ -213,14 +213,14 @@
 				04A4C9742A91BBCB000D7C8C /* MyDataView.swift */,
 				04A4C95B2A8E1EC9000D7C8C /* LoginView.swift */,
 				04A4C9612A8F08CF000D7C8C /* SigninView.swift */,
-				0493EE562A97021700180221 /* SwiftUIView.swift */,
 				0493EE692A972D8F00180221 /* HealthyView.swift */,
-				0493EE6B2A9749CD00180221 /* BMIView.swift */,
+				0493EE6B2A9749CD00180221 /* BMIiiiView.swift */,
 				04C7308A2A9D850100BAF806 /* BodyView.swift */,
 				04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */,
 				04157EEA2AA0689000C44D5B /* MenuView.swift */,
 				04A3444C2AA9637300F70DF2 /* ForumView.swift */,
 				04A3447A2AA9B28500F70DF2 /* MyView.swift */,
+				044A74C22AAB1FE100ACA736 /* BMIView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -416,7 +416,6 @@
 				04A344822AA9B3A800F70DF2 /* CameraManagerViewModel.swift in Sources */,
 				04A344912AA9B41E00F70DF2 /* CameraManagerTests.swift in Sources */,
 				04A4C95C2A8E1EC9000D7C8C /* LoginView.swift in Sources */,
-				0493EE572A97021700180221 /* SwiftUIView.swift in Sources */,
 				04A4C9662A91AA6B000D7C8C /* ForgetPasswordView.swift in Sources */,
 				04A3448D2AA9B3B400F70DF2 /* CameraOveraly.swift in Sources */,
 				04A344942AA9B46100F70DF2 /* CameraContentView.swift in Sources */,
@@ -427,7 +426,7 @@
 				04A4C9752A91BBCB000D7C8C /* MyDataView.swift in Sources */,
 				0493EE492A9349BD00180221 /* TagButton.swift in Sources */,
 				04A3447B2AA9B28500F70DF2 /* MyView.swift in Sources */,
-				0493EE6C2A9749CD00180221 /* BMIView.swift in Sources */,
+				0493EE6C2A9749CD00180221 /* BMIiiiView.swift in Sources */,
 				04A3448C2AA9B3B400F70DF2 /* CapturedPreviewOverlay.swift in Sources */,
 				0493EE6A2A972D8F00180221 /* HealthyView.swift in Sources */,
 				0493EE502A95F91200180221 /* Information.swift in Sources */,
@@ -437,6 +436,7 @@
 				04C7308D2A9DAA7000BAF806 /* InformationLabel.swift in Sources */,
 				04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */,
 				04A344802AA9B39C00F70DF2 /* CameraManager.swift in Sources */,
+				044A74C32AAB1FE100ACA736 /* BMIView.swift in Sources */,
 				04A4D0572A8E118D0050A5C4 /* Graduation_ProjectApp.swift in Sources */,
 				04A3447E2AA9B38100F70DF2 /* CameraManagerTypes.swift in Sources */,
 				04A3444D2AA9637300F70DF2 /* ForumView.swift in Sources */,

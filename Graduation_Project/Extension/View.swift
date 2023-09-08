@@ -18,12 +18,7 @@ extension View
     {
         self.modifier(TextLimit(text: text, max: max))
     }
-    func CalculateBMI(weight: Double, height: Double) -> Double {
-        let heightInMeters = height / 100
-        let weightInKilograms = weight
-        let bmi = weightInKilograms / (heightInMeters * heightInMeters)
-        return bmi
-    }
+
 }
 struct TextLimit: ViewModifier
 {

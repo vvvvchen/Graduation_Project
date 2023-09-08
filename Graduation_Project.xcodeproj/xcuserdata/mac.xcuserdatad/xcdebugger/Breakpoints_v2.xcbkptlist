@@ -14,10 +14,102 @@
             filePath = "Graduation_Project/Extension/View.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "body(content:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5F403C89-A118-4695-9C0D-ACC2662B8C82 - fa2e4d67313e4d38"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.TextLimit.text.getter : Swift.String"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Graduation_Project/Graduation_Project/Extension/View.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  uuid = "5F403C89-A118-4695-9C0D-ACC2662B8C82 - 203d3500b0155d2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.TextLimit.text.setter : Swift.String"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Graduation_Project/Graduation_Project/Extension/View.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "172">
+               </Location>
+               <Location
+                  uuid = "5F403C89-A118-4695-9C0D-ACC2662B8C82 - 8bae62aa3aad313f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.TextLimit.text.modify : Swift.String"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Graduation_Project/Graduation_Project/Extension/View.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "5F403C89-A118-4695-9C0D-ACC2662B8C82 - 5d7521b0c3250b2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.TextLimit.text.modify : Swift.String with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Graduation_Project/Graduation_Project/Extension/View.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "5F403C89-A118-4695-9C0D-ACC2662B8C82 - df9eab1748b11a74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.TextLimit.$text.getter : SwiftUI.Binding&lt;Swift.String&gt;"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Graduation_Project/Graduation_Project/Extension/View.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "5F403C89-A118-4695-9C0D-ACC2662B8C82 - 61f2c5e119adb169"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.TextLimit.body(content: SwiftUI._ViewModifier_Content&lt;Graduation_Project.TextLimit&gt;) -&gt; some"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/Graduation_Project/Graduation_Project/Extension/View.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "620">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
