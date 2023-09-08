@@ -154,99 +154,100 @@ struct MyView: View
                         }
                         .frame(height: 40)
                     }
-                    
-                    Section(header:Text("數值紀錄"))
-                    {
-                        
-                        HStack
-                        {
-                            NavigationLink(destination: BMIView()) {
-                                InformationLabel(image: "figure.strengthtraining.traditional", label: "BMI")
-                            }
-                        }
-
-                        HStack
-                        {
-                            NavigationLink(destination: BMIView()) {
-                                InformationLabel(system: false, image: "hypertension", label: "高血壓")
-                            }
-                        }
-                        HStack
-                        {
-                            NavigationLink(destination: BMIView()) {
-                                InformationLabel(system: false,image: "high blood sugar", label: "高血糖")
-                            }
-                        }
-                        HStack
-                        {
-                            NavigationLink(destination: BMIView()) {
-                                InformationLabel(system: false,image: "hyperlipidemia", label: "高血脂")
-                            }
-                        }
-                    }
-                    
-                    Section(header:Text("食譜相關"))
-                    {
-                        InformationLabel(image: "clock.arrow.circlepath", label: "查閱過往")
-                        InformationLabel(image: "doc.on.clipboard", label: "食材紀錄")
-                    }
-                    Section(header:Text("設定相關"))
-                    {
-                        //MARK: 深淺模式
-                        HStack
-                        {
-                            HStack
-                            {
-                                Image(systemName: self.isDarkMode ? "moon.fill" : "sun.max.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30, height: 30)
-                                
-                                Text(self.isDarkMode ? "  深色模式" : "   淺色模式")
-                                    .bold()
-                                    .font(.body)
-                                    .alignmentGuide(.leading) { d in d[.leading] }
-                                
-                            }
-                            Toggle("", isOn: self.$colorScheme)
-                                .tint(Color("sidebuttomcolor"))
-                                .scaleEffect(0.75)
-                                .offset(x: 30)
-                        }
-                        //MARK: 登出
-                        Button(action:
-                                {
-                            withAnimation(.easeInOut)
-                            {
-                                self.logIn = false
-                            }
-                        }) {
-                            HStack
-                            {
-                                Image(systemName: "power")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 25, height: 25)
-                                    .offset(x: 2)
-                                
-                                Text("    登出")
-                                    .bold()
-                                    .font(.body)
-                                    .alignmentGuide(.leading)
-                                {
-                                    d in d[.leading]
-                                }
-                            }
-                        }
-                    }
-                    
                 }
-                .background(.clear)
-//                .background(Color("menusheetbackgroundcolor"))
                 .listRowSeparator(.hidden)
-                //設定背景為白色，不要是灰色
-                .listStyle(.plain)
+                Section(header:Text("數值紀錄"))
+                {
+                    
+                    HStack
+                    {
+                        NavigationLink(destination: BMIView()) {
+                            InformationLabel(image: "figure.strengthtraining.traditional", label: "BMI")
+                        }
+                    }
+
+                    HStack
+                    {
+                        NavigationLink(destination: BMIView()) {
+                            InformationLabel(system: false,image: self.isDarkMode ? "hypertension2" : "hypertension", label: "高血壓")
+
+                        }
+                    }
+                    HStack
+                    {
+                        NavigationLink(destination: BMIView()) {
+                            InformationLabel(system: false,image: self.isDarkMode ? "high blood sugar2" : "high blood sugar", label: "高血糖")
+
+                        }
+                    }
+                    HStack
+                    {
+                        NavigationLink(destination: BMIView()) {
+                            InformationLabel(system: false,image: self.isDarkMode ? "hyperlipidemiar2" : "hyperlipidemia", label: "高血脂")
+                        }
+                    }
+                }
+                .listRowSeparator(.hidden)
+                Section(header:Text("食譜相關"))
+                {
+                    InformationLabel(image: "clock.arrow.circlepath", label: "查閱過往")
+                    InformationLabel(image: "doc.on.clipboard", label: "食材紀錄")
+                }
+                .listRowSeparator(.hidden)
+                Section(header:Text("設定相關"))
+                {
+                    //MARK: 深淺模式
+                    HStack
+                    {
+                        HStack
+                        {
+                            Image(systemName: self.isDarkMode ? "moon.fill" : "sun.max.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
+                            Text(self.isDarkMode ? "  深色模式" : "   淺色模式")
+                                .bold()
+                                .font(.body)
+                                .alignmentGuide(.leading) { d in d[.leading] }
+                            
+                        }
+                        Toggle("", isOn: self.$colorScheme)
+                            .tint(Color("sidebuttomcolor"))
+                            .scaleEffect(0.75)
+                            .offset(x: 30)
+                    }
+                    //MARK: 登出
+                    Button(action:
+                            {
+                        withAnimation(.easeInOut)
+                        {
+                            self.logIn = false
+                        }
+                    }) {
+                        HStack
+                        {
+                            Image(systemName: "power")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                                .offset(x: 2)
+                            
+                            Text("    登出")
+                                .bold()
+                                .font(.body)
+                                .alignmentGuide(.leading)
+                            {
+                                d in d[.leading]
+                            }
+                        }
+                    }
+                }
+                .listRowSeparator(.hidden)
             }
+            .listStyle(.plain)
+            .background(.clear)
+
             //設定背景為白色，不要是灰色
             .listStyle(InsetListStyle())
             //控制深淺模式切換

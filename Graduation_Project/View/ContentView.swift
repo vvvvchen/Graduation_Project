@@ -72,7 +72,8 @@ struct ContentView: View
                     .tag(0)
                     .tabItem
                 {
-                    Label("主頁", systemImage: "house.fill")
+                    Label(
+                        "主頁", systemImage: "house.fill")                    
                 }
                 
                 ForumView()
