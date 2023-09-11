@@ -109,6 +109,21 @@
                   endingLineNumber = "30"
                   offsetFromSymbolStart = "620">
                </Location>
+               <Location
+                  uuid = "5F403C89-A118-4695-9C0D-ACC2662B8C82 - 59c2b3083531c287"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Graduation_Project.TextLimit.body(content: SwiftUI._ViewModifier_Content&lt;Graduation_Project.TextLimit&gt;) -&gt; some"
+                  moduleName = "Graduation_Project"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Documents/Graduation_Project/Graduation_Project/Extension/View.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "620">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>

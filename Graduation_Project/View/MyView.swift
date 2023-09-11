@@ -162,7 +162,7 @@ struct MyView: View
                     
                     HStack
                     {
-                        NavigationLink(destination: BMIView()) {
+                        NavigationLink(destination: MenuView()) {
                             InformationLabel(image: "figure.strengthtraining.traditional", label: "BMI")
                         }
                     }
