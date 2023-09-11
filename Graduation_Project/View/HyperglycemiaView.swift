@@ -1,79 +1,80 @@
 import SwiftUI
 import Charts
 
-// 血壓紀錄
-struct HypertensionRecord: Identifiable
+// 血糖紀錄
+struct HyperglycemiaRecord: Identifiable
 {
     var id = UUID()
-    var hypertension: Double
+    var hyperglycemia: Double
     var date: Date
-    
-    init(hypertension: Double)
+
+    init(hyperglycemia: Double)
     {
-        self.hypertension = hypertension
+        self.hyperglycemia = hyperglycemia
         self.date = Date()
     }
 }
 
-// 包含ID和高血壓相關紀錄數組
-struct HypertensionTemperatureSensor: Identifiable
+// 包含ID和高血糖相關紀錄數組
+struct HyperglycemiaTemperatureSensor: Identifiable
 {
     var id: String
-    var records: [HypertensionRecord]
+    var records: [HyperglycemiaRecord]
 }
 
 // 存取TemperatureSensor數據
-var HypertensionallSensors: [HypertensionTemperatureSensor] = [
-    .init(id: "血壓值", records: [])
+var HyperglycemiaallSensors: [HyperglycemiaTemperatureSensor] = [
+    .init(id: "血糖值", records: [])
 ]
 
 // MARK: 日期func
 private func formattedDate(_ date: Date) -> String
 {
     let formatter = DateFormatter()
-    formatter.dateFormat = "MM-dd HH:mm"
+    formatter.dateFormat = "MM-dd"
     return formatter.string(from: date)
 }
 
-struct HypertensionView: View
+struct HyperglycemiaView: View
 {
-    @State private var hypertension: String = ""
-    @State private var chartData: [HypertensionRecord] = []
+    @State private var hyperglycemia: String = ""
+    @State private var chartData: [HyperglycemiaRecord] = []
     @State private var isShowingList: Bool = false
     @State private var scrollToBottom: Bool = false
-    
+
     var body: some View
     {
         NavigationView
-         {
+        {
             VStack(spacing: 30)
-             {
+            {
                 GeometryReader
-                 {
-                     geometry in
+                {
+                    geometry in
                     ScrollView(.horizontal, showsIndicators: false)
-                     {
+                    {
                         ScrollViewReader
-                         {
-                             scrollViewProxy in
-                            Chart(HypertensionallSensors)
-                             {
-                                 sensor in
+                        {
+                            scrollViewProxy in
+                            Chart(HyperglycemiaallSensors)
+                            {
+                                sensor in
                                 ForEach(chartData)
-                                 {
-                                     record in
+                                {
+                                    record in
                                     LineMark(
                                         x: .value("Hour", formattedDate(record.date)),
-                                        y: .value("Value", record.hypertension)
+                                        y: .value("Value", record.hyperglycemia)
                                     )
                                     .lineStyle(.init(lineWidth: 5))
-                                    
+
                                     PointMark(
                                         x: .value("Hour", formattedDate(record.date)),
-                                        y: .value("Value", record.hypertension)
+                                        y: .value("Value", record.hyperglycemia)
                                     )
-                                    .annotation(position: .top) {
-                                        Text("\(record.hypertension, specifier: "%.2f")")
+                                    .annotation(position: .top)
+                                    {
+                                        Text("\(record.hyperglycemia, specifier: "%.2f")")
                                             .font(.system(size: 12))
                                             .foregroundColor(Color("textcolor"))
                                     }
@@ -83,13 +84,13 @@ struct HypertensionView: View
                                 .symbolSize(100)
                             }
                             .chartForegroundStyleScale([
-                                "血壓值": .orange
+                                "血糖值": .orange
                             ])
                             .frame(width: max(geometry.size.width, CGFloat(chartData.count) * 80), height: 200)
                             .onAppear
-                             {
+                            {
                                 if scrollToBottom
-                                 {
+                                {
                                     scrollViewProxy.scrollTo(chartData.count - 1)
                                     scrollToBottom = false
                                 }
@@ -97,37 +98,46 @@ struct HypertensionView: View
                         }
                     }
                 }
-                
-                Text("血壓值輸入")
+
+                Text("血糖值輸入")
                     .font(.system(size: 20, weight: .semibold))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
                     .foregroundColor(Color("textcolor"))
-                
+
                 VStack(spacing: -5)
-                 {
-                    TextField("請輸入血壓值", text: $hypertension)
+                {
+                    TextField("請輸入血糖值", text: $hyperglycemia)
                         .padding()
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(.numberPad)
                         .frame(width: 330)
                         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification))
-                     {
-                         _ in
+                    {
+                        _ in
                         }
-                    
+
                     Button(action:
                             {
-                        if let hypertensionValue = Double(hypertension)
+                        if let hyperglycemiaValue = Double(hyperglycemia)
                         {
-                            let newRecord = HypertensionRecord(hypertension: hypertensionValue)
-                            chartData.append(newRecord)
-                            hypertension = ""
-                            //將標誌設為 true，以便滾動到底部
-                            scrollToBottom = true
+                            if let existingRecordIndex = chartData.firstIndex(where:
+                                { Calendar.current.isDate($0.date, inSameDayAs: Date()) }) {
+                                // 找到當天的記錄
+                                chartData[existingRecordIndex].hyperglycemia = hyperglycemiaValue
+                            }
+                            else
+                            {
+                                // 創建新的當天記錄
+                                let newRecord = HyperglycemiaRecord(hyperglycemia: hyperglycemiaValue)
+                                chartData.append(newRecord)
+                            }
+
+                            hyperglycemia = ""
+                            scrollToBottom = true // 將標誌設為 true，以便滾動到底部
                         }
                     }) {
-                        Text("紀錄血壓")
+                        Text("紀錄血糖")
                             .foregroundColor(Color("textcolor"))
                             .padding(10)
                             .frame(width: 300, height: 50)
@@ -138,8 +148,9 @@ struct HypertensionView: View
                     .padding()
                 }
             }
-            .navigationTitle("血壓紀錄")
-            .toolbar {
+            .navigationTitle("血糖紀錄")
+            .toolbar
+            {
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
                     Button(action:
@@ -153,16 +164,17 @@ struct HypertensionView: View
                 }
             }
             .sheet(isPresented: $isShowingList)
-             {
-                HypertensionRecordsListView(records: $chartData)
+            {
+                HyperglycemiaRecordsListView(records: $chartData)
             }
         }
     }
 }
 
-struct HypertensionRecordsListView: View
+// 列表記錄
+struct HyperglycemiaRecordsListView: View
 {
-    @Binding var records: [HypertensionRecord]
+    @Binding var records: [HyperglycemiaRecord]
 
     var body: some View
     {
@@ -173,13 +185,13 @@ struct HypertensionRecordsListView: View
                 ForEach(records)
                 {
                     record in
-                    NavigationLink(destination: EditHypertensionRecordView(record: $records[records.firstIndex(where: { $0.id == record.id })!])) {
-                        Text("\(formattedDate(record.date)): \(record.hypertension, specifier: "%.2f")")
+                    NavigationLink(destination: EditHyperglycemiaRecordView(record: $records[records.firstIndex(where: { $0.id == record.id })!])) {
+                        Text("\(formattedDate(record.date)): \(record.hyperglycemia, specifier: "%.2f")")
                     }
                 }
                 .onDelete(perform: deleteRecord)
             }
-            .navigationTitle("血壓紀錄列表")
+            .navigationTitle("血糖紀錄列表")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
@@ -195,42 +207,44 @@ struct HypertensionRecordsListView: View
     }
 }
 
-struct EditHypertensionRecordView: View
+// 編輯血糖紀錄視圖
+struct EditHyperglycemiaRecordView: View
 {
-    @Binding var record: HypertensionRecord
-    @State private var editedHypertension: String = ""
+    @Binding var record: HyperglycemiaRecord
+    @State private var editedHyperglycemia: String = ""
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View
     {
         VStack
         {
-            TextField("血壓值", text: $editedHypertension)
+            TextField("血糖值", text: $editedHyperglycemia)
                 .padding()
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.numberPad)
                 .onAppear
             {
-                    editedHypertension = String(record.hypertension)
+                    editedHyperglycemia = String(record.hyperglycemia)
                 }
 
-            Button("保存") {
-                if let editedValue = Double(editedHypertension)
+            Button("保存")
+            {
+                if let editedValue = Double(editedHyperglycemia)
                 {
-                    record.hypertension = editedValue
+                    record.hyperglycemia = editedValue
                 }
                 presentationMode.wrappedValue.dismiss()
             }
             .padding()
         }
-        .navigationTitle("編輯血壓值")
+        .navigationTitle("編輯血糖值")
     }
 }
 
-struct HypertensionView_Previews: PreviewProvider
+struct HyperglycemiaView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        HypertensionView()
+        HyperglycemiaView()
     }
 }

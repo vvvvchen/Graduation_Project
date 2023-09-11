@@ -10,79 +10,68 @@ import SwiftUI
 struct HomeView: View
 {
     @Binding var select: Int
-    
-    private let cook: [String]=["煎", "煮", "炒", "炸", "烤","蒸","冷","烘"]
-    
+    @State private var selectedTab = 0
+
+
     var body: some View
     {
-        
-        NavigationStack
-        {
-            VStack
+        TabView(selection: $selectedTab) {
+            ZStack
             {
-//                //MARK: 今日推薦
-//                ScrollView(.horizontal, showsIndicators: false)
-//                {
-//                    HStack
-//                    {
-//                        ForEach(0..<5)
-//                        {
-//                            _ in
-//                            RoundedRectangle(cornerRadius: 20)
-//                                .fill(.gray)
-//                                .frame(width: 300, height: 200)
-//                                .overlay(Text("今日推薦").font(.title))
-//                        }
-//                    }
-//                }
-                
-//                Capsule().frame(height: 1).padding(.vertical)
-                
-//                //MARK: 烹飪方法
-//                ScrollView(.horizontal, showsIndicators: false) {
-//                    HStack
-//                    {
-//                        ForEach(0..<8)
-//                        {index in
-//                            Circle()
-//                                .fill(.gray)
-//                                .scaledToFit()
-//                                .frame(width: 60)
-//                                .overlay(Text(self.cook[index]).font(.title))
-//
-//
-//                            if(index<8){
-//                                Spacer()
-//                            }
-//                        }
-//                    }
-//                }
-//                Capsule().frame(height: 1).padding(.vertical)
-//                HStack
-//                {
-//                    NavigationLink(destination: HealthyView())
-//                    {
-//                        RoundedRectangle(cornerRadius: 10)
-//                            .fill(.gray)
-//                            .overlay(Text("健康管理").font(.title).foregroundColor(Color("textcolor")))
-//
-//                    }
-//                    VStack
-//                    {
-//                        NavigationLink(destination: MyrecipeView())
-//                        {
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .fill(.gray)
-//                                .overlay(Text("我的食譜").font(.title).foregroundColor(Color("textcolor")))
-//                        }
-//
-//                        RoundedRectangle(cornerRadius: 10)
-//                            .fill(.gray)
-//                            .overlay(Text("購物清單").font(.title))
-//                    }
-//                }
+                Color(red: 0.961, green: 0.804, blue: 0.576)
+
+                NavigationStack
+                {
+                    ScrollView(showsIndicators: false)
+                    {
+                        // 這裡是管理食譜有多少的 數字可以隨便改
+                        ForEach(0..<5, id: \.self)
+                        {
+                           _ in
+                            overlayRectangleWithText()
+                            Spacer().frame(height: 0)
+                        }
+                    }
+                }
             }
-            .padding()
+                .tag(0)
+
+            Text("第二个视图")
+                .tabItem {
+                    Text("配菜")
+                }
+                .tag(1)
+
+            Text("第三个视图")
+                .tabItem {
+                    Image(systemName: "3.circle")
+                }
+                .tag(2)
+            Text("第四个视图")
+                .tabItem {
+                    Text("甜點")
+                }
+                .tag(3)
         }
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
     }
 }
+//        ZStack
+//        {
+//            Color(red: 0.961, green: 0.804, blue: 0.576)
+//
+//            NavigationStack
+//            {
+//                ScrollView(showsIndicators: false)
+//                {
+//                    // 這裡是管理食譜有多少的 數字可以隨便改
+//                    ForEach(0..<5, id: .self)
+//                    {  in
+//                        overlayRectangleWithText()
+//                        Spacer().frame(height: 0)
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}

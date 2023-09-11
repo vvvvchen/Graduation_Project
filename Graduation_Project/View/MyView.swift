@@ -169,21 +169,21 @@ struct MyView: View
                     
                     HStack
                     {
-                        NavigationLink(destination: MenuView()) {
+                        NavigationLink(destination: HypertensionView()) {
                             InformationLabel(system: false,image: self.isDarkMode ? "hypertension2" : "hypertension", label: "高血壓")
                             
                         }
                     }
                     HStack
                     {
-                        NavigationLink(destination: MenuView()) {
+                        NavigationLink(destination: HyperglycemiaView()) {
                             InformationLabel(system: false,image: self.isDarkMode ? "high blood sugar2" : "high blood sugar", label: "高血糖")
                             
                         }
                     }
                     HStack
                     {
-                        NavigationLink(destination: MenuView()) {
+                        NavigationLink(destination: HyperlipidemiaView()) {
                             InformationLabel(system: false,image: self.isDarkMode ? "hyperlipidemiar2" : "hyperlipidemia", label: "高血脂")
                         }
                     }

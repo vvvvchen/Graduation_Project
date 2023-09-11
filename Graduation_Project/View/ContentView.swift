@@ -6,47 +6,127 @@
 
 import SwiftUI
 
-struct ContentView: View
-{
-    //切換深淺模式
-    @State var isDarkMode: Bool=false
+struct ContentView: View {
+    // 切換深淺模式
+    @State var isDarkMode: Bool = false
     
-    //TabView選擇的頁面
-    @State private var showSide: Bool=false
-    //跟蹤標籤頁
-    @State private var select: Int=0
-    @State private var information: Information=Information(name:"vc", gender: "女性", age: 20, height: 161, weight: 50, BMI:19.68)
+    // TabView選擇的頁面
+    @State private var showSide: Bool = false
+    // 跟蹤標籤頁
+    @State private var select: Int = 0
+    @State private var information: Information = Information(name: "vc", gender: "女性", age: 20, height: 161, weight: 50, BMI: 19.68)
     
     @StateObject private var cameraManagerViewModel = CameraManagerViewModel()
     
     var body: some View
     {
-        //MARK: TabView
         HStack
         {
-            if(self.select==0||self.select==1)
+            // MARK: 主頁
+            if self.select == 0
             {
-                Spacer()
-                    .opacity(self.showSide ? 1 : 0)
-                
-                Button(action:
-                        {
-                }) {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(Color(.systemGray3))
-                        .frame(width: 300, height: 38)
-                        .overlay
+                ZStack
+                {
+                    VStack(spacing: 0)
                     {
-                        Image(systemName: "magnifyingglass")
-                            .resizable()
-                            .scaledToFit()
-                            .foregroundColor(Color("cameracolor"))
-                            .frame(maxWidth: .infinity, alignment: self.showSide ? .trailing : .leading)
-                            .frame(height: 20)
-                            .padding(.horizontal, 10)
+                        HStack
+                        {
+                            Button(action:
+                                    {
+                            }) {
+                                Spacer()
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
+                                    .frame(width: 300, height: 35, alignment:  .leading)
+                                    .overlay
+                                {
+                                    Image(systemName: "magnifyingglass")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity, alignment:  .trailing)
+                                        .frame(height: 20)
+                                        .padding(.horizontal, 10)
+                                }
+                                Spacer()
+                            }
+                            
+                            Spacer()
+                            Image(systemName: "list.bullet")
+                                .foregroundColor(.white)
+                            Spacer()
+
+                        }
+                        .padding(10)
+                        .font(.system(size: 26))
+                        
+                        HStack
+                        {
+                            Spacer()
+                            Text("主菜")
+                            
+                            Spacer()
+                            Text("配菜")
+                            Spacer()
+                            Text("湯品")
+                            Spacer()
+                            Text("甜點")
+                            Spacer()
+
+                        }
+                    }
+                    .padding(.bottom)
+                }
+                // 背景調整
+                .frame(width:400)
+                .background(Color(.orange))
+                .padding(.bottom, -10)
+                .font(.system(size: 20))
+            }
+            // MARK: 分享
+            else if self.select == 1
+            {
+                ZStack
+                {
+                    VStack
+                    {
+                        HStack
+                        {
+                            Button(action:
+                                    {
+                            }) {
+                                Spacer()
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
+                                    .frame(width: 300, height: 35, alignment:  .leading)
+                                    .overlay
+                                {
+                                    Image(systemName: "magnifyingglass")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity, alignment:  .trailing)
+                                        .frame(height: 20)
+                                        .padding(.horizontal, 10)
+                                }
+                                Spacer()
+                            }
+                            Spacer()
+
+                            Image(systemName: "plus")
+                                .foregroundColor(.white)
+                            Spacer()
+                        }
+                        .padding(10)
+                        .font(.system(size: 26))
                     }
                 }
+                // 背景調整
+                .frame(width:400)
+                .background(Color(.orange))
+                .font(.system(size: 22))
             }
+            // MARK: 會員
             else if self.select == 4
             {
                 HStack
@@ -65,14 +145,14 @@ struct ContentView: View
         
         ZStack
         {
-            //MARK: TabView
+            // MARK: TabView
             TabView(selection: self.$select)
             {
                 HomeView(select: self.$select)
                     .tag(0)
                     .tabItem
                 {
-                    Label("主頁", systemImage: "house.fill")                    
+                    Label("主頁", systemImage: "house.fill")
                 }
                 
                 ForumView()
@@ -93,21 +173,21 @@ struct ContentView: View
                     .tag(3)
                     .tabItem
                 {
-                    Label("我的最愛", systemImage: "heart.fill")
+                    Label("最愛", systemImage: "heart.fill")
                 }
+                
                 MyView(select: self.$select, information: self.$information)
                     .tag(4)
                     .tabItem
                 {
-                    Label("我的", systemImage: "person.fill")
+                    Label("會員", systemImage: "person.fill")
                 }
             }
-            //點選後的顏色
+            // 點選後的顏色
             .tint(.orange)
-            
         }
         .ignoresSafeArea(.all)
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -115,8 +195,7 @@ struct ContentView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-        NavigationStack
-        {
+        NavigationStack {
             ContentView()
         }
     }
