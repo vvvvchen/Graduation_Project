@@ -8,13 +8,13 @@
 import SwiftUI
 import Charts
 
-// 血糖紀錄
+//血糖紀錄
 struct HyperglycemiaRecord: Identifiable
 {
     var id = UUID()
     var hyperglycemia: Double
     var date: Date
-
+    
     init(hyperglycemia: Double)
     {
         self.hyperglycemia = hyperglycemia
@@ -22,14 +22,14 @@ struct HyperglycemiaRecord: Identifiable
     }
 }
 
-// 包含ID和高血糖相關紀錄數組
+//包含ID和高血糖相關紀錄數組
 struct HyperglycemiaTemperatureSensor: Identifiable
 {
     var id: String
     var records: [HyperglycemiaRecord]
 }
 
-// 存取TemperatureSensor數據
+//存取TemperatureSensor數據
 var HyperglycemiaallSensors: [HyperglycemiaTemperatureSensor] = [
     .init(id: "血糖值", records: [])
 ]
@@ -44,10 +44,12 @@ private func formattedDate(_ date: Date) -> String
 
 struct HyperglycemiaView: View
 {
+    let upperLimit: Double = 300.0
     @State private var hyperglycemia: String = ""
     @State private var chartData: [HyperglycemiaRecord] = []
     @State private var isShowingList: Bool = false
     @State private var scrollToBottom: Bool = false
+    @State private var showAlert: Bool = false
 
     var body: some View
     {
@@ -74,7 +76,7 @@ struct HyperglycemiaView: View
                                         y: .value("Value", record.hyperglycemia)
                                     )
                                     .lineStyle(.init(lineWidth: 5))
-
+                                    
                                     PointMark(
                                         x: .value("Hour", formattedDate(record.date)),
                                         y: .value("Value", record.hyperglycemia)
@@ -93,7 +95,7 @@ struct HyperglycemiaView: View
                             .chartForegroundStyleScale([
                                 "血糖值": .orange
                             ])
-                            .frame(width: max(geometry.size.width, CGFloat(chartData.count) * 80), height: 200)
+                            .frame(width: 350, height: 270)
                             .onAppear
                             {
                                 if scrollToBottom
@@ -104,56 +106,72 @@ struct HyperglycemiaView: View
                             }
                         }
                     }
+                    .offset(x:20,y: 70)
                 }
-
-                Text("血糖值輸入")
-                    .font(.system(size: 20, weight: .semibold))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 20)
-                    .foregroundColor(Color("textcolor"))
-
-                VStack(spacing: -5)
+                VStack
                 {
-                    TextField("請輸入血糖值", text: $hyperglycemia)
-                        .padding()
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.numberPad)
-                        .frame(width: 330)
-                        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification))
+                    Text("血糖值輸入")
+                        .font(.system(size: 20, weight: .semibold))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 20)
+                        .foregroundColor(Color("textcolor"))
+                    
+                    VStack(spacing: -5)
                     {
-                        _ in
-                        }
-
-                    Button(action:
-                            {
-                        if let hyperglycemiaValue = Double(hyperglycemia)
+                        TextField("請輸入血糖值", text: $hyperglycemia)
+                            .padding()
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.numberPad)
+                            .frame(width: 330)
+                            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification))
                         {
-                            if let existingRecordIndex = chartData.firstIndex(where:
-                                { Calendar.current.isDate($0.date, inSameDayAs: Date()) }) {
-                                // 找到當天的記錄
-                                chartData[existingRecordIndex].hyperglycemia = hyperglycemiaValue
-                            }
-                            else
-                            {
-                                // 創建新的當天記錄
-                                let newRecord = HyperglycemiaRecord(hyperglycemia: hyperglycemiaValue)
-                                chartData.append(newRecord)
-                            }
-
-                            hyperglycemia = ""
-                            scrollToBottom = true // 將標誌設為 true，以便滾動到底部
+                            _ in
                         }
-                    }) {
-                        Text("紀錄血糖")
-                            .foregroundColor(Color("textcolor"))
-                            .padding(10)
-                            .frame(width: 300, height: 50)
-                            .background(Color(hue: 0.031, saturation: 0.803, brightness: 0.983))
-                            .cornerRadius(100)
-                            .font(.title3)
+                        .onChange(of: hyperglycemia)
+                    {
+                        newValue in
+                            if let newValue = Double(newValue), newValue > upperLimit
+                        {
+                                //當輸入的值超過上限時，會顯示警告
+                                showAlert = true
+                                //將輸入值截斷為上限值
+                                hyperglycemia = String(upperLimit)
+                            }
+                        }
+                        
+                        Button(action:
+                                {
+                            if let hyperglycemiaValue = Double(hyperglycemia)
+                            {
+                                if let existingRecordIndex = chartData.firstIndex(where:
+                                                                                    { Calendar.current.isDate($0.date, inSameDayAs: Date()) }) {
+                                    //找到當天的記錄
+                                    chartData[existingRecordIndex].hyperglycemia = hyperglycemiaValue
+                                }
+                                else
+                                {
+                                    //創建新的當天記錄
+                                    let newRecord = HyperglycemiaRecord(hyperglycemia: hyperglycemiaValue)
+                                    chartData.append(newRecord)
+                                }
+                                
+                                hyperglycemia = ""
+                                //將標誌設為true，以便滾動到底部
+                                scrollToBottom = true
+                            }
+                        }) {
+                            Text("紀錄血糖")
+                                .foregroundColor(Color("textcolor"))
+                                .padding(10)
+                                .frame(width: 300, height: 50)
+                                .background(Color(hue: 0.031, saturation: 0.803, brightness: 0.983))
+                                .cornerRadius(100)
+                                .font(.title3)
+                        }
+                        .padding()
                     }
-                    .padding()
                 }
+                .offset(y: -70)
             }
             .navigationTitle("血糖紀錄")
             .toolbar
@@ -174,15 +192,23 @@ struct HyperglycemiaView: View
             {
                 HyperglycemiaRecordsListView(records: $chartData)
             }
+            //超過上限警告
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("警告"),
+                    message: Text("輸入的血壓值最高為300，請重新輸入。"),
+                    dismissButton: .default(Text("確定"))
+                )
+            }
         }
     }
 }
 
-// 列表記錄
+//列表記錄
 struct HyperglycemiaRecordsListView: View
 {
     @Binding var records: [HyperglycemiaRecord]
-
+    
     var body: some View
     {
         NavigationView
@@ -207,20 +233,20 @@ struct HyperglycemiaRecordsListView: View
             }
         }
     }
-
+    
     private func deleteRecord(at offsets: IndexSet)
     {
         records.remove(atOffsets: offsets)
     }
 }
 
-// 編輯血糖紀錄視圖
+//編輯血糖紀錄視圖
 struct EditHyperglycemiaRecordView: View
 {
     @Binding var record: HyperglycemiaRecord
     @State private var editedHyperglycemia: String = ""
     @Environment(\.presentationMode) var presentationMode
-
+    
     var body: some View
     {
         VStack
@@ -231,9 +257,9 @@ struct EditHyperglycemiaRecordView: View
                 .keyboardType(.numberPad)
                 .onAppear
             {
-                    editedHyperglycemia = String(record.hyperglycemia)
-                }
-
+                editedHyperglycemia = String(record.hyperglycemia)
+            }
+            
             Button("保存")
             {
                 if let editedValue = Double(editedHyperglycemia)

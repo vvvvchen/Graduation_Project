@@ -1,7 +1,7 @@
 import SwiftUI
 import Charts
 
-// 血壓紀錄
+//血壓紀錄
 struct HypertensionRecord: Identifiable
 {
     var id = UUID()
@@ -15,14 +15,14 @@ struct HypertensionRecord: Identifiable
     }
 }
 
-// 包含ID和高血壓相關紀錄數組
+//包含ID和高血壓相關紀錄數組
 struct HypertensionTemperatureSensor: Identifiable
 {
     var id: String
     var records: [HypertensionRecord]
 }
 
-// 存取TemperatureSensor數據
+//存取TemperatureSensor數據
 var HypertensionallSensors: [HypertensionTemperatureSensor] = [
     .init(id: "血壓值", records: [])
 ]
@@ -37,31 +37,33 @@ private func formattedDate(_ date: Date) -> String
 
 struct HypertensionView: View
 {
+    let upperLimit: Double = 400.0
     @State private var hypertension: String = ""
     @State private var chartData: [HypertensionRecord] = []
     @State private var isShowingList: Bool = false
     @State private var scrollToBottom: Bool = false
+    @State private var showAlert: Bool = false
     
     var body: some View
     {
         NavigationView
-         {
+        {
             VStack(spacing: 30)
-             {
+            {
                 GeometryReader
-                 {
-                     geometry in
+                {
+                    geometry in
                     ScrollView(.horizontal, showsIndicators: false)
-                     {
+                    {
                         ScrollViewReader
-                         {
-                             scrollViewProxy in
+                        {
+                            scrollViewProxy in
                             Chart(HypertensionallSensors)
-                             {
-                                 sensor in
+                            {
+                                sensor in
                                 ForEach(chartData)
-                                 {
-                                     record in
+                                {
+                                    record in
                                     LineMark(
                                         x: .value("Hour", formattedDate(record.date)),
                                         y: .value("Value", record.hypertension)
@@ -85,61 +87,75 @@ struct HypertensionView: View
                             .chartForegroundStyleScale([
                                 "血壓值": .orange
                             ])
-                            .frame(width: max(geometry.size.width, CGFloat(chartData.count) * 80), height: 200)
+                            .frame(width: 350, height: 270)
                             .onAppear
-                             {
+                            {
                                 if scrollToBottom
-                                 {
+                                {
                                     scrollViewProxy.scrollTo(chartData.count - 1)
                                     scrollToBottom = false
                                 }
                             }
                         }
                     }
+                    .offset(x:20,y: 70)
                 }
                 
-                Text("血壓值輸入")
-                    .font(.system(size: 20, weight: .semibold))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 20)
-                    .foregroundColor(Color("textcolor"))
-                
-                VStack(spacing: -5)
-                 {
-                    TextField("請輸入血壓值", text: $hypertension)
-                        .padding()
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .keyboardType(.numberPad)
-                        .frame(width: 330)
-                        .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification))
-                     {
-                         _ in
-                        }
+                VStack
+                {
+                    Text("血壓值輸入")
+                        .font(.system(size: 20, weight: .semibold))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 20)
+                        .foregroundColor(Color("textcolor"))
                     
-                    Button(action:
-                            {
-                        if let hypertensionValue = Double(hypertension)
+                    VStack(spacing: -5) {
+                        TextField("請輸入血壓值", text: $hypertension)
+                            .padding()
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .keyboardType(.numberPad)
+                            .frame(width: 330)
+                            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)) { _ in
+                            }
+                            .onChange(of: hypertension)
                         {
-                            let newRecord = HypertensionRecord(hypertension: hypertensionValue)
-                            chartData.append(newRecord)
-                            hypertension = ""
-                            //將標誌設為 true，以便滾動到底部
-                            scrollToBottom = true
+                            newValue in
+                                if let newValue = Double(newValue), newValue > upperLimit
+                            {
+                                    //當輸入的值超過上限時，會顯示警告
+                                    showAlert = true
+                                    //將輸入值截斷為上限值
+                                    hypertension = String(upperLimit)
+                                }
+                            }
+                        
+                        Button(action:
+                                {
+                            if let hypertensionValue = Double(hypertension)
+                            {
+                                let newRecord = HypertensionRecord(hypertension: hypertensionValue)
+                                chartData.append(newRecord)
+                                hypertension = ""
+                                //將標誌設為 true，以便滾動到底部
+                                scrollToBottom = true
+                            }
+                        }) {
+                            Text("紀錄血壓")
+                                .foregroundColor(Color("textcolor"))
+                                .padding(10)
+                                .frame(width: 300, height: 50)
+                                .background(Color(hue: 0.031, saturation: 0.803, brightness: 0.983))
+                                .cornerRadius(100)
+                                .font(.title3)
                         }
-                    }) {
-                        Text("紀錄血壓")
-                            .foregroundColor(Color("textcolor"))
-                            .padding(10)
-                            .frame(width: 300, height: 50)
-                            .background(Color(hue: 0.031, saturation: 0.803, brightness: 0.983))
-                            .cornerRadius(100)
-                            .font(.title3)
+                        .padding()
                     }
-                    .padding()
                 }
+                .offset(y: -70)
             }
             .navigationTitle("血壓紀錄")
-            .toolbar {
+            .toolbar
+            {
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
                     Button(action:
@@ -153,8 +169,16 @@ struct HypertensionView: View
                 }
             }
             .sheet(isPresented: $isShowingList)
-             {
+            {
                 HypertensionRecordsListView(records: $chartData)
+            }
+            //超過上限警告
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("警告"),
+                    message: Text("輸入的血壓值最高為400，請重新輸入。"),
+                    dismissButton: .default(Text("確定"))
+                )
             }
         }
     }
@@ -163,7 +187,7 @@ struct HypertensionView: View
 struct HypertensionRecordsListView: View
 {
     @Binding var records: [HypertensionRecord]
-
+    
     var body: some View
     {
         NavigationView
@@ -188,19 +212,20 @@ struct HypertensionRecordsListView: View
             }
         }
     }
-
+    
     private func deleteRecord(at offsets: IndexSet)
     {
         records.remove(atOffsets: offsets)
     }
 }
 
+//Edit
 struct EditHypertensionRecordView: View
 {
     @Binding var record: HypertensionRecord
     @State private var editedHypertension: String = ""
     @Environment(\.presentationMode) var presentationMode
-
+    
     var body: some View
     {
         VStack
@@ -211,10 +236,11 @@ struct EditHypertensionRecordView: View
                 .keyboardType(.numberPad)
                 .onAppear
             {
-                    editedHypertension = String(record.hypertension)
-                }
-
-            Button("保存") {
+                editedHypertension = String(record.hypertension)
+            }
+            
+            Button("保存")
+            {
                 if let editedValue = Double(editedHypertension)
                 {
                     record.hypertension = editedValue
