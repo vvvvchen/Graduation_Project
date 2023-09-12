@@ -14,7 +14,7 @@ func overlayRectangleWithText() -> some View {
         // MARK: 矩形背景
         Rectangle()
             .frame(width: 400, height: 150)
-            .foregroundColor(Color(red: 0.961, green: 0.804, blue: 0.576))
+            .foregroundColor(Color("menusheetbackgroundcolor"))
 
         HStack(alignment:.center)
         {
@@ -26,10 +26,12 @@ func overlayRectangleWithText() -> some View {
                     .frame(width: 180, height: 100)
                 // MARK: 食譜名稱
                 Text("番茄炒蛋")
+                    .foregroundColor(Color("textcolor"))
                     .font(.body)
             }
             // MARK: 所需食材及料理方式
             Text("XXXXXXXXXXXXXXXXXXXXXXXXXX")
+                .foregroundColor(Color("textcolor"))
                 .font(.body)
         }
         .foregroundColor(Color.black)

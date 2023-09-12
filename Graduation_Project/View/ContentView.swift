@@ -59,27 +59,13 @@ struct ContentView: View {
                         }
                         .padding(10)
                         .font(.system(size: 26))
-                        
-                        HStack
-                        {
-                            Spacer()
-                            Text("主菜")
-                            
-                            Spacer()
-                            Text("配菜")
-                            Spacer()
-                            Text("湯品")
-                            Spacer()
-                            Text("甜點")
-                            Spacer()
-
-                        }
                     }
                     .padding(.bottom)
                 }
                 // 背景調整
                 .frame(width:400)
-                .background(Color(.orange))
+                .background(Color(.systemOrange))
+                //                .background(Color(.orange))
                 .padding(.bottom, -10)
                 .font(.system(size: 20))
             }
@@ -123,7 +109,8 @@ struct ContentView: View {
                 }
                 // 背景調整
                 .frame(width:400)
-                .background(Color(.orange))
+                .background(Color(.systemOrange))
+                //                .background(Color(.orange))
                 .font(.system(size: 22))
             }
             // MARK: 會員
@@ -148,7 +135,8 @@ struct ContentView: View {
             // MARK: TabView
             TabView(selection: self.$select)
             {
-                HomeView(select: self.$select)
+//                HomeView(select: self.$select)
+                HomeView()
                     .tag(0)
                     .tabItem
                 {
