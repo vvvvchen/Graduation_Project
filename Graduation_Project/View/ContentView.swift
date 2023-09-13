@@ -22,96 +22,49 @@ struct ContentView: View {
     {
         HStack
         {
-            // MARK: 主頁
-            if self.select == 0
-            {
-                ZStack
-                {
-                    VStack(spacing: 0)
-                    {
-                        HStack
-                        {
-                            Button(action:
-                                    {
+            // MARK: 主頁和分享
+            if self.select == 0 || self.select == 1 {
+                ZStack {
+                    VStack(spacing: 0) {
+                        HStack {
+                            Button(action: {
+                                //按鈕動作
                             }) {
-                                Spacer()
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
-                                    .frame(width: 300, height: 35, alignment:  .leading)
-                                    .overlay
+                                NavigationLink(destination: SearchView())
                                 {
-                                    Image(systemName: "magnifyingglass")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .foregroundColor(.white)
-                                        .frame(maxWidth: .infinity, alignment:  .trailing)
-                                        .frame(height: 20)
-                                        .padding(.horizontal, 10)
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
+                                        .frame(width: 300, height: 35, alignment: .leading)
+                                    
+                                        .overlay {
+                                            Image(systemName: "magnifyingglass")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .foregroundColor(.white)
+                                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                                .frame(height: 20)
+                                                .padding(.horizontal, 10)
+                                        }
                                 }
-                                Spacer()
                             }
-                            
-                            Spacer()
-                            Image(systemName: "list.bullet")
-                                .foregroundColor(.white)
-                            Spacer()
-
+                            if self.select == 0 {
+                                Image(systemName: "list.bullet")
+                                    .font(.system(size: 30))
+                                    .foregroundColor(.white)
+                            }else if self.select == 1 {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 35))
+                                    .foregroundColor(.white)
+                            }
                         }
                         .padding(10)
-                        .font(.system(size: 26))
                     }
-                    .padding(.bottom)
                 }
-                // 背景調整
+                // MARK: 最上方搜尋列和清單或加號的背景調整
                 .frame(width:400)
                 .background(Color(.systemOrange))
-                //                .background(Color(.orange))
+//                .background(Color(.orange))
                 .padding(.bottom, -10)
-                .font(.system(size: 20))
-            }
-            // MARK: 分享
-            else if self.select == 1
-            {
-                ZStack
-                {
-                    VStack
-                    {
-                        HStack
-                        {
-                            Button(action:
-                                    {
-                            }) {
-                                Spacer()
-                                RoundedRectangle(cornerRadius: 5)
-                                    .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
-                                    .frame(width: 300, height: 35, alignment:  .leading)
-                                    .overlay
-                                {
-                                    Image(systemName: "magnifyingglass")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .foregroundColor(.white)
-                                        .frame(maxWidth: .infinity, alignment:  .trailing)
-                                        .frame(height: 20)
-                                        .padding(.horizontal, 10)
-                                }
-                                Spacer()
-                            }
-                            Spacer()
-
-                            Image(systemName: "plus")
-                                .foregroundColor(.white)
-                            Spacer()
-                        }
-                        .padding(10)
-                        .font(.system(size: 26))
-                    }
-                }
-                // 背景調整
-                .frame(width:400)
-                .background(Color(.systemOrange))
-                //                .background(Color(.orange))
-                .font(.system(size: 22))
             }
             // MARK: 會員
             else if self.select == 4
@@ -157,7 +110,7 @@ struct ContentView: View {
                     Label("AI", systemImage: "camera")
                 }
                 
-                ProgressView()
+                FavoriteView(select: self.$select)
                     .tag(3)
                     .tabItem
                 {

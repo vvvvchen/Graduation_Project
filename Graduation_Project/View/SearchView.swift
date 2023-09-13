@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SearchView: View {
-
+    
     private let Searchtag: [String]=["玉米濃湯","壽司","親子丼","炸雞腿","泡菜"]
-
+    
     var body: some View {
         VStack
         {
@@ -38,7 +38,7 @@ struct SearchView: View {
             }
             .padding(10)
             .font(.system(size: 26))
-
+            
             VStack(spacing: 20)
             {
                 HStack(spacing: 20)
@@ -52,7 +52,7 @@ struct SearchView: View {
                             .overlay(Text(self.Searchtag[index]))
                     }
                 }
-HStack(spacing: 20)
+                HStack(spacing: 20)
                 {
                     ForEach(3..<5)
                     {index in
