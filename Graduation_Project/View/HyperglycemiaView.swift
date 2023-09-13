@@ -1,5 +1,4 @@
 //
-//
 //  HyperglycemiaView.swift
 //
 //  Created by 0911
@@ -50,7 +49,7 @@ struct HyperglycemiaView: View
     @State private var isShowingList: Bool = false
     @State private var scrollToBottom: Bool = false
     @State private var showAlert: Bool = false
-
+    
     var body: some View
     {
         NavigationView
@@ -128,10 +127,10 @@ struct HyperglycemiaView: View
                             _ in
                         }
                         .onChange(of: hyperglycemia)
-                    {
-                        newValue in
-                            if let newValue = Double(newValue), newValue > upperLimit
                         {
+                            newValue in
+                            if let newValue = Double(newValue), newValue > upperLimit
+                            {
                                 //當輸入的值超過上限時，會顯示警告
                                 showAlert = true
                                 //將輸入值截斷為上限值
@@ -196,7 +195,7 @@ struct HyperglycemiaView: View
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("警告"),
-                    message: Text("輸入的血壓值最高為300，請重新輸入。"),
+                    message: Text("輸入的血糖值最高為300，請重新輸入。"),
                     dismissButton: .default(Text("確定"))
                 )
             }
@@ -233,7 +232,7 @@ struct HyperglycemiaRecordsListView: View
             }
         }
     }
-    
+    //列表刪除功能
     private func deleteRecord(at offsets: IndexSet)
     {
         records.remove(atOffsets: offsets)
@@ -245,6 +244,8 @@ struct EditHyperglycemiaRecordView: View
 {
     @Binding var record: HyperglycemiaRecord
     @State private var editedHyperglycemia: String = ""
+    @State private var originalHypertension: Double = 0.0
+    @State private var showAlert: Bool = false
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View
@@ -264,13 +265,30 @@ struct EditHyperglycemiaRecordView: View
             {
                 if let editedValue = Double(editedHyperglycemia)
                 {
-                    record.hyperglycemia = editedValue
+                    //檢查是否超過上限
+                    if editedValue <= 300
+                    {
+                        record.hyperglycemia = editedValue
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    else
+                    {
+                        //超過上限時顯示警告
+                        showAlert = true
+                    }
                 }
-                presentationMode.wrappedValue.dismiss()
             }
             .padding()
         }
         .navigationTitle("編輯血糖值")
+        //超過上限時顯示警告
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("警告"),
+                message: Text("輸入的血糖值最高為300，請重新輸入。"),
+                dismissButton: .default(Text("確定"))
+            )
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 import SwiftUI
 import Charts
 
-//血壓紀錄
+// 血壓紀錄
 struct HypertensionRecord: Identifiable
 {
     var id = UUID()
@@ -15,14 +15,14 @@ struct HypertensionRecord: Identifiable
     }
 }
 
-//包含ID和高血壓相關紀錄數組
+// 包含ID和高血壓相關紀錄數組
 struct HypertensionTemperatureSensor: Identifiable
 {
     var id: String
     var records: [HypertensionRecord]
 }
 
-//存取TemperatureSensor數據
+// 存取TemperatureSensor數據
 var HypertensionallSensors: [HypertensionTemperatureSensor] = [
     .init(id: "血壓值", records: [])
 ]
@@ -69,12 +69,12 @@ struct HypertensionView: View
                                         y: .value("Value", record.hypertension)
                                     )
                                     .lineStyle(.init(lineWidth: 5))
-                                    
                                     PointMark(
                                         x: .value("Hour", formattedDate(record.date)),
                                         y: .value("Value", record.hypertension)
                                     )
-                                    .annotation(position: .top) {
+                                    .annotation(position: .top)
+                                    {
                                         Text("\(record.hypertension, specifier: "%.2f")")
                                             .font(.system(size: 12))
                                             .foregroundColor(Color("textcolor"))
@@ -98,7 +98,7 @@ struct HypertensionView: View
                             }
                         }
                     }
-                    .offset(x:20,y: 70)
+                    .offset(x: 20, y: 70)
                 }
                 
                 VStack
@@ -109,35 +109,45 @@ struct HypertensionView: View
                         .padding(.leading, 20)
                         .foregroundColor(Color("textcolor"))
                     
-                    VStack(spacing: -5) {
+                    VStack(spacing: -5)
+                    {
                         TextField("請輸入血壓值", text: $hypertension)
                             .padding()
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .keyboardType(.numberPad)
                             .frame(width: 330)
-                            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)) { _ in
+                            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillChangeFrameNotification)) {
+                                _ in
                             }
                             .onChange(of: hypertension)
                         {
                             newValue in
-                                if let newValue = Double(newValue), newValue > upperLimit
+                            if let newValue = Double(newValue), newValue > upperLimit
                             {
-                                    //當輸入的值超過上限時，會顯示警告
-                                    showAlert = true
-                                    //將輸入值截斷為上限值
-                                    hypertension = String(upperLimit)
-                                }
+                                //當輸入的值超過上限時，會顯示警告
+                                showAlert = true
+                                //將輸入值截斷為上限值
+                                hypertension = String(upperLimit)
                             }
+                        }
                         
                         Button(action:
                                 {
                             if let hypertensionValue = Double(hypertension)
                             {
-                                let newRecord = HypertensionRecord(hypertension: hypertensionValue)
-                                chartData.append(newRecord)
-                                hypertension = ""
-                                //將標誌設為 true，以便滾動到底部
-                                scrollToBottom = true
+                                if hypertensionValue <= upperLimit
+                                {
+                                    let newRecord = HypertensionRecord(hypertension: hypertensionValue)
+                                    chartData.append(newRecord)
+                                    hypertension = ""
+                                    //將標誌設為true，以便滾動到底部
+                                    scrollToBottom = true
+                                }
+                                else
+                                {
+                                    //用戶輸入的值超過了400，顯示警告
+                                    showAlert = true
+                                }
                             }
                         }) {
                             Text("紀錄血壓")
@@ -173,7 +183,8 @@ struct HypertensionView: View
                 HypertensionRecordsListView(records: $chartData)
             }
             //超過上限警告
-            .alert(isPresented: $showAlert) {
+            .alert(isPresented: $showAlert)
+            {
                 Alert(
                     title: Text("警告"),
                     message: Text("輸入的血壓值最高為400，請重新輸入。"),
@@ -197,14 +208,16 @@ struct HypertensionRecordsListView: View
                 ForEach(records)
                 {
                     record in
-                    NavigationLink(destination: EditHypertensionRecordView(record: $records[records.firstIndex(where: { $0.id == record.id })!])) {
+                    NavigationLink(destination: EditHypertensionRecordView(record: $records[records.firstIndex(where: { $0.id == record.id })!]))
+                    {
                         Text("\(formattedDate(record.date)): \(record.hypertension, specifier: "%.2f")")
                     }
                 }
                 .onDelete(perform: deleteRecord)
             }
             .navigationTitle("血壓紀錄列表")
-            .toolbar {
+            .toolbar
+            {
                 ToolbarItem(placement: .navigationBarTrailing)
                 {
                     EditButton()
@@ -212,7 +225,7 @@ struct HypertensionRecordsListView: View
             }
         }
     }
-    
+    //列表刪除功能
     private func deleteRecord(at offsets: IndexSet)
     {
         records.remove(atOffsets: offsets)
@@ -224,6 +237,8 @@ struct EditHypertensionRecordView: View
 {
     @Binding var record: HypertensionRecord
     @State private var editedHypertension: String = ""
+    @State private var originalHypertension: Double = 0.0
+    @State private var showAlert: Bool = false
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View
@@ -237,19 +252,37 @@ struct EditHypertensionRecordView: View
                 .onAppear
             {
                 editedHypertension = String(record.hypertension)
+                originalHypertension = record.hypertension
             }
             
             Button("保存")
             {
                 if let editedValue = Double(editedHypertension)
                 {
-                    record.hypertension = editedValue
+                    if editedValue <= 400.0
+                    {
+                        record.hypertension = editedValue
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    else
+                    {
+                        //用戶修改的值超過400，顯示警告
+                        showAlert = true
+                    }
                 }
-                presentationMode.wrappedValue.dismiss()
             }
             .padding()
         }
         .navigationTitle("編輯血壓值")
+        //超過上限警告
+        .alert(isPresented: $showAlert)
+        {
+            Alert(
+                title: Text("警告"),
+                message: Text("輸入的血壓值最高為400，請重新輸入。"),
+                dismissButton: .default(Text("確定"))
+            )
+        }
     }
 }
 

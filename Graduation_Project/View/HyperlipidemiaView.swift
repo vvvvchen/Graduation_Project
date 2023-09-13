@@ -199,7 +199,7 @@ struct HyperlipidemiaView: View
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("警告"),
-                    message: Text("輸入的血壓值最高為500，請重新輸入。"),
+                    message: Text("輸入的血脂值最高為500，請重新輸入。"),
                     dismissButton: .default(Text("確定"))
                 )
             }
@@ -248,6 +248,8 @@ struct EditHyperlipidemiaRecordView: View
 {
     @Binding var record: HyperlipidemiaRecord
     @State private var editedHyperlipidemia: String = ""
+    @State private var originalHypertension: Double = 0.0
+    @State private var showAlert: Bool = false
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View
@@ -267,14 +269,29 @@ struct EditHyperlipidemiaRecordView: View
             {
                 if let editedValue = Double(editedHyperlipidemia)
                 {
-                    record.hyperlipidemia = editedValue
+                    //檢查是否超過上限
+                    if editedValue <= 500
+                    {
+                        record.hyperlipidemia = editedValue
+                        presentationMode.wrappedValue.dismiss()
+                    } else {
+                        //超過上限時顯示警告
+                        showAlert = true
+                    }
                 }
-                //關閉編輯視圖，返回血脂紀錄列表
-                presentationMode.wrappedValue.dismiss()
             }
             .padding()
         }
         .navigationTitle("編輯血脂值")
+        //超過上限時顯示警告
+        .alert(isPresented: $showAlert)
+        {
+            Alert(
+                title: Text("警告"),
+                message: Text("輸入的血脂值最高為500，請重新輸入。"),
+                dismissButton: .default(Text("確定"))
+            )
+        }
     }
 }
 
