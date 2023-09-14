@@ -6,16 +6,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentView: View
+{
+    
     // 切換深淺模式
     @State var isDarkMode: Bool = false
-    
     // TabView選擇的頁面
     @State private var showSide: Bool = false
     // 跟蹤標籤頁
     @State private var select: Int = 0
+    // 會員預設資料
     @State private var information: Information = Information(name: "vc", gender: "女性", age: 20, height: 161, weight: 50, BMI: 19.68)
-    
+    // 展開搜索列設為FALSE
+    @State private var isSearching = false
+    // 創建相機所需的狀態管理對象
     @StateObject private var cameraManagerViewModel = CameraManagerViewModel()
     
     var body: some View
@@ -23,35 +27,41 @@ struct ContentView: View {
         HStack
         {
             // MARK: 主頁和分享
-            if self.select == 0 || self.select == 1 {
-                ZStack {
-                    VStack(spacing: 0) {
-                        HStack {
-                            Button(action: {
-                                //按鈕動作
+            if self.select == 0 || self.select == 1
+            {
+                ZStack
+                {
+                    VStack(spacing: 0)
+                    {
+                        HStack
+                        {
+                            Button(action:
+                                    {
+                                // 展開搜索列設為TRUE
+                                isSearching = true
                             }) {
-                                NavigationLink(destination: SearchView())
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
+                                    .frame(width: 300, height: 35, alignment: .leading)
+                                    .overlay
                                 {
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
-                                        .frame(width: 300, height: 35, alignment: .leading)
-                                    
-                                        .overlay {
-                                            Image(systemName: "magnifyingglass")
-                                                .resizable()
-                                                .scaledToFit()
-                                                .foregroundColor(.white)
-                                                .frame(maxWidth: .infinity, alignment: .trailing)
-                                                .frame(height: 20)
-                                                .padding(.horizontal, 10)
-                                        }
+                                    Image(systemName: "magnifyingglass")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .frame(height: 20)
+                                        .padding(.horizontal, 10)
                                 }
                             }
-                            if self.select == 0 {
+                            if self.select == 0
+                            {
                                 Image(systemName: "list.bullet")
                                     .font(.system(size: 30))
                                     .foregroundColor(.white)
-                            }else if self.select == 1 {
+                            }
+                            else if self.select == 1
+                            {
                                 Image(systemName: "plus")
                                     .font(.system(size: 35))
                                     .foregroundColor(.white)
@@ -63,7 +73,7 @@ struct ContentView: View {
                 // MARK: 最上方搜尋列和清單或加號的背景調整
                 .frame(width:400)
                 .background(Color(.systemOrange))
-//                .background(Color(.orange))
+                //                .background(Color(.orange))
                 .padding(.bottom, -10)
             }
             // MARK: 會員
@@ -82,41 +92,40 @@ struct ContentView: View {
             }
             Spacer()
         }
-        
+        .fullScreenCover(isPresented: $isSearching)
+        {
+            SearchView(isSearching: $isSearching)
+        }
         ZStack
         {
             // MARK: TabView
             TabView(selection: self.$select)
             {
-//                HomeView(select: self.$select)
+                //              HomeView(select: self.$select)
                 HomeView()
                     .tag(0)
                     .tabItem
                 {
                     Label("主頁", systemImage: "house.fill")
                 }
-                
                 ForumView()
                     .tag(1)
                     .tabItem
                 {
                     Label("分享", systemImage: "globe")
                 }
-                
                 CameraContentView(cameraManagerViewModel: self.cameraManagerViewModel)
                     .tag(2)
                     .tabItem
                 {
                     Label("AI", systemImage: "camera")
                 }
-                
                 FavoriteView(select: self.$select)
                     .tag(3)
                     .tabItem
                 {
                     Label("最愛", systemImage: "heart.fill")
                 }
-                
                 MyView(select: self.$select, information: self.$information)
                     .tag(4)
                     .tabItem

@@ -10,9 +10,10 @@ import FirebaseCore
 
 @main
 
-struct GraduationProjectApp: App {
+struct GraduationProjectApp: App
+{
 
-    //控制深淺模式
+    // 控制深淺模式
     @AppStorage("colorScheme") private var colorScheme: Bool = true
     @StateObject private var cameraManagerViewModel = CameraManagerViewModel()
 
@@ -28,13 +29,9 @@ struct GraduationProjectApp: App {
         WindowGroup
         {
             LoginView()
-                .preferredColorScheme(self.colorScheme ? .light:.dark)
-//            CameraContentView(cameraManagerViewModel: cameraManagerViewModel)
-            //SwiftUIView()
-            //SigninView()
-            //SideView()
+            // 控制深淺模式
+            .preferredColorScheme(self.colorScheme ? .light:.dark)
+
         }
     }
 }
-
-
