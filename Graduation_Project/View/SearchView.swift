@@ -2,7 +2,7 @@
 //  SearchView.swift
 //  Graduation_Project
 //
-//  Created by 朝陽資管 on 2023/9/12.
+//  Created by 朝陽資管 on 2023/9/15.
 //
 
 import SwiftUI
@@ -11,7 +11,8 @@ struct SearchView: View
 {
     
     @Binding var isSearching: Bool
-    private let Searchtag: [String]=["玉米濃湯","壽司","親子丼","炸雞腿","泡菜"]
+    
+    private let Searchtag: [String]=["減糖","減脂","降壓","減糖減脂","減糖降壓","減醣"]
     
     var body: some View
     {

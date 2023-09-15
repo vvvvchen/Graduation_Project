@@ -2,7 +2,7 @@
 //  MyView.swift
 //  Graduation_Project
 //
-//  Created by Mac on 2023/9/7.
+//  Created by Mac on 2023/9/15.
 //
 
 import SwiftUI
@@ -33,7 +33,7 @@ struct MyView: View
     
     private let tag: [String]=["高血壓", "尿酸", "高血脂", "美食尋寶家", "7日打卡"]
     
-    //MARK: 設定顯示資訊
+    // MARK: 設定顯示資訊
     private func setInformation(index: Int) -> String
     {
         switch(index)
@@ -57,216 +57,229 @@ struct MyView: View
     
     var body: some View
     {
-        VStack(spacing: 20)
+        ZStack
         {
             VStack(spacing: 20)
             {
-                //MARK: 頭像
-                if let userImage=self.userImage,
-                   let image=UIImage(data: userImage)
+                HStack
                 {
-                    PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
+                    Spacer()
+                    NavigationLink(destination: MydataView(information: self.$information))
                     {
-                        Circle()
-                            .fill(.gray)
-                            .scaledToFit()
-                            .frame(width: 160)
-                            .overlay
-                        {
-                            Image(uiImage: image)
-                                .resizable()
-                                .scaledToFill()
-                                .clipShape(Circle())
-                        }
+                        Text("編輯")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                     }
-                    .onChange(of: self.pickImage)
-                    {image in
-                        Task
+                    .transition(.opacity.animation(.easeInOut.speed(2)))
+                }
+                VStack(spacing: 20)
+                {
+                    // MARK: 頭像
+                    if let userImage=self.userImage,
+                       let image=UIImage(data: userImage)
+                    {
+                        PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
                         {
-                            if let data=try? await image?.loadTransferable(type: Data.self)
+                            Circle()
+                                .fill(.gray)
+                                .scaledToFit()
+                                .frame(width: 160)
+                                .overlay
                             {
-                                self.userImage=data
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .clipShape(Circle())
+                            }
+                        }
+                        .onChange(of: self.pickImage)
+                        {image in
+                            Task
+                            {
+                                if let data=try? await image?.loadTransferable(type: Data.self)
+                                {
+                                    self.userImage=data
+                                }
                             }
                         }
                     }
-                }
-                else
-                {
-                    PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
+                    else
                     {
-                        Circle()
-                            .fill(.gray)
-                            .scaledToFit()
-                            .frame(width: 160)
-                    }
-                    .onChange(of: self.pickImage)
-                    {image in
-                        Task
+                        PhotosPicker(selection: self.$pickImage, matching: .any(of: [.images, .livePhotos]))
                         {
-                            if let data=try? await image?.loadTransferable(type: Data.self)
+                            Circle()
+                                .fill(.gray)
+                                .scaledToFit()
+                                .frame(width: 160)
+                        }
+                        .onChange(of: self.pickImage)
+                        {image in
+                            Task
                             {
-                                self.userImage=data
+                                if let data=try? await image?.loadTransferable(type: Data.self)
+                                {
+                                    self.userImage=data
+                                }
                             }
                         }
-                    }
-                }
-            }
-            
-            //MARK: 標籤
-            VStack(spacing: 20)
-            {
-                HStack(spacing: 20)
-                {
-                    ForEach(0..<3)
-                    {index in
-                        Capsule()
-                            .fill(Color("tagcolor"))
-                            .frame(width: 100, height: 30)
-                            .shadow(color: .gray, radius: 3, y: 3)
-                            .overlay(Text(self.tag[index]))
                     }
                 }
                 
-                HStack(spacing: 20)
+                // MARK: 標籤
+                VStack(spacing: 20)
                 {
-                    ForEach(3..<5)
-                    {index in
-                        Capsule()
-                            .fill(Color("tagcolor"))
-                            .frame(width: 100, height: 30)
-                            .shadow(color: .gray, radius: 3, y: 3)
-                            .overlay(Text(self.tag[index]))
-                    }
-                }
-            }
-            //MARK: 使用者資訊
-            List
-            {
-                
-                Section(header:Text("個人資訊"))
-                {
-                    ForEach(self.label.indices, id: \.self)
+                    HStack(spacing: 20)
                     {
-                        index in
-                        HStack
-                        {
-                            self.label[index]
-                            Text(self.setInformation(index: index)).foregroundColor(.gray)
-                        }
-                        .frame(height: 40)
-                    }
-                }
-                .listRowSeparator(.hidden)
-                Section(header:Text("數值紀錄"))
-                {
-                    
-                    HStack
-                    {
-                        NavigationLink(destination: MenuView()) {
-                            InformationLabel(image: "figure.strengthtraining.traditional", label: "BMI")
+                        ForEach(0..<3)
+                        {index in
+                            Capsule()
+                                .fill(Color("tagcolor"))
+                                .frame(width: 100, height: 30)
+                                .shadow(color: .gray, radius: 3, y: 3)
+                                .overlay(Text(self.tag[index]))
                         }
                     }
                     
-                    HStack
+                    HStack(spacing: 20)
                     {
-                        NavigationLink(destination: HypertensionView()) {
-                            InformationLabel(system: false,image: self.isDarkMode ? "hypertension2" : "hypertension", label: "高血壓")
-                            
-                        }
-                    }
-                    HStack
-                    {
-                        NavigationLink(destination: HyperglycemiaView()) {
-                            InformationLabel(system: false,image: self.isDarkMode ? "high blood sugar2" : "high blood sugar", label: "高血糖")
-                            
-                        }
-                    }
-                    HStack
-                    {
-                        NavigationLink(destination: HyperlipidemiaView()) {
-                            InformationLabel(system: false,image: self.isDarkMode ? "hyperlipidemiar2" : "hyperlipidemia", label: "高血脂")
+                        ForEach(3..<5)
+                        {index in
+                            Capsule()
+                                .fill(Color("tagcolor"))
+                                .frame(width: 100, height: 30)
+                                .shadow(color: .gray, radius: 3, y: 3)
+                                .overlay(Text(self.tag[index]))
                         }
                     }
                 }
-                .listRowSeparator(.hidden)
-                Section(header:Text("食譜相關"))
+                //MARK: 使用者資訊
+                List
                 {
-                    HStack
+                    
+                    Section(header:Text("個人資訊"))
                     {
-                        NavigationLink(destination: MenuView()) {
-                            InformationLabel(image: "clock.arrow.circlepath", label: "查閱過往")
+                        ForEach(self.label.indices, id: \.self)
+                        {
+                            index in
+                            HStack
+                            {
+                                self.label[index]
+                                Text(self.setInformation(index: index)).foregroundColor(.gray)
+                            }
+                            .frame(height: 40)
                         }
                     }
-                    HStack
+                    .listRowSeparator(.hidden)
+                    Section(header:Text("數值紀錄"))
                     {
-                        NavigationLink(destination: MenuView()) {
-                            InformationLabel(image: "doc.on.clipboard", label: "食材紀錄")
-                        }
-                    }
-                }
-                .listRowSeparator(.hidden)
-                Section(header:Text("設定相關"))
-                {
-                    //MARK: 深淺模式
-                    HStack
-                    {
+                        
                         HStack
                         {
-                            Image(systemName: self.isDarkMode ? "moon.fill" : "sun.max.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
-                            
-                            Text(self.isDarkMode ? "  深色模式" : "   淺色模式")
-                                .bold()
-                                .font(.body)
-                                .alignmentGuide(.leading) { d in d[.leading] }
-                            
+                            NavigationLink(destination: MenuView()) {
+                                InformationLabel(image: "figure.strengthtraining.traditional", label: "BMI")
+                            }
                         }
-                        Toggle("", isOn: self.$colorScheme)
-                            .tint(Color("sidebuttomcolor"))
-                            .scaleEffect(0.75)
-                            .offset(x: 30)
-                    }
-                    //MARK: 登出
-                    Button(action:
-                            {
-                        withAnimation(.easeInOut)
-                        {
-                            self.logIn = false
-                        }
-                    }) {
+                        
                         HStack
                         {
-                            Image(systemName: "power")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 25, height: 25)
-                                .offset(x: 2)
-                            
-                            Text("    登出")
-                                .bold()
-                                .font(.body)
-                                .alignmentGuide(.leading)
-                            {
-                                d in d[.leading]
+                            NavigationLink(destination: HypertensionView()) {
+                                InformationLabel(system: false,image: self.isDarkMode ? "hypertension2" : "hypertension", label: "高血壓")
+                                
+                            }
+                        }
+                        HStack
+                        {
+                            NavigationLink(destination: HyperglycemiaView()) {
+                                InformationLabel(system: false,image: self.isDarkMode ? "high blood sugar2" : "high blood sugar", label: "高血糖")
+                                
+                            }
+                        }
+                        HStack
+                        {
+                            NavigationLink(destination: HyperlipidemiaView()) {
+                                InformationLabel(system: false,image: self.isDarkMode ? "hyperlipidemiar2" : "hyperlipidemia", label: "高血脂")
                             }
                         }
                     }
+                    .listRowSeparator(.hidden)
+                    Section(header:Text("食譜相關"))
+                    {
+                        HStack
+                        {
+                            NavigationLink(destination: MenuView()) {
+                                InformationLabel(image: "clock.arrow.circlepath", label: "查閱過往")
+                            }
+                        }
+                        HStack
+                        {
+                            NavigationLink(destination: MenuView()) {
+                                InformationLabel(image: "doc.on.clipboard", label: "食材紀錄")
+                            }
+                        }
+                    }
+                    .listRowSeparator(.hidden)
+                    Section(header:Text("設定相關"))
+                    {
+                        //MARK: 深淺模式
+                        HStack
+                        {
+                            HStack
+                            {
+                                Image(systemName: self.isDarkMode ? "moon.fill" : "sun.max.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+                                
+                                Text(self.isDarkMode ? "  深色模式" : "   淺色模式")
+                                    .bold()
+                                    .font(.body)
+                                    .alignmentGuide(.leading) { d in d[.leading] }
+                                
+                            }
+                            Toggle("", isOn: self.$colorScheme)
+                                .tint(Color("sidebuttomcolor"))
+                                .scaleEffect(0.75)
+                                .offset(x: 30)
+                        }
+                        //MARK: 登出
+                        Button(action:
+                                {
+                            withAnimation(.easeInOut)
+                            {
+                                self.logIn = false
+                            }
+                        }) {
+                            HStack
+                            {
+                                Image(systemName: "power")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                    .offset(x: 2)
+                                
+                                Text("    登出")
+                                    .bold()
+                                    .font(.body)
+                                    .alignmentGuide(.leading)
+                                {
+                                    d in d[.leading]
+                                }
+                            }
+                        }
+                    }
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
-            }
-            .listStyle(.plain)
-            .background(.clear)
-            
-            //設定背景為白色，不要是灰色
-            .listStyle(InsetListStyle())
-            //控制深淺模式切換
-            .preferredColorScheme(self.colorScheme ? .light:.dark)
-            .onChange(of: self.colorScheme)
-            {
-                newValue in
-                self.isDarkMode = !self.colorScheme
+                .listStyle(.plain)
+                .background(.clear)
+                
+                //設定背景為白色，不要是灰色
+                .listStyle(InsetListStyle())
+                //控制深淺模式切換
+                .preferredColorScheme(self.colorScheme ? .light:.dark)
+                .onChange(of: self.colorScheme)
+                {
+                    newValue in
+                    self.isDarkMode = !self.colorScheme
+                }
             }
         }
     }

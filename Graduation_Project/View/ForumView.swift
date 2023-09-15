@@ -1,84 +1,119 @@
-//
-//  ForumView.swift
-//  Graduation_Project
-//
-//  Created by Mac on 2023/9/14.
-//
-
 import SwiftUI
 
 struct ForumView: View
 {
-    @State private var isSheetPresented = false
-    @State private var buttonOffset: CGSize = .zero
-    @State private var isDragging = false
-    @State private var buttonPosition: CGPoint = CGPoint(x: 350, y: 600)
+    // Circle大小
+    let circleSize: CGFloat = 50
+    // 設定發文每行可輸入的字數
+    let maxCharactersPerLine = 16
+    // 展開搜索列設為FALSE
+    @State private var isSearching = false
+    // 預設輸入時沒有東西
+    @State private var userInput: String = ""
+    // 控制點按加號後會出現的Zstack
+    @State private var isExpanded = false
 
     var body: some View
     {
         ZStack
         {
-            // MARK: 使用者發布文章區塊
-            Button(action:
+            // 包住加號和發佈貼文
+            VStack
+            {
+                VStack(spacing: 0)
+                {
+                    // 第一個視圖
+                    HStack
                     {
-                isSheetPresented = true
-            }) {
-                ZStack
-                {
-                    Circle()
-                        .fill(Color(.systemOrange))
-                        .frame(width: 80, height: 80)
-                        .offset(buttonOffset)
-                    
-                    Image(systemName: "square.and.pencil")
-                        .resizable()
-                        .frame(width: 35, height: 35)
-                        .foregroundColor(.white)
-                        .offset(buttonOffset)
-                }
-            }
-            .offset(buttonOffset)
-
-            // MARK: 發布文章按鈕
-
-
-        }
-        .sheet(isPresented: $isSheetPresented)
-        {
-            Text("This is a sheet.")
-        }
-        
-        .gesture(
-            // 手勢類型，會在用戶開始拖動時觸發
-            DragGesture()
-                // 用戶拖動發生變化時，會執行括號中的代碼
-                .onChanged
-            {
-                value in
-                    // 把按鈕偏移位置設置為當前拖動的位移
-                    buttonOffset = value.translation
-                    // 按鈕正在被拖動
-                    isDragging = true
-                }
-                .onEnded
-            {
-                value in
-                    // 按鈕停止拖動
-                    isDragging = false
-                    // 更新按鈕位置(限制按鈕可以移動到哪裡)
-                    let newX = min(max(45, buttonPosition.x + value.translation.width), 350)
-                    let newY = min(max(50, buttonPosition.y + value.translation.height), 600)
-
-                    withAnimation
-                {
-                        buttonPosition = CGPoint(x: newX, y: newY)
+                        Button(action:
+                                {
+                            // 展開搜索列設為TRUE
+                            isSearching = true
+                        }) {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
+                                .frame(width: 300, height: 35, alignment: .leading)
+                                .overlay
+                            {
+                                Image(systemName: "magnifyingglass")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                    .frame(height: 20)
+                                    .padding(.horizontal, 10)
+                            }
+                        }
+                        // MARK: 分享加號
+                        Button(action:
+                                {
+                            // 開啟加號功能
+                            isExpanded = true
+                        }) {
+                            Image(systemName: "plus")
+                                .font(.system(size: 35))
+                                .foregroundColor(.white)
+                        }
+                        
                     }
-                    // 重置按鈕偏移
-                    buttonOffset = .zero
+                    .padding(10)
                 }
-        )
-        // 用保存的位置來設置按鈕位置
-        .position(buttonPosition)
+                // MARK: 最上方搜尋列和清單或加號的背景調整
+                .frame(width:400)
+                .background(Color(.systemOrange))
+                //                .background(Color(.orange))
+                .padding(.bottom, -10)
+                .fullScreenCover(isPresented: $isSearching)
+                {
+                    SearchView(isSearching: $isSearching)
+                }
+
+                // MARK: SQUARE
+                // 第二個視圖
+                if isExpanded
+                {
+                    ZStack
+                    {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(width: 300, height: 400)
+                        
+                        Circle()
+                            .fill(Color.blue)
+                            .frame(width: circleSize, height: circleSize)
+                            .offset(x: -100, y: -140)
+                        
+                        Text("品瑞")
+                            .font(.headline)
+                            .offset(x: -50, y: -140)
+                        
+                        TextEditor(text: $userInput)
+                            .frame(width: 200, height: 150)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .padding()
+                        
+                        Button(action:
+                                {
+                            isExpanded = false
+                            print("按鈕被點擊了")
+                        }) {
+                            Text("按鈕")
+                                .font(.headline)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .offset(x: 100, y: 160)
+                        }
+                    }
+                    .zIndex(1)
+                }
+                
+                // MARK: 因為分享VIEW沒東西所以放SPACER 之後有東西的話可以刪掉
+                Spacer()
+            }
+        }
     }
 }
 

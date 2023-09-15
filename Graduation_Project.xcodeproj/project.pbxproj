@@ -74,6 +74,7 @@
 		04C7308D2A9DAA7000BAF806 /* InformationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */; };
 		04C7308F2A9EEB7800BAF806 /* MyrecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */; };
 		04F88ECB2AB038210042C110 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F88ECA2AB038210042C110 /* SearchView.swift */; };
+		04F88ECD2AB4180C0042C110 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F88ECC2AB4180C0042C110 /* SpinnerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,7 @@
 		04C7308C2A9DAA7000BAF806 /* InformationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationLabel.swift; sourceTree = "<group>"; };
 		04C7308E2A9EEB7800BAF806 /* MyrecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyrecipeView.swift; sourceTree = "<group>"; };
 		04F88ECA2AB038210042C110 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		04F88ECC2AB4180C0042C110 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 				045C4FA02AAF0B8F0093E8CB /* HyperglycemiaView.swift */,
 				045C4FA22AAF10E10093E8CB /* HyperlipidemiaView.swift */,
 				04F88ECA2AB038210042C110 /* SearchView.swift */,
+				04F88ECC2AB4180C0042C110 /* SpinnerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 				04C7308D2A9DAA7000BAF806 /* InformationLabel.swift in Sources */,
 				04A4C9622A8F08CF000D7C8C /* SigninView.swift in Sources */,
 				045C4FA12AAF0B8F0093E8CB /* HyperglycemiaView.swift in Sources */,
+				04F88ECD2AB4180C0042C110 /* SpinnerView.swift in Sources */,
 				04F88ECB2AB038210042C110 /* SearchView.swift in Sources */,
 				04A344802AA9B39C00F70DF2 /* CameraManager.swift in Sources */,
 				045C4FA32AAF10E10093E8CB /* HyperlipidemiaView.swift in Sources */,
