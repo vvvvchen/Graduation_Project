@@ -18,7 +18,7 @@ struct HomeView: View
     @State private var isSheetPresented = false
     @State private var buttonOffset: CGSize = .zero
     @State private var isDragging = false
-    @State private var buttonPosition: CGPoint = CGPoint(x: 350, y: 600)
+    @State private var buttonPosition: CGPoint = CGPoint(x: 350, y: 570)
     
     var body: some View
     {
@@ -39,7 +39,7 @@ struct HomeView: View
                         }) {
                             RoundedRectangle(cornerRadius: 5)
                                 .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
-                                .frame(width: 300, height: 35, alignment: .leading)
+                                .frame(width: 270, height: 35, alignment: .leading)
                                 .overlay
                             {
                                 Image(systemName: "magnifyingglass")
@@ -51,7 +51,24 @@ struct HomeView: View
                                     .padding(.horizontal, 10)
                             }
                         }
-                        
+                        // MARK: 選單
+                        Button(action:
+                                {
+                            // 開啟選單功能
+                        }) {
+                            Image(systemName: "list.bullet")
+                                .font(.system(size: 30))
+                                .foregroundColor(.white)
+                        }
+                        // MARK: 採購清單
+                        Button(action:
+                                {
+                            // 開啟採購清單功能
+                        }) {
+                            Image(systemName: "cart.fill")
+                                .font(.system(size: 27))
+                                .foregroundColor(.white)
+                        }
                     }
                     .padding(10)
                 }
@@ -303,10 +320,11 @@ struct HomeView: View
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                     ZStack
                     {
-                        // MARK: 使用者發布文章區塊
+                        // MARK: 轉盤區塊
                         Button(action:
                                 {
                             isSheetPresented = true
+                            
                         }) {
                             ZStack
                             {
@@ -323,19 +341,15 @@ struct HomeView: View
                             }
                         }
                         .offset(buttonOffset)
-                        
-                        // MARK: 發布文章按鈕
-                        
-                        
+                        // 以sheet的方式，跳轉到SpinnerView
+                        .sheet(isPresented: $isSheetPresented)
+                        {
+                            SpinnerView()
+                        }
                     }
-                    .sheet(isPresented: $isSheetPresented)
-                    {
-                        Text("This is a sheet.")
-                    }
-                    
                     .gesture(
                         // 手勢類型，會在用戶開始拖動時觸發
-                        DragGesture()
+                        DragGesture(minimumDistance: 0)
                         // 用戶拖動發生變化時，會執行括號中的代碼
                             .onChanged
                         {
@@ -352,7 +366,7 @@ struct HomeView: View
                             isDragging = false
                             // 更新按鈕位置(限制按鈕可以移動到哪裡)
                             let newX = min(max(45, buttonPosition.x + value.translation.width), 350)
-                            let newY = min(max(50, buttonPosition.y + value.translation.height), 600)
+                            let newY = min(max(50, buttonPosition.y + value.translation.height), 570)
                             
                             withAnimation
                             {

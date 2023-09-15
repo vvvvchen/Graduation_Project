@@ -32,7 +32,7 @@ struct ForumView: View
                         }) {
                             RoundedRectangle(cornerRadius: 5)
                                 .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
-                                .frame(width: 300, height: 35, alignment: .leading)
+                                .frame(width: 270, height: 35, alignment: .leading)
                                 .overlay
                             {
                                 Image(systemName: "magnifyingglass")
@@ -54,7 +54,15 @@ struct ForumView: View
                                 .font(.system(size: 35))
                                 .foregroundColor(.white)
                         }
-                        
+                        // MARK: 採購清單
+                        Button(action:
+                                {
+                            // 開啟採購清單功能
+                        }) {
+                            Image(systemName: "cart.fill")
+                                .font(.system(size: 27))
+                                .foregroundColor(.white)
+                        }
                     }
                     .padding(10)
                 }
@@ -68,9 +76,8 @@ struct ForumView: View
                     SearchView(isSearching: $isSearching)
                 }
 
-                // MARK: SQUARE
-                // 第二個視圖
-                if isExpanded
+                // MARK: 發布文章區
+                .sheet(isPresented: $isExpanded)
                 {
                     ZStack
                     {
@@ -109,7 +116,6 @@ struct ForumView: View
                     }
                     .zIndex(1)
                 }
-                
                 // MARK: 因為分享VIEW沒東西所以放SPACER 之後有東西的話可以刪掉
                 Spacer()
             }

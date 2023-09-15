@@ -92,7 +92,8 @@ struct MyView: View
                             }
                         }
                         .onChange(of: self.pickImage)
-                        {image in
+                        {
+                            image in
                             Task
                             {
                                 if let data=try? await image?.loadTransferable(type: Data.self)
@@ -112,7 +113,8 @@ struct MyView: View
                                 .frame(width: 160)
                         }
                         .onChange(of: self.pickImage)
-                        {image in
+                        {
+                            image in
                             Task
                             {
                                 if let data=try? await image?.loadTransferable(type: Data.self)
