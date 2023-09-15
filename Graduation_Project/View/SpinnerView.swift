@@ -263,6 +263,7 @@ struct OrangeWhiteSpinner: View
                 FanShape(startAngle: angle, endAngle: Angle(degrees: angle.degrees + angleIncrement))
                     .foregroundColor(color)
             }
+            .foregroundColor(Color.black)
             .rotationEffect(.degrees(isRotating ? rotationAngle : 0))
         }
         
