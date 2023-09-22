@@ -13,6 +13,8 @@ struct HomeView: View
     
     // 展開搜索列設為FALSE
     @State private var isSearching = false
+    // 控制點按清單後會出現的Zstack
+    @State private var isList = false
     
     // 轉盤控制區
     @State private var isSheetPresented = false
@@ -20,6 +22,16 @@ struct HomeView: View
     @State private var isDragging = false
     @State private var buttonPosition: CGPoint = CGPoint(x: 350, y: 570)
     
+    // 菜餚篩選區
+    // 減醣
+    @State private var reducesugar = false
+    // 減脂
+    @State private var reducefat = false
+    // 降壓
+    @State private var reducestep = false
+    // 尿酸
+    @State private var uricacid = false
+
     var body: some View
     {
         ZStack
@@ -27,10 +39,10 @@ struct HomeView: View
             // MARK: 內建食譜分類
             VStack(spacing: 0)
             {
-                // 第一個視圖
+                //搜尋第一個視圖
                 VStack(spacing: 0)
                 {
-                    HStack
+                    HStack(spacing: 0)
                     {
                         Button(action:
                                 {
@@ -40,25 +52,41 @@ struct HomeView: View
                             RoundedRectangle(cornerRadius: 5)
                                 .fill(Color(red: 0.961, green: 0.804, blue: 0.576))
                                 .frame(width: 270, height: 35, alignment: .leading)
+                                .offset(x: UIScreen.main.bounds.width/2-200, y: 0)
                                 .overlay
                             {
                                 Image(systemName: "magnifyingglass")
                                     .resizable()
                                     .scaledToFit()
+                                    .offset(x: UIScreen.main.bounds.width/2-197, y: 0)
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                                     .frame(height: 20)
                                     .padding(.horizontal, 10)
                             }
                         }
-                        // MARK: 選單
-                        Button(action:
-                                {
-                            // 開啟選單功能
-                        }) {
-                            Image(systemName: "list.bullet")
-                                .font(.system(size: 30))
+                        // MARK: 菜餚篩選
+                        Menu
+                        {
+//                            Button("Order Now", action: placeOrder)
+//                            Button("Adjust Order", action: adjustOrder)
+                            Toggle("減糖", isOn: $reducesugar)
+
+                            Toggle("減脂", isOn: $reducefat)
+
+                            Toggle("降壓", isOn: $reducestep)
+
+                            Toggle("尿酸", isOn: $uricacid)
+//                                .toggleStyle(CheckBoxToggleStyle(shape: .circle))
+//                                .foregroundColor(Color(red: 0.983, green: 0.821, blue: 0.411))
+                        }
+                    label:
+                        {
+                            Label("", systemImage: "list.bullet")
+                                .font(.system(size: 35))
                                 .foregroundColor(.white)
+                                .offset(x: UIScreen.main.bounds.width/2-190, y: 0)
+//                                .fontWeight(.bold)
                         }
                         // MARK: 採購清單
                         Button(action:
@@ -68,6 +96,7 @@ struct HomeView: View
                             Image(systemName: "cart.fill")
                                 .font(.system(size: 27))
                                 .foregroundColor(.white)
+                                .offset(x: UIScreen.main.bounds.width/2-193.8, y: 0)
                         }
                     }
                     .padding(10)
@@ -81,6 +110,7 @@ struct HomeView: View
                 {
                     SearchView(isSearching: $isSearching)
                 }
+                
                 HStack(spacing: 25)
                 {
                     TabButton(title: "主菜", isSelected: selectedTab == 0)
@@ -117,7 +147,6 @@ struct HomeView: View
                         }
                     }
                     .padding(.top, 8)
-                    
                 }
                 .frame(maxWidth: .infinity, maxHeight: 40)
                 .background(Color(.systemOrange))
@@ -432,3 +461,31 @@ struct CardView: View
             )
     }
 }
+struct CheckBoxToggleStyle: ToggleStyle {
+    enum CheckBoxShape: String {
+        case circle
+        case square
+    }
+    
+    let shape: CheckBoxShape
+    
+    init(shape: CheckBoxShape = .circle) {
+        self.shape = shape
+    }
+    
+    func makeBody(configuration: Configuration) -> some View {
+        let systemName: String = configuration.isOn ? "checkmark.\(shape.rawValue).fill" : shape.rawValue
+        
+        return Button(action: {
+            configuration.isOn.toggle()
+        }) {
+            configuration.label
+            Image(systemName: systemName)
+                .resizable()
+                .frame(width: 30, height: 30)
+        }
+    }
+}
+
+//func placeOrder() { }
+//func adjustOrder() { }
