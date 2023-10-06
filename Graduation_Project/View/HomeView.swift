@@ -1,7 +1,7 @@
 //  HomeView.swift
 //  Graduation_Project
 //
-//  Created by Mac on 2023/9/15.
+//  Created by Mac on 2023/10/06.
 //
 
 import SwiftUI
@@ -68,17 +68,40 @@ struct HomeView: View
                         // MARK: 菜餚篩選
                         Menu
                         {
-//                            Button("Order Now", action: placeOrder)
-//                            Button("Adjust Order", action: adjustOrder)
-                            Toggle("減糖", isOn: $reducesugar)
-
+                            //                            Button("Order Now", action: placeOrder)
+                            //                            Button("Adjust Order", action: adjustOrder)
+                            Toggle("減醣", isOn: $reducesugar)
+                                .onChange(of: reducesugar) { newValue in
+                                    // 如果減醣被勾選，並且尿酸也被勾選，則取消尿酸的勾選
+                                    if newValue && uricacid {
+                                        uricacid = false
+                                    }
+                                }
                             Toggle("減脂", isOn: $reducefat)
-
+                                .onChange(of: reducefat) { newValue in
+                                    // 如果減脂被勾選，並且尿酸也被勾選，則取消尿酸的勾選
+                                    if newValue && uricacid {
+                                        uricacid = false
+                                    }
+                                }
                             Toggle("降壓", isOn: $reducestep)
-
+                                .onChange(of: reducestep) { newValue in
+                                    // 如果降壓被勾選，並且尿酸也被勾選，則取消尿酸的勾選
+                                    if newValue && uricacid {
+                                        uricacid = false
+                                    }
+                                }
                             Toggle("尿酸", isOn: $uricacid)
-//                                .toggleStyle(CheckBoxToggleStyle(shape: .circle))
-//                                .foregroundColor(Color(red: 0.983, green: 0.821, blue: 0.411))
+                            //                                .toggleStyle(CheckBoxToggleStyle(shape: .circle))
+                            //                                .foregroundColor(Color(red: 0.983, green: 0.821, blue: 0.411))
+                                .onChange(of: uricacid) { newValue in
+                                    // 如果尿酸被勾選，取消減糖、減脂和降壓的勾選
+                                    if newValue {
+                                        reducesugar = false
+                                        reducefat = false
+                                        reducestep = false
+                                    }
+                                }
                         }
                     label:
                         {
